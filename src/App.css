@@ -77,6 +77,15 @@ tbody {
 .p-t-10{
   padding-top: 10px !important;
 }
+
+.m-t-5{
+    margin-top: 5px !important;
+}
+
+.m-t-10{
+    margin-top: 10px !important;
+}
+
 .no-padding{
   padding: 0 !important;
 }
@@ -759,3 +768,4 @@ tbody {
     display: none !important;
   }
 }
+

@@ -9,20 +9,16 @@ import Header from './components/Common/CommonHeader';
 class App extends Component {
   render() {
     return (
-      <div className="container-fluid no-padding">
+      <div className="container-fluid">
         <div className="header">
-          <Row className="nav-row">
+          <div className="nav-row">
             <Col xs="12">
               <Header />
             </Col>
-          </Row>
+          </div>
         </div>
         <div className="main">
-          <Row>
-            <Col xs="12">
               <Routes />
-            </Col>
-          </Row>
         </div>
       </div>
     );
