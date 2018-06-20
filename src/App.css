@@ -338,6 +338,51 @@ tbody {
 }
 /* END Search Box Hover */
 
+/* START Customer Advert Banner */
+.advert {
+  width: 80%;
+  height: 220px;
+  color: #FFFFFF;
+  padding: 3em;
+}
+
+.watch {
+  background-image: url('components/AdBanner/images/watches.jpg');
+  background-size: cover;
+  text-align: left;
+}
+
+.camera {
+  background-image: url('components/AdBanner/images/camera.png');
+  background-size: cover;
+}
+
+.book {
+  background-image: url('components/AdBanner/images/books.jpg');
+  background-size: cover;
+  text-align: left;
+}
+
+.advert h3 {
+  padding-bottom: 0.2em;
+}
+
+.slick-dots {
+  bottom: -30px;
+}
+
+.slick-list {
+  width: 80%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+@media (max-width: 430px) {
+  .advert {
+      padding: 2em;
+  }
+}
+/* END Customer Advert Banner  */
 
 .loader-ellips {
   font-size: 20px; /* change size here */
