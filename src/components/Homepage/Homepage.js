@@ -7,6 +7,8 @@ import { productsFetchData } from '../../actions/productActions'
 
 import ProductTiles from '../Products/ProductTiles';
 
+import AdBanner from '../AdBanner/AdBanner';
+
 class Homepage extends Component {
     main = {imageUrl: 'https://cdn.bloomnation.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/2/0/20161202060048_file_5841b6d088276.png'}
     productData = [
@@ -40,9 +42,13 @@ class Homepage extends Component {
 
     render() {
         return ( 
-            <Container fluid>
-                {this.props.products ? <ProductTiles products={this.props.products} /> : <p>No Products</p>}  
-            </Container>
+            <div>
+                <p>Hello I am the homepage</p>  
+                <AdBanner />                    
+                <Container fluid>
+                    {this.props.products ? <ProductTiles products={this.props.products} /> : <p>No Products</p>}  
+                </Container>
+            </div>
         );
     }
 }
