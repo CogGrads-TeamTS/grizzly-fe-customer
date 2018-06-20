@@ -9,17 +9,19 @@ import Header from './components/Common/CommonHeader';
 class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <div className="header">
-          <div className="nav-row">
+      <div className="container-fluid no-padding">
+        <Row className="user-header">
+          <div className="nav-user-row">
             <Col xs="12">
               <Header />
             </Col>
           </div>
-        </div>
-        <div className="main">
+        </Row>
+        <Row className="main">
+            <Col xs="12">
               <Routes />
-        </div>
+            </Col>
+        </Row>
       </div>
     );
   }
