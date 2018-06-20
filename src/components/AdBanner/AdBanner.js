@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
+import Slider from "react-slick";
 
 import '../../App.css'
-
-import Slider from "react-slick";
 
 class AdBanner extends React.Component {
   render() {
