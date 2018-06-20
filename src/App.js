@@ -10,20 +10,18 @@ class App extends Component {
   render() {
     return (
       <div className="container-fluid no-padding">
-        <div className="header">
-          <Row className="nav-row">
+        <Row className="user-header">
+          <div className="nav-user-row">
             <Col xs="12">
               <Header />
             </Col>
-          </Row>
-        </div>
-        <div className="main">
-          <Row>
+          </div>
+        </Row>
+        <Row className="main">
             <Col xs="12">
               <Routes />
             </Col>
-          </Row>
-        </div>
+        </Row>
       </div>
     );
   }
