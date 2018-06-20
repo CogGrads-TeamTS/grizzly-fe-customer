@@ -7,6 +7,7 @@ import {
   Input,
   Button,
  } from 'reactstrap';
+import Radium, { Style } from 'radium';
 
 class GlobalSearch extends React.Component {
  
@@ -16,12 +17,16 @@ class GlobalSearch extends React.Component {
       <Form>
         <FormGroup>
         <InputGroup className={this.props.classname}>
+            <Style scopeSelector='.global-search-user' rules={{
+                '::-webkit-input-placeholder': {
+                    color: '#ffb732'
+                }}} />
           <Input 
           className={classes}
           type="search" 
           name="search" 
           id="exampleSearch" 
-          placeholder={this.props.placeholder} 
+          placeholder="What would you like to buy today...."
           />
             {/* <InputGroupAddon addonType="prepend">
               <Button 
