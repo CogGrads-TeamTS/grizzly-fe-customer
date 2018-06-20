@@ -38,15 +38,15 @@ class Header extends Component {
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                        <GlobalSearch classname="global-search" rounded="search-rounded" placeholder="Search" />
+                            <GlobalSearch classname="global-search-user" rounded="user-search-rounded" placeholder="Search" />
                             <NavItem>
-                            <NavLink href="/components/"><i className="far fa-bell p-t-5 white"></i><span className="user-msg">Messages</span></NavLink>
+                                <NavLink href="#">
+                                    <Button outline className="login-button" id="btn-rounded">Login</Button>
+                                </NavLink>
                             </NavItem>
-                            <span className="nav-link welcome-customer p-t-10 white">Welcome, Customer John</span>
-                            <NavItem className="p-0">
-                            <NavLink href="https://github.com/reactstrap/reactstrap"> 
-                                <Button color="secondary" className="logout-button p-t-10" id="btn-rounded">Logout</Button>
-                                <span className="logout-text">Logout</span>
+                            <NavItem>
+                            <NavLink href="#">
+                                <Button  className="signup-button" id="btn-rounded">Signup</Button>
                             </NavLink>
                             </NavItem>
                         </Nav>
