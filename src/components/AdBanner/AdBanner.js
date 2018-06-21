@@ -17,7 +17,7 @@ class AdBanner extends React.Component {
     };
 
     return (
-      <Slider {...settings}>
+      <Slider {...settings} style={{'padding-bottom': '10px'}}>
         <div className="advert watch">
           <h3>All watches 20% off!</h3>
           <p>Including major brands</p>
