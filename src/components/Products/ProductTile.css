@@ -15,9 +15,10 @@
 }
 
 .card-img-overlay {
+    border-radius: calc(0.25rem - 1px);
     opacity: 0;
-    transition: .3s ease;
-    background-color: #49505780;
+    transition: .3s ease-in-out;
+    background-color: #0000008a;
 }
 
 .card-img-overlay:hover {

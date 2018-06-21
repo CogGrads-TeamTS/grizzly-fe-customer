@@ -15,7 +15,7 @@ const ProductTiles = (props) => {
                 <CardDeck>
                 {
                     props.products.map(product =>
-                        <Col xs="2" style={{'padding': '0px'}} key={product.id}>
+                        <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={product.id}>
                             <ProductTile product={product}/>
                         </Col>
                     )
