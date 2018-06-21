@@ -1,0 +1,15 @@
+import React from 'react';
+import { Button } from 'reactstrap';
+
+const CustomerSortByButton = (props) => { //console.log(props.category);
+    const  category  = props.category;
+
+    return (
+        <div>
+            <Button outline id="btn-rounded"  className="m-t-10 btn-block" color="info">{category.name}</Button>
+        </div>
+    )
+};
+
+
+export default CustomerSortByButton;

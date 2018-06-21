@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Row, Col,Button} from 'reactstrap';
+
 import CustomerSortBy from "../CustomerSortByButton/CustomerSortBy";
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
@@ -44,26 +44,7 @@ class Homepage extends Component {
 
         return (
             <Container fluid>
-            <Row>
-                    <Col md="2" sm="4" xs="6">
-                        <CustomerSortBy  />
-                    </Col>
-                    <Col md="2" sm="4" xs="6">
-                        <Button outline id="btn-rounded" className="m-t-10 btn-block" color="info">Button 1</Button>
-                    </Col>
-                    <Col md="2" sm="4" xs="6">
-                        <Button outline id="btn-rounded" className="m-t-10 btn-block" color="info">Button 1</Button>
-                    </Col>
-                    <Col md="2" sm="4" xs="6">
-                        <Button outline id="btn-rounded" className="m-t-10 btn-block" color="info">Button 1</Button>
-                    </Col>
-                    <Col md="2" sm="4" xs="6">
-                        <Button outline id="btn-rounded" className="m-t-10 btn-block" color="info">Button 1</Button>
-                    </Col>
-                    <Col md="2" sm="4" xs="6">
-                        <Button outline id="btn-rounded" className="m-t-10 btn-block" color="info">Button 1</Button>
-                    </Col>
-            </Row>
+               <CustomerSortBy load={this.loadProduct} />
                 <div className="m-t-20">
                     <AdBanner />
                 </div>
