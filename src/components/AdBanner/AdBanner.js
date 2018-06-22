@@ -9,11 +9,10 @@ class AdBanner extends React.Component {
     var settings = {
       dots: true,
       infinite: true,
-      speed: 1000,
+      speed: 4000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: true,
-      speed: 3000
+      autoplay: true
     };
 
     return (
