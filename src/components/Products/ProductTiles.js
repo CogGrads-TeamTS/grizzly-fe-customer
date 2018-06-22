@@ -10,16 +10,16 @@ const ProductTiles = (props) => {
                     {
                         props.main && 
                         <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={props.main.text}>
-                            <ProductTile badge={props.main.badge} badgeColor={props.main.badgeColor} text={props.main.text} imageUrl={props.main.imageUrl}/>
+                            <ProductTile id={props.main.id} badge={props.main.badge} badgeColor={props.main.badgeColor} text={props.main.text} imageUrl={props.main.imageUrl}/>
                         </Col>
                     }
-                            {   
-                                props.products.map(product =>
-                                    <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={product.id}>
-                                        <ProductTile product={product} badge={"Product"} badgeColor={"primary"} text={product.name} imageUrl={"https://switch.com.my/wp-content/uploads/2017/11/iphonex_spacegray.png"}/>
-                                    </Col>
-                                )
-                            }
+                    {   
+                        props.products.map(product =>
+                            <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={product.id}>
+                                <ProductTile product={product} badge={"Product"} cardClass="product" badgeColor={"primary"} text={product.name} imageUrl={"https://switch.com.my/wp-content/uploads/2017/11/iphonex_spacegray.png"}/>
+                            </Col>
+                        )                        
+                    }
                 </CardDeck>
     </div>
   );
