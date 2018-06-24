@@ -854,3 +854,8 @@ tbody {
   }
 }
 
+.slick-dots {
+  position: unset !important;
+  
+}
+

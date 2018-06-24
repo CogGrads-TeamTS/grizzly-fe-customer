@@ -1,22 +1,43 @@
 import React from 'react';
-import { CardGroup, Card, CardTitle, CardText, CardImg, CardImgOverlay, Fade } from 'reactstrap';
+import { CardGroup, Card, CardTitle, CardText, CardImg, CardImgOverlay, Fade, Button, CardSubtitle, CardBody, CardLink, Badge, UncontrolledTooltip  } from 'reactstrap';
 import './ProductTile.css';
+import _ from 'lodash'
 
 const ProductTile = (props) => {
-
-  
+    // tooltip ids
+    const tileId = props.product ? props.product.id : props.id;
+    const tooltip_price = `price_${tileId}`;
+    const tooltip_brand = `brand_${tileId}`;
   return (
     <div className="tile m-t-20">
         <Fade>
-            <Card inverse>
-            <CardImg style={{"width": "100%"}} src="http://assets.kraftfoods.com/recipe_images/opendeploy/%20138280-49fdab4f7bf207b3cc31f72186c86b0a642f0802_642x428.jpg" alt="Card image cap" />
+            <Card className={props.cardClass}>
+            <CardImg style={{"width": "100%"}} src={props.imageUrl} alt="Card image cap" />
             
-            <CardImgOverlay>
-                <CardTitle>{props.product.name}</CardTitle>
-                <CardText>
-                    <small className="text-white-50">{props.product.description}</small>
-                </CardText>
-            </CardImgOverlay>
+            <CardBody>
+                <CardTitle>{props.text}</CardTitle>
+                {props.badge && <Badge color={props.badgeColor}>{props.badge}</Badge>}
+                {
+                    props.product &&
+                    <Badge color={"success"} id={tooltip_price}>${props.product.price}</Badge>
+                }
+                {
+                    props.product &&
+                    <Badge color={"secondary"} id={tooltip_brand}>{props.product.brand}</Badge>
+                }
+                {
+                    props.product && 
+                    <UncontrolledTooltip placement="bottom" target={`${tooltip_brand}`}>
+                        Brand
+                    </UncontrolledTooltip>
+                }
+                {
+                    props.product && 
+                    <UncontrolledTooltip placement="bottom" target={`${tooltip_price}`}>
+                        Price
+                    </UncontrolledTooltip>
+                }
+            </CardBody>
             </Card>
         </Fade>
     </div>

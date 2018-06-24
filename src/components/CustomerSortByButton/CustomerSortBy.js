@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Row, Col} from 'reactstrap';
 import _ from 'lodash';
 import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown } from 'reactstrap';
-import {categoriesFetchData} from "../../actions/categoryActions";
 import CustomerSortByButton from "./CustomerSortByButton";
+import {productsFetchData,productsFetchDataByCategory} from "../../actions/productActions";
 
 
 class CustomerSortBy extends Component {
@@ -54,7 +54,7 @@ class CustomerSortBy extends Component {
 
     render()
 
-    { //console.log(this.props.categories);
+    { //console.log(this.props.products);
 
         const IsEmpty = _.isEmpty(this.props.categories) ?
             (
@@ -65,7 +65,7 @@ class CustomerSortBy extends Component {
                 _.map(this.props.categories, cat => {
                     return (
                         <Col>
-                        <CustomerSortByButton key={cat.id} category={cat} />
+                        <CustomerSortByButton key={cat.id} category={cat} load={this.loadProducts} />
                         </Col>
                     )
                 })
@@ -90,18 +90,22 @@ class CustomerSortBy extends Component {
 
         );
     }
+    loadProducts = (cat) =>{ console.log(cat.name);
+       this.props.fetchData(this.search, this.page, this.size,this.sort,cat.id);
+    }
 }
 
 const mapStateToProps = (state) => {
     return{
-        categories: state.category.content,
-        last: state.category.last
+        categories: state.products.filterByCat,
+        products: state.products.content,
+        last: state.products.last
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (search, page, size, sort)=> dispatch(categoriesFetchData(search, page, size, sort))
+        fetchData: (search, page, size, sort,catId)=> dispatch(productsFetchData(search, page, size, sort,catId)),
     };
 };
 

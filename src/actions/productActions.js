@@ -36,3 +36,4 @@ export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAU
             .catch((error)=>dispatch(loadProductsError(error)));
     }
 }
+
