@@ -12,12 +12,12 @@
     width: 100%;
 }
 
-.card.product {
+.card.hover {
     transition: .3s ease-in-out;
     opacity: .7;
 }
 
-.card.product:hover {
+.card.hover:hover {
     opacity: 1;
     cursor: pointer;
 }
@@ -46,7 +46,6 @@
 
 .badge {
     margin: 2px;
-    cursor: default;
 }
 
 .card-body {

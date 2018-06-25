@@ -8,11 +8,12 @@ const ProductTile = (props) => {
     const tileId = props.product ? props.product.id : props.id;
     const tooltip_price = `price_${tileId}`;
     const tooltip_brand = `brand_${tileId}`;
+    const imageUrl = 'http://ts.ausgrads.academy/images/';
   return (
     <div className="tile m-t-20">
         <Fade>
             <Card className={props.cardClass}>
-            <CardImg style={{"width": "100%"}} src={props.imageUrl} alt="Card image cap" />
+            <CardImg style={{"width": "100%"}} src={`${imageUrl}${props.imageUrl}`} alt="Card image cap" />
             
             <CardBody>
                 <CardTitle>{props.text}</CardTitle>
