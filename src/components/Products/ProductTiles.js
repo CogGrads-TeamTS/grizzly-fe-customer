@@ -16,7 +16,7 @@ const ProductTiles = (props) => {
                     {   
                         props.products.map(product =>
                             <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={product.id}>
-                                <ProductTile product={product} badge={"Product"} cardClass="hover" badgeColor={"primary"} text={product.name} imageUrl={product.images[0].url}/>
+                                <ProductTile product={product} badge={"Product"} cardClass="hover" badgeColor={"primary"} text={product.name} imageUrl={product.images.length > 0 ? product.images[0].url : ''}/>
                             </Col>
                         )                        
                     }
