@@ -15,6 +15,7 @@ import {
     DropdownItem } from 'reactstrap';
 
 import grizzlogo from '../../assets/griz-logo.png';
+import LogIn from '../Modals/LogInModal';
 
 class Header extends Component {
     constructor(props) {
@@ -41,12 +42,12 @@ class Header extends Component {
                             <GlobalSearch classname="global-search-user" rounded="user-search-rounded" placeholder="Search" />
                             <NavItem>
                                 <NavLink href="#">
-                                    <Button outline className="login-button" id="btn-rounded">Login</Button>
+                                    <LogIn buttonLabel="Sign In" title="Sign In" />
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                             <NavLink href="#">
-                                <Button  className="signup-button" id="btn-rounded">Signup</Button>
+                                <Button className="signup-button" id="btn-rounded">Signup</Button>
                             </NavLink>
                             </NavItem>
                         </Nav>
