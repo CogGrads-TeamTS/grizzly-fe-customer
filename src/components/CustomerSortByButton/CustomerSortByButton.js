@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-const CustomerSortByButton = (props) => { console.log(props.category);
+const CustomerSortByButton = (props) => { //console.log(props.category);
     const  category  = props.category;
     const name = props.name;
     return (

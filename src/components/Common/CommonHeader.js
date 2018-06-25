@@ -31,7 +31,7 @@ class Header extends Component {
         return (
 
                 <Navbar light expand="md">
-                    <NavbarBrand><img className="griz-logo" alt="TS Grizzly Logo" src={grizzlogo} /></NavbarBrand>
+                    <NavbarBrand href="/"><img className="griz-logo" alt="TS Grizzly Logo" src={grizzlogo} /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>

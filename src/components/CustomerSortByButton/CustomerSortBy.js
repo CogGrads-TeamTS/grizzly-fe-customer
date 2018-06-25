@@ -16,7 +16,7 @@ class CustomerSortBy extends Component {
         this.state = {
             dropdownOpen: false,
             dropdownValue: 'Shop By Category',
-            value:'category',
+            value:'',
             actions: [],
             sortBy: []
         };
@@ -37,7 +37,7 @@ class CustomerSortBy extends Component {
     }
 
 
-    renderSwitch= (state)=> { console.log(state);
+    renderSwitch= (state)=> { //console.log(state);
         switch (state.value) {
             case 'category':
                 //console.log(event.currentTarget.value);
@@ -48,7 +48,7 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(this.props.categories, cat => {
+                            _.map(this.props.categories, cat => {//console.log(state);
                                 return (
                                     <Col>
                                         <CustomerSortByButton key={cat.id} category={cat} name={cat.name} load={this.loadProducts}/>
@@ -108,7 +108,7 @@ class CustomerSortBy extends Component {
                             </Col>
                         ) : (
                             _.map(this.props.products, prod => {
-                                console.log(prod.rating);
+                                console.log(prod.price);
                                 return (
                                     <Col>
                                         <CustomerSortByButton  key={prod.id} category={prod} name={prod.price} load={this.loadProductsByBrand}/>
@@ -126,10 +126,10 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(this.props.categories, cat => {
+                            _.map(this.props.categories, cat => {//console.log(state);
                                 return (
                                     <Col>
-                                        <CustomerSortByButton key={cat.id} category={cat} name={cat.name}  load={this.loadProducts}/>
+                                        <CustomerSortByButton key={cat.id} category={cat} name={cat.name} load={this.loadProducts}/>
                                     </Col>
                                 )
                             })
@@ -179,9 +179,9 @@ class CustomerSortBy extends Component {
         this.props.history.push(`/${cat.name}/${cat.id}`);
     };
 
-    loadProductsByBrand = (prod) =>{ console.log(prod.name);
+    loadProductsByBrand = (prod) =>{ console.log(prod);
         this.props.fetchData(this.search, this.page, this.size,this.sort);
-        this.props.history.push(`/${prod.brand}/${prod.id}`);
+        this.props.history.push(`/${prod.brand}/${prod.catId}`);
     }
 }
 
