@@ -37,13 +37,10 @@ class CustomerSortBy extends Component {
     }
 
 
-    renderSwitch= (event)=> {
-        switch (event.currentTarget.value) {
+    renderSwitch= (state)=> { console.log(state);
+        switch (state.value) {
             case 'category':
-                console.log(event.currentTarget.value);
-                this.setState({
-                    dropdownValue: event.currentTarget.textContent,
-                });
+                //console.log(event.currentTarget.value);
                 return (
                     (_.isEmpty(this.props.categories) ?
                         (
@@ -62,10 +59,6 @@ class CustomerSortBy extends Component {
                 );
 
             case 'brand':
-                console.log(event.currentTarget.value)
-                this.setState({
-                    dropdownValue: event.currentTarget.textContent,
-                });
                 return (
                     (_.isEmpty(this.props.products) ?
                         (
@@ -77,27 +70,54 @@ class CustomerSortBy extends Component {
                                 console.log(prod.brand);
                                 return (
                                     <Col>
-                                        <CustomerSortByButton  key={prod.id} product={prod} name={prod.brand} load={this.loadProductsByBrand}/>
+                                        <CustomerSortByButton  key={prod.id} category={prod} name={prod.brand} load={this.loadProductsByBrand}/>
                                     </Col>
                                 )
                             })
                         ))
 
                 );
-                break;
+
 
             case 'rating':
-                this.setState({
-                    dropdownValue: event.currentTarget.textContent,
-                });
-                break;
+                return (
+                    (_.isEmpty(this.props.products) ?
+                        (
+                            <Col>
+                                There are no brands to display.
+                            </Col>
+                        ) : (
+                            _.map(this.props.products, prod => {
+                                console.log(prod.rating);
+                                return (
+                                    <Col>
+                                        <CustomerSortByButton  key={prod.id} category={prod} name={prod.rating} load={this.loadProductsByBrand}/>
+                                    </Col>
+                                )
+                            })
+                        ))
+
+                );
 
             case 'price':
-                this.setState({
-                    dropdownValue: event.currentTarget.textContent,
-                });
-                break;
+                return (
+                    (_.isEmpty(this.props.products) ?
+                        (
+                            <Col>
+                                There are no brands to display.
+                            </Col>
+                        ) : (
+                            _.map(this.props.products, prod => {
+                                console.log(prod.rating);
+                                return (
+                                    <Col>
+                                        <CustomerSortByButton  key={prod.id} category={prod} name={prod.price} load={this.loadProductsByBrand}/>
+                                    </Col>
+                                )
+                            })
+                        ))
 
+                );
             default:
                 return (
                     (_.isEmpty(this.props.categories) ?
@@ -116,20 +136,16 @@ class CustomerSortBy extends Component {
                         ))
                 );
 
-
         }
-    }
+    };
 
-    // changeValueCat = event => {
-    //     this.setState({
-    //         dropdownValue: event.currentTarget.textContent,
-    //     });
-    //     // console.log('sort value: ' + event.currentTarget.value );
-    //
-    //     // this.props.sortChanged(event.currentTarget.value);
-    //
-    //     //   this.props.update(event.currentTarget.value);
-    // };
+    changeValue = event => {
+        this.setState({
+            dropdownValue: event.currentTarget.textContent,
+            value:event.currentTarget.value
+        });
+        this.renderSwitch(this.state);
+    };
 
 
     render()
@@ -144,28 +160,15 @@ class CustomerSortBy extends Component {
                             {this.state.dropdownValue}
                         </DropdownToggle>
                         <DropdownMenu id="categoryDropdown">
-                            <DropdownItem onClick={this.renderSwitch} value="category">Shop By Category</DropdownItem>
-                            <DropdownItem onClick={this.renderSwitch} value="brand">Shop By Brand</DropdownItem>
-                            <DropdownItem onClick={this.renderSwitch} value="rating">Shop By Rating</DropdownItem>
-                            <DropdownItem onClick={this.renderSwitch} value="price">Shop By Price</DropdownItem>
+                            <DropdownItem onClick={this.changeValue} value="category">Shop By Category</DropdownItem>
+                            <DropdownItem onClick={this.changeValue} value="brand">Shop By Brand</DropdownItem>
+                            <DropdownItem onClick={this.changeValue} value="rating">Shop By Rating</DropdownItem>
+                            <DropdownItem onClick={this.changeValue} value="price">Shop By Price</DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown>
                 </Col>
                 {
-                    (_.isEmpty(this.props.categories) ?
-                        (
-                            <Col>
-                                There are no categories to display.
-                            </Col>
-                        ) : (
-                            _.map(this.props.categories, cat => {
-                                return (
-                                    <Col>
-                                        <CustomerSortByButton key={cat.id} category={cat} name={cat.name} load={this.loadProducts}/>
-                                    </Col>
-                                )
-                            })
-                        ))
+                    this.renderSwitch(this.state)
                 }
             </Row>
 
@@ -174,10 +177,11 @@ class CustomerSortBy extends Component {
     loadProducts = (cat) =>{ console.log(cat.name);
         this.props.fetchData(this.search, this.page, this.size,this.sort,cat.id);
         this.props.history.push(`/${cat.name}/${cat.id}`);
-    }
+    };
+
     loadProductsByBrand = (prod) =>{ console.log(prod.name);
         this.props.fetchData(this.search, this.page, this.size,this.sort);
-        this.props.history.push(`/${prod.name}/${prod.id}`);
+        this.props.history.push(`/${prod.brand}/${prod.id}`);
     }
 }
 
