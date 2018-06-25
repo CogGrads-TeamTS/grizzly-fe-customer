@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-const CustomerSortByButton = (props) => { //console.log(props.category);
+const CustomerSortByButton = (props) => { console.log(props);
     const  category  = props.category;
-
+    const name = props.name;
     return (
         <div>
-            <Button outline id="btn-rounded" onClick={() => props.load(category)} className="m-t-10 btn-block" color="info">{category.name}</Button>
+            <Button outline id="btn-rounded" onClick={() => props.load(category)} className="m-t-10 btn-block" color="info">{name}</Button>
         </div>
     )
 };

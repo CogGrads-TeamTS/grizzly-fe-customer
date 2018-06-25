@@ -48,7 +48,8 @@ class Homepage extends Component {
                 <div className="m-t-20">
                     <AdBanner />
                 </div>
-                {this.props.products ? <ProductTiles main={this.main} products={this.props.products} /> : <p>No Products</p>}
+                {this.props.loading ? <p>Loading....</p> : <p></p>}
+                {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} /> : <p>No products</p>}
             </Container>
         );
     }

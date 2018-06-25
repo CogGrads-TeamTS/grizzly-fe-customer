@@ -18,7 +18,7 @@ export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAU
 
     const urlParams = `search=${search}&page=${pageNumber}&size=${size}&sort=${sortParam}&category=${catId}`;
     const url = `${API_URL}/page?${urlParams}`;
-    console.log("URL: " + url);
+   // console.log("URL: " + url);
     return function (dispatch) {
         // get data from external data source
         dispatch(loadProductsLoading(true));
