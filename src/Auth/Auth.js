@@ -1,5 +1,5 @@
 import auth0 from 'auth0-js';
-import history from '../history';
+// import history from '../history';
 
 export default class Auth {
     auth0 = new auth0.WebAuth({
@@ -8,7 +8,7 @@ export default class Auth {
       redirectUri: 'http://localhost:3000/callback',
       audience: 'https://blakehowe96.au.auth0.com/userinfo',
       responseType: 'token id_token',
-      scope: 'openid'
+      scope: 'openid',
     });
 
     constructor() {
@@ -43,7 +43,6 @@ export default class Auth {
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
         // navigate to the home route
-        console.log('local storage ' + authResult.accessToken)
         // history.replace('');
         window.location = "/"
       }

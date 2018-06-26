@@ -9,11 +9,9 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    console.log(this.props.auth);
   }
  
   render() {
-    console.log('auth ' + this.props.auth)
     return (
       <div className="container-fluid no-padding">
         <Row className="user-header">
