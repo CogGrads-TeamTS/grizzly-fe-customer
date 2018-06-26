@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Modal,Form,FormGroup,Label, Col,Input, ModalHeader, ModalBody, ModalFooter, Fade } from 'reactstrap';
 import GoogleLogin from 'react-google-login';
-import config from '../../config.json';
+import config from '../../config.json'
 
+import Auth from '../../Auth/Auth';
 import '../../App.css';
 
 
@@ -80,6 +81,7 @@ class LogIn extends Component{
     };
 
     render() {
+
             return (
                 <div>
                     <Button className="login-button" color="success" onClick={this.toggle}>{this.props.buttonLabel}</Button>

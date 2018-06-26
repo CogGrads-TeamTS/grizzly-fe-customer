@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { Container } from 'reactstrap';
 
 import { productsFetchData } from '../../actions/productActions'
-
 import ProductTiles from '../Products/ProductTiles';
-
 import AdBanner from '../AdBanner/AdBanner';
+
 
 class Homepage extends Component {
     main = {imageUrl: 'https://cdn.bloomnation.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/2/0/20161202060048_file_5841b6d088276.png'}
