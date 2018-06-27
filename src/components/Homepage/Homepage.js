@@ -5,6 +5,7 @@ import { Container } from 'reactstrap';
 import { productsFetchData } from '../../actions/productActions'
 import ProductTiles from '../Products/ProductTiles';
 import AdBanner from '../AdBanner/AdBanner';
+import { withRouter } from 'react-router-dom';
 
 
 class Homepage extends Component {
@@ -57,10 +58,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => { console.log(dispatch);
+const mapDispatchToProps = (dispatch) => { 
     return {
         fetchData: (search, page, size, sort, catId)=> dispatch(productsFetchData(search, page, size, sort, catId))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Homepage));
