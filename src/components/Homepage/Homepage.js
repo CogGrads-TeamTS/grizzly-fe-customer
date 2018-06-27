@@ -41,7 +41,6 @@ class Homepage extends Component {
     render() {
         return ( 
             <div>
-                <p>Hello I am the homepage</p>  
                 <AdBanner />                    
                 <Container fluid>
                     {this.props.products ? <ProductTiles products={this.props.products} /> : <p>No Products</p>}
