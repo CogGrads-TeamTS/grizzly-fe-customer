@@ -3,11 +3,11 @@ import {
   Form,
   FormGroup,
   InputGroup,
-  InputGroupAddon,
+  
   Input,
-  Button,
+  
  } from 'reactstrap';
-import Radium, { Style } from 'radium';
+import  { Style } from 'radium';
 
 class GlobalSearch extends React.Component {
  

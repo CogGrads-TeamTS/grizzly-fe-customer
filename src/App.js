@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Routes from './routes';
-import { Container, Row, Col } from 'reactstrap';
-import logo from './logo.svg';
+import { Row, Col } from 'reactstrap';
 import './App.css';
 
 import Header from './components/Common/CommonHeader';

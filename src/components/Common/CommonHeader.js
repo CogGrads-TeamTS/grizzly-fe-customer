@@ -8,11 +8,7 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    Button,
-    DropdownItem } from 'reactstrap';
+    Button } from 'reactstrap';
 
 import grizzlogo from '../../assets/griz-logo.png';
 
@@ -34,7 +30,7 @@ class Header extends Component {
         return (
             <div>
                 <Navbar light expand="md">
-                    <NavbarBrand><img className="griz-logo" src={grizzlogo} /></NavbarBrand>
+                    <NavbarBrand><img className="griz-logo" src={grizzlogo} alt="logo"/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
