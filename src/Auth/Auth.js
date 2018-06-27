@@ -4,8 +4,8 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'blakehowe96.au.auth0.com',
     clientID: 'pjcQ3jWE4nsDU55f8WNsI0abAjkO8Zj0',
-    //Change below?
-    redirectUri: 'http://localhost:3000/callback',
+    //Change below to http://localhost:3000/callback to test locally
+    redirectUri: 'http://ts.ausgrads.academy/callback',
     //Change below?
     audience: 'http://localhost:6666',
     responseType: 'token id_token',
