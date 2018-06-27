@@ -216,6 +216,7 @@ tbody {
 }
 .login-button,.signup-button:hover{
     color: #17a2b8 !important;
+    border-radius: 4em !important;
     background-color: #fff !important;
     border-color: #17a2b8 !important;
 }
@@ -224,6 +225,46 @@ tbody {
     background-color: #17a2b8 !important;
     border-color: #17a2b8 !important;
 }
+
+/* LogIn Modal*/
+.login {
+  text-align: center;
+}
+
+.login-rounded{
+  border: 1px solid #ffb732 !important;
+  border-radius: 4em !important;
+  width: 300px !important;
+}
+
+.modal-body {
+  margin: auto;
+}
+
+.modal-content {
+  width: 400px;
+}
+
+.login-btn {
+  margin-bottom: 20px;
+  border-radius: 4em !important;
+  width: 150px;
+  border: 1px solid #ffb732 !important;
+  background-color: #ffb732 !important;
+}
+
+.google-img {
+  border: none;
+  cursor: pointer;
+  background-image: url('assets/google.png');
+  background-size: 100% 100%; 
+  width: 200px;
+  height: 50px;
+  text-indent: 200%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 
 /*Category Dropdown */
 #categoryDropdown{
