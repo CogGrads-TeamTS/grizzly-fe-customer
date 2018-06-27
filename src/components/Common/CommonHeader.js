@@ -26,6 +26,7 @@ class Header extends Component {
           isOpen: false
         };
     }
+    
     toggle() {
         this.setState({
           isOpen: !this.state.isOpen
@@ -50,33 +51,33 @@ class Header extends Component {
         return (
             <div>
                 <Navbar light expand="md">
-                    <NavbarBrand><img className="griz-logo" src={grizzlogo} onClick={this.goTo.bind(this, '')} /></NavbarBrand>
+                    <NavbarBrand><img className="griz-logo" src={grizzlogo} onClick={this.goTo.bind(this, '')}/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <GlobalSearch classname="global-search-user" rounded="user-search-rounded" placeholder="Search" />
                                 <NavItem>
-                                    <NavLink href="#">
-                                    {
-                                        !isAuthenticated() && (
-                                            <Button
-                                            id="btn-rounded"
-                                            className="signup-button"
-                                            onClick={this.login.bind(this)}>
-                                            Log In
-                                            </Button>
-                                        )
-                                    }
-                                    {
-                                        isAuthenticated() && (
-                                            <Button
-                                            id="btn-rounded"
-                                            className="signup-button"
-                                            onClick={this.logout.bind(this)}>
-                                            Log Out
-                                            </Button>
-                                        )
-                                    }
+                                    <NavLink href="#">                             
+                                        {
+                                            !isAuthenticated() && (
+                                                <Button
+                                                id="btn-rounded"
+                                                className="signup-button"
+                                                onClick={this.login.bind(this)}>
+                                                Log In
+                                                </Button>
+                                            )
+                                        }
+                                        {
+                                            isAuthenticated() && (
+                                                <Button
+                                                id="btn-rounded"
+                                                className="signup-button"
+                                                onClick={this.logout.bind(this)}>
+                                                Log Out
+                                                </Button>
+                                            )
+                                        } 
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
