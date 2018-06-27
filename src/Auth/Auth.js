@@ -2,14 +2,14 @@ import auth0 from 'auth0-js';
 import history from '../history';
 
 export default class Auth {
-    auth0 = new auth0.WebAuth({
-      domain: 'blakehowe96.au.auth0.com',
-      clientID: 'KhtuLCAvXfs8e4ttvkmiMl2xfi3Nr3u8',
-      redirectUri: 'http://localhost:3000/callback',
-      audience: 'https://blakehowe96.au.auth0.com/userinfo',
-      responseType: 'token id_token',
-      scope: 'openid'
-    });
+  auth0 = new auth0.WebAuth({
+    domain: 'blakehowe96.au.auth0.com',
+    clientID: 'pjcQ3jWE4nsDU55f8WNsI0abAjkO8Zj0',
+    redirectUri: 'http://localhost:3000/callback',
+    audience: 'http://localhost:6666',
+    responseType: 'token id_token',
+    scope: 'openid read:users'
+  });
 
     constructor() {
         this.login = this.login.bind(this);

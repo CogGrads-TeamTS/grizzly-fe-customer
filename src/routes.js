@@ -21,7 +21,7 @@ const Routes = (props) => {
                 <Route exact path="/" component={Homepage} />
                 <Route path="/callback" render={(props) => {
                     handleAuthentication(props);
-                    return <Callback {...props} auth={this.props.auth} /> 
+                    return <Callback {...props} auth={props.auth} /> 
                   }}/> 
             </Switch>
         </div>
