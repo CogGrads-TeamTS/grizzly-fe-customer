@@ -888,3 +888,7 @@ tbody {
   position: unset !important;
   
 }
+
+.card-img-top {
+  box-shadow: 2px 2px #eee;
+}

@@ -8,11 +8,7 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    Button,
-    DropdownItem } from 'reactstrap';
+    Button } from 'reactstrap';
 
 import grizzlogo from '../../assets/griz-logo.png';
 

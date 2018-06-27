@@ -1,7 +1,7 @@
 import React from 'react';
-import { CardGroup, Card, CardTitle, CardText, CardImg, CardImgOverlay, Fade, Button, CardSubtitle, CardBody, CardLink, Badge, UncontrolledTooltip  } from 'reactstrap';
+import { Card, CardTitle, CardImg, Fade, CardBody, Badge, UncontrolledTooltip  } from 'reactstrap';
 import './ProductTile.css';
-import _ from 'lodash'
+
 
 const ProductTile = (props) => {
     // tooltip ids
