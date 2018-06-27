@@ -9,8 +9,10 @@ export function products(state = {}, action) {
             const productLast = action.data.products.last;
             const selected = undefined;
             const filterByCat = action.data.filterCats;
+            const filterBrand = action.data.filterBrands;
+            const filterRating = action.data.filterRatings;
             //console.log(action.data);
-            console.log(productArray)
+           //console.log(productArray)
 
             return {
                 ...state,
@@ -18,7 +20,9 @@ export function products(state = {}, action) {
                 productFirst,
                 last: productLast,
                 selected,
-                filterByCat
+                filterByCat,
+                filterBrand,
+                filterRating
             };
         default:
             return state;

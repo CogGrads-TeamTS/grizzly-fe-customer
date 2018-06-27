@@ -22,11 +22,11 @@ class CustomerSortBy extends Component {
         };
         this.search="";
         this.page = 0;
-        this.size = 5;
+        this.size = 20;
         this.sort = "id,desc";
         this.toggle = this.toggle.bind(this);
     }
-    componentDidMount(){
+    componentDidMount(){//console.log(this.size);
         this.props.fetchData(this.search, this.page, this.size, this.sort);
     }
 
@@ -36,11 +36,11 @@ class CustomerSortBy extends Component {
         });
     }
 
-
     renderSwitch= (state)=> { //console.log(state);
         switch (state.value) {
             case 'category':
                 //console.log(event.currentTarget.value);
+
                 return (
                     (_.isEmpty(this.props.categories) ?
                         (
@@ -48,29 +48,30 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(this.props.categories, cat => {//console.log(state);
+                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {//console.log(state);
                                 return (
                                     <Col>
-                                        <CustomerSortByButton key={cat.id} category={cat} name={cat.name} load={this.loadProducts}/>
+                                        <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
                                     </Col>
                                 )
                             })
+
                         ))
                 );
 
             case 'brand':
                 return (
-                    (_.isEmpty(this.props.products) ?
+                    (_.isEmpty(this.props.brands) ?
                         (
                             <Col>
                                 There are no brands to display.
                             </Col>
                         ) : (
-                            _.map(this.props.products, prod => {
-                                console.log(prod.brand);
+                            _.map(_.take(_.shuffle(this.props.brands),5), brand => {
+                                console.log(this.props.brands);
                                 return (
                                     <Col>
-                                        <CustomerSortByButton  key={prod.id} category={prod} name={prod.brand} load={this.loadProductsByBrand}/>
+                                        <CustomerSortByButton  object={brand} name={brand} load={this.loadProductsByBrand}/>
                                     </Col>
                                 )
                             })
@@ -81,17 +82,17 @@ class CustomerSortBy extends Component {
 
             case 'rating':
                 return (
-                    (_.isEmpty(this.props.products) ?
+                    (_.isEmpty(this.props.ratings) ?
                         (
                             <Col>
                                 There are no brands to display.
                             </Col>
                         ) : (
-                            _.map(this.props.products, prod => {
-                                console.log(prod.rating);
+                            _.map(_.take(_.shuffle(this.props.ratings),5), rating => {
+                                //console.log(prod.rating);
                                 return (
                                     <Col>
-                                        <CustomerSortByButton  key={prod.id} category={prod} name={prod.rating} load={this.loadProductsByBrand}/>
+                                        <CustomerSortByButton  object={rating} name={rating} load={this.loadProductsByRating}/>
                                     </Col>
                                 )
                             })
@@ -107,11 +108,11 @@ class CustomerSortBy extends Component {
                                 There are no brands to display.
                             </Col>
                         ) : (
-                            _.map(this.props.products, prod => {
-                                console.log(prod.price);
+                            _.map(_.take(_.shuffle(this.props.products),5), prod => {
+                                //console.log(prod.price);
                                 return (
                                     <Col>
-                                        <CustomerSortByButton  key={prod.id} category={prod} name={prod.price} load={this.loadProductsByBrand}/>
+                                        <CustomerSortByButton  key={prod.id} object={prod} name={prod.price} load={this.loadProductsByBrand}/>
                                     </Col>
                                 )
                             })
@@ -126,10 +127,10 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(this.props.categories, cat => {//console.log(state);
+                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {console.log(cat);
                                 return (
                                     <Col>
-                                        <CustomerSortByButton key={cat.id} category={cat} name={cat.name} load={this.loadProducts}/>
+                                        <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
                                     </Col>
                                 )
                             })
@@ -147,9 +148,24 @@ class CustomerSortBy extends Component {
         this.renderSwitch(this.state);
     };
 
+    loadProducts = (cat) =>{ //console.log(cat.name);
+        this.props.fetchData(this.search, this.page, this.size,this.sort,cat.id);
+        this.props.history.push(`/${cat.name}/${cat.id}`);
+    };
+
+    loadProductsByBrand = (brandName) =>{ //console.log(this.size);
+        this.search=brandName;
+        this.props.fetchData(this.search, this.page, this.size,this.sort);
+        this.props.history.push(`/${brandName}`);
+    };
+
+    loadProductsByRating = (rating) =>{ //console.log(this.size);
+        this.props.fetchData(this.search, this.page, this.size,this.sort);
+        this.props.history.push(`/${rating}`);
+    };
+
 
     render()
-
     { //console.log(this.props.products);
 
         return (
@@ -174,20 +190,13 @@ class CustomerSortBy extends Component {
 
         );
     }
-    loadProducts = (cat) =>{ console.log(cat.name);
-        this.props.fetchData(this.search, this.page, this.size,this.sort,cat.id);
-        this.props.history.push(`/${cat.name}/${cat.id}`);
-    };
-
-    loadProductsByBrand = (prod) =>{ console.log(prod);
-        this.props.fetchData(this.search, this.page, this.size,this.sort);
-        this.props.history.push(`/${prod.brand}/${prod.catId}`);
-    }
 }
 
 const mapStateToProps = (state) => {
     return{
         categories: state.products.filterByCat,
+        brands:state.products.filterBrand,
+        ratings:state.products.filterRating,
         products: state.products.content,
         last: state.products.last
     };

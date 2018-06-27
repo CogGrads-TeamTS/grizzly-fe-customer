@@ -7,8 +7,13 @@
 
 /* control image height */
 .card-img-top-250 {
-    max-height: 225px;
+    max-height: 200px;
     overflow:hidden;
+    display: block;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+
 }
 
 /* smoother transitions */

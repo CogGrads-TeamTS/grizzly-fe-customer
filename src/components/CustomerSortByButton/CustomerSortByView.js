@@ -7,17 +7,19 @@ import ProductTiles from '../Products/ProductTiles';
 
 
 class CustomerSortByView extends Component {
-    constructor(props) { console.log(props.match.params.id);
+    constructor(props) { console.log(props.match.params);
         super(props);
-        this.search="";
+        (props.match.params.name)?this.search=props.match.params.name:this.search="";
         this.page = 0;
         this.size = 20;
         this.sort = "id,desc";
+        (props.match.params.id)?this.category=props.match.params.id:this.category="";
+        console.log(this.search);
+        console.log(this.category);
     }
 
     componentDidMount(){
-        this.props.fetchData(this.search, this.page, this.size, this.sort,this.props.match.params.id);
-        //this.props.fetchData(this.search, this.page, this.size, this.sort,this.category); // Initial fetch
+        this.props.fetchData(this.search, this.page, this.size, this.sort,this.category);
     }
 
     render() {

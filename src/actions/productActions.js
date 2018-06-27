@@ -24,7 +24,7 @@ export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAU
         dispatch(loadProductsLoading(true));
         const request=axios.get(url);
         request
-            .then((response) =>{ console.log(response);
+            .then((response) =>{ //console.log(response);
                 if(!response.status == 200)
                 {
                     throw Error(response.statusText);
