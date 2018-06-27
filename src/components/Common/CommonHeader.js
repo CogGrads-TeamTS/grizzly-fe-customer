@@ -26,7 +26,7 @@ class Header extends Component {
           isOpen: false
         };
     }
-    
+
     toggle() {
         this.setState({
           isOpen: !this.state.isOpen
@@ -62,7 +62,7 @@ class Header extends Component {
                                             !isAuthenticated() && (
                                                 <Button
                                                 id="btn-rounded"
-                                                className="signup-button"
+                                                className="login-button"
                                                 onClick={this.login.bind(this)}>
                                                 Log In
                                                 </Button>
