@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductTile from './ProductTile'
-import { Container, Row, Col, CardDeck, Fade } from 'reactstrap';
+import { Col, CardDeck } from 'reactstrap';
 import './ProductTiles.css';
+import { Link } from 'react-router-dom';
 
 const ProductTiles = (props) => {//console.log(props.products);
   return (
@@ -15,9 +16,19 @@ const ProductTiles = (props) => {//console.log(props.products);
                     }
                     {   
                         props.products.map(product =>
-                            <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={product.id}>
-                                <ProductTile product={product} badge={"Product"} cardClass="hover" badgeColor={"primary"} text={product.name} imageUrl={product.images.length > 0 ? product.images[0].url : ''}/>
-                            </Col>
+                            
+                                <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={product.id}>
+
+                                    <Link to={{ pathname: `/product/${product.id}`, state: {foo: 'bar'} }}>
+                                        <ProductTile product={product} 
+                                                        badge={"Product"} 
+                                                            cardClass="hover" 
+                                                                badgeColor={"primary"} 
+                                                                    text={product.name} 
+                                                                        imageUrl={product.images.length > 0 ? product.images[0].url : ''}/>
+                                        </Link>
+                                </Col>
+                            
                         )                        
                     }
                 </CardDeck>

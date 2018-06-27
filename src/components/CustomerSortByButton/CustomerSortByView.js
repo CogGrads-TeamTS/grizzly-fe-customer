@@ -9,20 +9,22 @@ import ProductTiles from '../Products/ProductTiles';
 class CustomerSortByView extends Component {
     constructor(props) { console.log(props.match.params);
         super(props);
-        (props.match.params.name)?this.search=props.match.params.name:this.search="";
+        this.search="";
         this.page = 0;
         this.size = 20;
         this.sort = "id,desc";
         (props.match.params.id)?this.category=props.match.params.id:this.category="";
-        console.log(this.search);
+        (props.match.params.name)?this.brand=props.match.params.name:this.brand="";
+        (props.match.params.rating)?this.rating=props.match.params.rating:this.rating="";
+        console.log(this.brand);
         console.log(this.category);
     }
 
-    componentDidMount(){
-        this.props.fetchData(this.search, this.page, this.size, this.sort,this.category);
+    componentDidMount(){ console.log(this.category);
+        this.props.fetchData(this.search, this.page, this.size, this.sort,this.category,this.brand,this.rating);
     }
 
-    render() {
+    render() { console.log(this.props.products);
 
         return (
             <Container fluid>
@@ -53,7 +55,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => { //console.log(dispatch);
     return {
-        fetchData: (search, page, size, sort, catId)=> dispatch(productsFetchData(search, page, size, sort, catId))
+        fetchData: (search, page, size, sort, catId, brand,rating)=> dispatch(productsFetchData(search, page, size, sort, catId, brand,rating))
     };
 };
 

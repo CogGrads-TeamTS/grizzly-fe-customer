@@ -1,0 +1,56 @@
+.title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.buy-button{
+    background-color: #ffae19 !important;
+    border-color: #ffae19 !important;
+    margin: 3%;
+    box-shadow: none !important;
+}
+
+.add-button, .add-button:focus{
+    background-color: #ffd27f !important;
+    border-color: #ffd27f !important;
+    margin: 3%;
+    box-shadow: none !important;
+}
+
+.buy-button:hover, .add-button:hover{
+    transition: 0.3s;
+    opacity: 0.9;
+}
+
+
+.coupon{
+    width:250px !important;
+    margin: 10%;
+}
+
+.description{
+    margin-top: 30px;
+    min-height: 300px;
+    overflow-y: scroll;
+    max-width: 450px;
+}
+
+.price{
+    font-weight: bold;
+    font-size: 22px;
+}
+
+
+.image-thumb { transition: all .2s ease-in-out; cursor: pointer;}
+.image-thumb:hover { transform: scale(1.1); opacity: .9;}
+
+.searched-title{
+    background-color: #ffae19;
+    width: 100%;
+    padding: 3%;
+    margin-bottom: 12px;
+    border-radius: 34px 0;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+}
