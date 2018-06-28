@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Routes from './routes';
-import { Container, Row, Col } from 'reactstrap';
-
+import { Row, Col } from 'reactstrap';
 import './App.css';
 import Header from './components/Common/CommonHeader';
 
@@ -9,11 +8,9 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    console.log(this.props.auth);
   }
- 
+
   render() {
-    console.log('auth ' + this.props.auth)
     return (
       <div className="container-fluid no-padding">
         <Row className="user-header">

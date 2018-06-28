@@ -8,12 +8,8 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    Button,
-    DropdownItem } from 'reactstrap';
-
+    Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import grizzlogo from '../../assets/griz-logo.png';
 
 
@@ -26,57 +22,54 @@ class Header extends Component {
           isOpen: false
         };
     }
+
     toggle() {
         this.setState({
           isOpen: !this.state.isOpen
         });
     }
-
-    goTo(route) {
-        this.props.history.replace(`/${route}`)
-      }
     
-      login() {
+    login() {
         this.props.auth.login();
-      }
+    }
     
-      logout() {
+    logout() {
         this.props.auth.logout();
-      }
+    }
 
     render() {
         const { isAuthenticated } = this.props.auth; 
     
         return (
-            <div>
+
                 <Navbar light expand="md">
-                    <NavbarBrand><img className="griz-logo" src={grizzlogo} onClick={this.goTo.bind(this, '')} /></NavbarBrand>
+                    <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <GlobalSearch classname="global-search-user" rounded="user-search-rounded" placeholder="Search" />
                                 <NavItem>
-                                    <NavLink href="#">
-                                    {
-                                        !isAuthenticated() && (
-                                            <Button
-                                            id="btn-rounded"
-                                            className="signup-button"
-                                            onClick={this.login.bind(this)}>
-                                            Log In
-                                            </Button>
-                                        )
-                                    }
-                                    {
-                                        isAuthenticated() && (
-                                            <Button
-                                            id="btn-rounded"
-                                            className="signup-button"
-                                            onClick={this.logout.bind(this)}>
-                                            Log Out
-                                            </Button>
-                                        )
-                                    }
+                                    <NavLink href="#">                             
+                                        {
+                                            !isAuthenticated() && (
+                                                <Button
+                                                id="btn-rounded"
+                                                className="login-button"
+                                                onClick={this.login.bind(this)}>
+                                                Log In
+                                                </Button>
+                                            )
+                                        }
+                                        {
+                                            isAuthenticated() && (
+                                                <Button
+                                                id="btn-rounded"
+                                                className="signup-button"
+                                                onClick={this.logout.bind(this)}>
+                                                Log Out
+                                                </Button>
+                                            )
+                                        } 
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -91,7 +84,7 @@ class Header extends Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
+
         )
     }
 }

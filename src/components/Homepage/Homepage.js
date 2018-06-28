@@ -1,10 +1,12 @@
+
 import React, { Component } from 'react';
+import CustomerSortBy from "../CustomerSortByButton/CustomerSortBy";
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
-
 import { productsFetchData } from '../../actions/productActions'
 import ProductTiles from '../Products/ProductTiles';
 import AdBanner from '../AdBanner/AdBanner';
+import { withRouter } from 'react-router-dom';
 
 
 class Homepage extends Component {
@@ -38,30 +40,36 @@ class Homepage extends Component {
         this.props.fetchData(); // Initial fetch
     }
 
-    render() {
-        return ( 
-            <div>
-                <p>Hello I am the homepage</p>  
-                <AdBanner />                    
-                <Container fluid>
-                    {this.props.products ? <ProductTiles products={this.props.products} /> : <p>No Products</p>}
-                </Container>
-            </div>
+    render() {//console.log(this.props.products);
+
+        return (
+            <Container fluid>
+                <CustomerSortBy />
+                <div className="m-t-20">
+                    <AdBanner />
+                </div>
+                {this.props.loading ? <p>Loading....</p> : <p></p>}
+                {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} /> : <p>No products</p>}
+            </Container>
+
         );
     }
 }
 
 const mapStateToProps = (state) => { 
     return{
+        categories: state.products.filterByCat,
         products: state.products.content,
         last: state.products.last
     };
 };
 
-const mapDispatchToProps = (dispatch) => { console.log(dispatch);
+
+const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (search, page, size, sort, catId)=> dispatch(productsFetchData(search, page, size, sort, catId))
+        fetchData: (search, page, size, sort, catId,brand,rating)=> dispatch(productsFetchData(search, page, size, sort, catId,brand,rating))
+
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Homepage));
