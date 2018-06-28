@@ -6,7 +6,7 @@ export default class Auth {
     domain: 'blakehowe96.au.auth0.com',
     clientID: 'pjcQ3jWE4nsDU55f8WNsI0abAjkO8Zj0',
     redirectUri: 'http://localhost:3000/callback',
-    audience: 'http://localhost:6666',
+    audience: 'https://blakehowe96.au.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid read:users'
   });
