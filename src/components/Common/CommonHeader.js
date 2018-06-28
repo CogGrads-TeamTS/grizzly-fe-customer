@@ -10,7 +10,6 @@ import {
     NavLink,
     Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
 import grizzlogo from '../../assets/griz-logo.png';
 
 
@@ -42,7 +41,7 @@ class Header extends Component {
         const { isAuthenticated } = this.props.auth; 
     
         return (
-            <div>
+
                 <Navbar light expand="md">
                     <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
@@ -85,7 +84,7 @@ class Header extends Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
+
         )
     }
 }
