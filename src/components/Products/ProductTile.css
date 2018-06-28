@@ -1,0 +1,76 @@
+.tile {
+    padding: 10px 10px 10px 10px;
+}
+
+.tile .fade {
+    height: 100%;
+}
+
+.card {
+    height: 100%;
+    width: 100%;
+}
+
+.card.hover {
+    transition: .3s ease-in-out;
+    /* opacity: .7; */
+    position: relative;
+}
+
+.card.hover:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.card-img {
+    object-fit: contain;
+    height: 25vh;
+}
+
+.card-img-overlay {
+    border-radius: calc(0.25rem - 1px);
+    /* opacity: 0; */
+    transition: .3s ease-in-out;
+    background-color: #0000008a;
+}
+
+.card-img-overlay:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.card-title {
+    text-transform: capitalize;
+}
+
+.badge {
+    margin: 2px;
+}
+
+.card-body {
+    padding: 1rem;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.badge-badge {
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    margin: 10px;
+}
+
+.badge-price {
+    top: 0px;
+    right: 0px;
+    position: absolute;
+    margin: 10px;
+}
+
+.badge-brand {
+    bottom: 0px;
+    right: 0px;
+    position: absolute;
+    margin: 10px;
+}
