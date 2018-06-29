@@ -6,20 +6,22 @@ import { AUTH_CONFIG } from './auth0-variables';
 class Lock extends Component {
   lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
     auth: {
+      audience: 'http://localhost:6666',
       responseType: 'token id_token',
+      scope: AUTH_CONFIG.scope,
       sso: false,
     },
-    // container: AUTH_CONFIG.container,
     theme: {
       primaryColor: '#F1A94E',
       title: "Grizzly Store",
       logo: 'https://i.imgur.com/WTynPTe.png'
-    },
+    }, 
     allowSignUp: false,
     languageDictionary: {
       emailInputPlaceholder: "something@youremail.com",
       title: "Welcome!"
-    }
+    },
+    closable: false
   });
 
   constructor(props) {
