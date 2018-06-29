@@ -8,20 +8,21 @@ class Lock extends Component {
     auth: {
       audience: 'http://localhost:6666',
       responseType: 'token id_token',
+      scope: AUTH_CONFIG.scope,
       sso: false,
-      scope: 'openid read:users'
+      params: {scope: 'openid read:users'},
     },
-    // container: AUTH_CONFIG.container,
     theme: {
       primaryColor: '#F1A94E',
       title: "Grizzly Store",
       logo: 'https://i.imgur.com/WTynPTe.png'
-    },
+    }, 
     allowSignUp: false,
     languageDictionary: {
       emailInputPlaceholder: "something@youremail.com",
       title: "Welcome!"
-    }
+    },
+    // closable: false
   });
 
   constructor(props) {
@@ -63,8 +64,8 @@ class Lock extends Component {
           pathname: '/',
           state: { from: this.props.location }
         }} />
+      ) 
       )
-    );
   }
 }
 
