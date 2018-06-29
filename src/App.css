@@ -226,45 +226,10 @@ tbody {
     border-color: #17a2b8 !important;
 }
 
-/* LogIn Modal*/
-.login {
-  text-align: center;
+/*LOGIN SCREEN */
+.auth0-lock-cred-pane {
+  box-shadow: 0 0 30px 4px #111118;
 }
-
-.login-rounded{
-  border: 1px solid #ffb732 !important;
-  border-radius: 4em !important;
-  width: 300px !important;
-}
-
-.modal-body {
-  margin: auto;
-}
-
-.modal-content {
-  width: 400px;
-}
-
-.login-btn {
-  margin-bottom: 20px;
-  border-radius: 4em !important;
-  width: 150px;
-  border: 1px solid #ffb732 !important;
-  background-color: #ffb732 !important;
-}
-
-.google-img {
-  border: none;
-  cursor: pointer;
-  background-image: url('assets/google.png');
-  background-size: 100% 100%; 
-  width: 200px;
-  height: 50px;
-  text-indent: 200%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 
 /*Category Dropdown */
 #categoryDropdown{
@@ -417,6 +382,7 @@ tbody {
   margin: auto;
   border-radius: 5px;
 }
+
 
 @media (max-width: 430px) {
   .advert {
