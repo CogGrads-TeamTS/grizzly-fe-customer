@@ -13,19 +13,22 @@ const DEFAULT_PAGE_SIZE = 20;
 const NO_PARAM = "id,desc";
 const SEARCH = "";
 const CATEGORY = "";
+const BRAND = "";
+const RATING = "";
 
-export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAULT_PAGE_SIZE,sortParam=NO_PARAM, catId=CATEGORY){
+export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAULT_PAGE_SIZE,sortParam=NO_PARAM, catId=CATEGORY,
+                                  brand=BRAND,rating=RATING){
 
-    const urlParams = `search=${search}&page=${pageNumber}&size=${size}&sort=${sortParam}&category=${catId}`;
+    const urlParams = `search=${search}&page=${pageNumber}&size=${size}&sort=${sortParam}&category=${catId}&brand=${brand}&rating=${rating}`;
     const url = `${API_URL}/page?${urlParams}`;
-
+    console.log(url);
     return function (dispatch) {
         // get data from external data source
         dispatch(loadProductsLoading(true));
         const request=axios.get(url);
         request
-            .then((response) =>{ 
-                if(!response.status === 200)
+            .then((response) =>{ //console.log(response);
+                if(!response.status == 200)
                 {
                     throw Error(response.statusText);
                 }
@@ -36,6 +39,7 @@ export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAU
             .catch((error)=>dispatch(loadProductsError(error)));
     }
 }
+
 
 const loadSingleProductSuccess = (data) => ({type: types.LOAD_SINGLE_PRODUCT_SUCCESS, data});
 const loadSingleProductError = (error) => ({type: types.LOAD_SINGLE_PRODUCT_ERROR, singleProductHasErrored:error});

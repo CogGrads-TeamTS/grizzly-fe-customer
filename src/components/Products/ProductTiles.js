@@ -4,7 +4,7 @@ import { Col, CardDeck } from 'reactstrap';
 import './ProductTiles.css';
 import { Link } from 'react-router-dom';
 
-const ProductTiles = (props) => {
+const ProductTiles = (props) => {//console.log(props.products);
   return (
     <div>
                 <CardDeck>
