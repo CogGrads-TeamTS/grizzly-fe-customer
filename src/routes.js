@@ -17,12 +17,8 @@ const Routes = (props) => {
                 <Route path="/category/:catname/:id" component={CustomerSortByView} />
                 <Route path="/brand/:name" component={CustomerSortByView} />
                 <Route path="/rating/:rating" component={CustomerSortByView} />
-                <Route path="/callback" render={(props) => {
-                    handleAuthentication(props);
-                    return <Callback {...props} auth={props.auth} /> 
-                  }}/> 
-                 <Route path="/login" component={Login} />
-                 <Route path="/logout" component={Logout} />
+                <Route path="/login" component={Login} />
+                <Route path="/logout" component={Logout} />
             </Switch>
         </div>
     )
