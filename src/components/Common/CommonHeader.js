@@ -8,8 +8,11 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Button } from 'reactstrap';
+    Button,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
+
+import isAuthenticated from '../../Auth/isAuthenticated'
 import grizzlogo from '../../assets/griz-logo.png';
 
 
@@ -28,18 +31,8 @@ class Header extends Component {
           isOpen: !this.state.isOpen
         });
     }
-    
-    login() {
-        this.props.auth.login();
-    }
-    
-    logout() {
-        this.props.auth.logout();
-    }
 
     render() {
-        const { isAuthenticated } = this.props.auth; 
-    
         return (
 
                 <Navbar light expand="md">
@@ -51,23 +44,27 @@ class Header extends Component {
                                 <NavItem>
                                     <NavLink href="#">                             
                                         {
-                                            !isAuthenticated() && (
+                                            !isAuthenticated() && (   
+                                                <Link to="/login">
                                                 <Button
                                                 id="btn-rounded"
                                                 className="login-button"
-                                                onClick={this.login.bind(this)}>
+                                                >
                                                 Log In
                                                 </Button>
+                                                </Link>                                    
                                             )
                                         }
                                         {
                                             isAuthenticated() && (
+                                                <Link to="/logout">
                                                 <Button
                                                 id="btn-rounded"
                                                 className="signup-button"
-                                                onClick={this.logout.bind(this)}>
+                                                >
                                                 Log Out
                                                 </Button>
+                                                </Link>
                                             )
                                         } 
                                     </NavLink>
@@ -75,8 +72,13 @@ class Header extends Component {
                                 <NavItem>
                                     <NavLink href="#">
                                         {
-                                            !isAuthenticated() && (               
-                                                <Button className="signup-button" id="btn-rounded">Signup</Button>
+                                            !isAuthenticated() && (     
+                                                <Link to="/login">          
+                                                <Button 
+                                                className="signup-button" 
+                                                id="btn-rounded"
+                                                >Signup</Button>
+                                                </Link>
                                             )
                                         }               
                                     </NavLink>

@@ -16,13 +16,13 @@ class App extends Component {
         <Row className="user-header">
           <div className="nav-user-row">
             <Col xs="12">
-              <Header auth={this.props.auth} />
+              <Header location={this.props.location} />
             </Col>
           </div>
         </Row>
         <Row className="main">
             <Col xs="12">
-              <Routes auth={this.props.auth} />
+              <Routes />
             </Col>
         </Row>
       </div>
