@@ -171,9 +171,9 @@ class CustomerSortBy extends Component {
     {
         return (
             <Row style={{marginLeft: '0px',marginRight: '0px'}}>
-                <Col>
+                <Col className="shop-by-btn">
                     <ButtonDropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                        <DropdownToggle className="signup-button m-t-10" id="btn-rounded"  caret>
+                        <DropdownToggle className="dropdown-button m-t-10" id="btn-rounded"  caret>
                             {this.state.dropdownValue}
                         </DropdownToggle>
                         <DropdownMenu id="categoryDropdown">

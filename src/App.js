@@ -20,7 +20,7 @@ class App extends Component {
             </Col>
           </div>
         </Row>
-        <Row className="main">
+        <Row className="main" style={{marginLeft: '0px',marginRight: '0px'}}>
             <Col xs="12">
               <Routes auth={this.props.auth} />
             </Col>

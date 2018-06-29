@@ -225,13 +225,13 @@ tbody {
     border-radius: 4em !important;
     width: 450px !important;
 }
-.login-button,.signup-button:hover{
+.login-button,.signup-button:hover,.dropdown-button:hover{
     color: #17a2b8 !important;
     border-radius: 4em !important;
     background-color: #fff !important;
     border-color: #17a2b8 !important;
 }
-.login-button:hover,.signup-button {
+.login-button:hover,.signup-button,.dropdown-button {
     color: #fff !important;
     background-color: #17a2b8 !important;
     border-color: #17a2b8 !important;
@@ -880,6 +880,10 @@ tbody {
 
   .logout-text, .user-msg{
     display: block;
+  }
+  .shop-by-btn
+  {
+    display: none;
   }
 }
 
