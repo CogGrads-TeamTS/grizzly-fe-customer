@@ -10,18 +10,6 @@ import Logout from './Auth/Logout';
 
 
 const Routes = (props) => {
-//     const auth = props.auth;
-//     const handleAuthentication = ({location}) => {
-//         if (/access_token|id_token|error/.test(location.hash)) {
-//           auth.handleAuthentication();
-//         }
-//     }
-
-          // <Route path="/callback" render={(props) => {
-                //     handleAuthentication(props);
-                //     return <Callback {...props} auth={props.auth} /> 
-          //  }}/> 
-    
     return (
         <div>
             <Switch history={history}>
