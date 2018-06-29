@@ -10,6 +10,7 @@ class Lock extends Component {
       responseType: 'token id_token',
       scope: AUTH_CONFIG.scope,
       sso: false,
+      params: {scope: 'openid read:users'},
     },
     theme: {
       primaryColor: '#F1A94E',
