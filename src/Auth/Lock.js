@@ -21,7 +21,7 @@ class Lock extends Component {
       emailInputPlaceholder: "something@youremail.com",
       title: "Welcome!"
     },
-    closable: false
+    // closable: false
   });
 
   constructor(props) {
@@ -63,8 +63,8 @@ class Lock extends Component {
           pathname: '/',
           state: { from: this.props.location }
         }} />
+      ) 
       )
-    );
   }
 }
 

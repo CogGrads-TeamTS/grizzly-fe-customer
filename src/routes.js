@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import Homepage from './components/Homepage/Homepage';
 import ProductSingle from './components/Products/ProductSingle';
 import history from './history';
-import Callback from './Callback/Callback';
 import Login from './Auth/Login';
 import Logout from './Auth/Logout';
 
