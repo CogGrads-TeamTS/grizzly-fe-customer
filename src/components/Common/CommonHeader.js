@@ -34,7 +34,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div>
+
                 <Navbar light expand="md">
                     <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
@@ -86,7 +86,7 @@ class Header extends Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
+
         )
     }
 }
