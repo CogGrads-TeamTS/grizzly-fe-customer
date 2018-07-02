@@ -242,6 +242,10 @@ tbody {
   box-shadow: 0 0 30px 4px #111118;
 }
 
+.welcome-name {
+  margin-top: 5px;
+}
+
 /*Category Dropdown */
 #categoryDropdown{
   transform: translate3d(0px, 36px, 0px) !important;
