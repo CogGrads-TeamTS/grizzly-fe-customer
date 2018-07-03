@@ -29,7 +29,7 @@ class CustomerSortBy extends Component {
         this.rating="";
         this.toggle = this.toggle.bind(this);
     }
-    componentDidMount(){//console.log(this.size);
+    componentDidMount(){
         this.props.fetchData(this.search, this.page, this.size, this.sort);
     }
 
@@ -39,11 +39,9 @@ class CustomerSortBy extends Component {
         });
     }
 
-    renderSwitch= (state)=> { //console.log(state);
+    renderSwitch= (state)=> { 
         switch (state.value) {
             case 'category':
-                //console.log(event.currentTarget.value);
-
                 return (
                     (_.isEmpty(this.props.categories) ?
                         (
@@ -51,7 +49,7 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {//console.log(state);
+                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {
                                 return (
                                     <Col>
                                         <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
@@ -151,17 +149,17 @@ class CustomerSortBy extends Component {
         this.renderSwitch(this.state);
     };
 
-    loadProducts = (cat) =>{ //console.log(cat.name);
+    loadProducts = (cat) =>{ 
         this.props.fetchData(this.search, this.page, this.size,this.sort,cat.id,this.brand,this.rating);
         this.props.history.push(`/category/${cat.name}/${cat.id}`);
     };
 
-    loadProductsByBrand = (brandName) =>{ //console.log(this.size);
+    loadProductsByBrand = (brandName) =>{ 
         this.props.fetchData(this.search, this.page, this.size,this.sort,this.category,brandName,this.rating);
         this.props.history.push(`/brand/${brandName}`);
     };
 
-    loadProductsByRating = (rating) =>{ console.log(rating);
+    loadProductsByRating = (rating) =>{ 
         this.props.fetchData(this.search, this.page, this.size,this.sort,this.category,this.brand,rating);
         this.props.history.push(`rating/${rating}`);
     };
@@ -170,7 +168,7 @@ class CustomerSortBy extends Component {
     render()
     {
         return (
-            <Row style={{marginLeft: '0px',marginRight: '0px'}}>
+            <Row>
                 <Col>
                     <ButtonDropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                         <DropdownToggle className="signup-button m-t-10" id="btn-rounded"  caret>
@@ -180,7 +178,6 @@ class CustomerSortBy extends Component {
                             <DropdownItem onClick={this.changeValue} value="category">Shop By Category</DropdownItem>
                             <DropdownItem onClick={this.changeValue} value="brand">Shop By Brand</DropdownItem>
                             <DropdownItem onClick={this.changeValue} value="rating">Shop By Rating</DropdownItem>
-                            {/* <DropdownItem onClick={this.changeValue} value="price">Shop By Price</DropdownItem>*/}
                         </DropdownMenu>
                     </ButtonDropdown>
                 </Col>

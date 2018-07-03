@@ -1,0 +1,36 @@
+.list-group{
+    background-color: #525050;
+    display: inline-block !important;
+    width: 100%;
+    height: 100%;
+}
+
+.list-group li{
+    display: inline;
+    color: white;
+    background-color: darkgray;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 20px;
+    display: inline-block;
+    color: white;
+    background-color: darkgray;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 8px;
+    float: right;
+    border: none;
+    font-weight: 300;
+    color: white;
+    text-transform: uppercase;
+    background-color: #525050;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 100%;
+    padding: 8px 30px 8px 30px;
+}
+
+.list-group li:hover{
+    background-color: #ffae19;
+}
