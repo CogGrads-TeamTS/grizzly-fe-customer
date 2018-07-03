@@ -49,7 +49,6 @@ class Lock extends Component {
   }
 
   componentDidMount() {
-    // Avoid showing Lock when hash is parsed.
     if ( !(/access_token|id_token|error/.test(this.props.location.hash)) ) {
       this.lock.show();
     }

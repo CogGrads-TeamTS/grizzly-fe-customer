@@ -12,20 +12,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container-fluid no-padding">
-        <Row className="user-header">
-          <div className="nav-user-row">
-            <Col xs="12">
-              <Header location={this.props.location} />
-            </Col>
-          </div>
-        </Row>
-        <Row className="main">
+        <Row>
             <Col xs="12">
               <Routes />
             </Col>
         </Row>
-      </div>
     );
   }
 }

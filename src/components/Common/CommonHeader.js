@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import GlobalSearch from './GlobalSearch';
 import {
     Collapse,
@@ -11,7 +12,6 @@ import {
     NavLink,
     Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 import '../../App.css';
 import isAuthenticated from '../../Auth/isAuthenticated'
@@ -39,9 +39,7 @@ class Header extends Component {
         });
     }
 
-
     render() {
-        //console.log(this.props.user);
         return (
                 <Navbar light expand="md">
                     <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
@@ -75,7 +73,7 @@ class Header extends Component {
                                                 <Link to="/logout">
                                                 <Button
                                                 id="btn-rounded"
-                                                className="signup-button"
+                                                className="signup-button"     
                                                 >
                                                 Log Out
                                                 </Button>

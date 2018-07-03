@@ -7,6 +7,9 @@ import { productsFetchData } from '../../actions/productActions'
 import ProductTiles from '../Products/ProductTiles';
 import AdBanner from '../AdBanner/AdBanner';
 import { withRouter } from 'react-router-dom';
+import { Row, Col } from 'reactstrap';
+
+import Header from '../Common/CommonHeader';
 
 
 class Homepage extends Component {
@@ -44,8 +47,11 @@ class Homepage extends Component {
 
         return (
             <Container fluid>
-                <CustomerSortBy />
-                <div className="m-t-20">
+                <div className="nav-user-row">
+                    <Header />    
+                </div>
+                <CustomerSortBy className="sort-by-col"/>     
+                <div className="m-t-20"> 
                     <AdBanner />
                 </div>
                 {this.props.loading ? <p>Loading....</p> : <p></p>}
