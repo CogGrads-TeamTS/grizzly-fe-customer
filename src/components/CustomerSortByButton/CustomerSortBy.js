@@ -102,26 +102,6 @@ class CustomerSortBy extends Component {
                         ))
 
                 );
-
-            // case 'price':
-            //     return (
-            //         (_.isEmpty(this.props.products) ?
-            //             (
-            //                 <Col>
-            //                     There are no brands to display.
-            //                 </Col>
-            //             ) : (
-            //                 _.map(_.take(_.shuffle(this.props.products),5), prod => {
-            //                     //console.log(prod.price);
-            //                     return (
-            //                         <Col>
-            //                             <CustomerSortByButton  key={prod.id} object={prod} name={prod.price} load={this.loadProductsByBrand}/>
-            //                         </Col>
-            //                     )
-            //                 })
-            //             ))
-            //
-            //     );
             default:
                 return (
                     (_.isEmpty(this.props.categories) ?
@@ -180,7 +160,6 @@ class CustomerSortBy extends Component {
                             <DropdownItem onClick={this.changeValue} value="category">Shop By Category</DropdownItem>
                             <DropdownItem onClick={this.changeValue} value="brand">Shop By Brand</DropdownItem>
                             <DropdownItem onClick={this.changeValue} value="rating">Shop By Rating</DropdownItem>
-                            {/* <DropdownItem onClick={this.changeValue} value="price">Shop By Price</DropdownItem>*/}
                         </DropdownMenu>
                     </ButtonDropdown>
                 </Col>
@@ -205,7 +184,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (search, page, size, sort,catId, brand, rating)=> dispatch(productsFetchData(search, page, size, sort,catId,brand,rating)),
+        fetchData: (search, page, size, sort,catId, brand, rating)=> dispatch(productsFetchData(search, page, size, sort,catId,brand,rating))
     };
 };
 
