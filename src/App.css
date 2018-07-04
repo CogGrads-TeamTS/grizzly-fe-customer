@@ -103,6 +103,10 @@ tbody {
 }
 
 /*Header & Nav styling */
+.nav-user-row {
+  box-shadow: 0 4px 6px -6px #222;
+}
+
 .header,.user-header{
   margin-left: -2px !important;
   margin-right: 0 !important;
@@ -149,7 +153,6 @@ tbody {
 .header:after{
     background-color: #556FC4;
 }
-
 
 .nav-row:before,.nav-user-row:before {
   content: "";
@@ -242,12 +245,25 @@ tbody {
   box-shadow: 0 0 30px 4px #111118;
 }
 
+.welcome-name {
+  margin-top: 5px;
+  cursor: default;
+}
+
+.welcome-name:hover {
+  cursor: default;
+}
+
 /*Category Dropdown */
 #categoryDropdown{
   transform: translate3d(0px, 36px, 0px) !important;
   max-height: 300px;
   overflow-y: scroll;
   background-color: #eee;
+}
+
+.sort-by-col {
+  margin-top: 100px;
 }
 /* Used for profile tab */
 .profile-card.card {

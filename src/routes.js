@@ -8,7 +8,7 @@ import Login from './Auth/Login';
 import Logout from './Auth/Logout';
 
 
-const Routes = (props) => {
+const Routes = () => {
     return (
         <div>
             <Switch history={history}>
