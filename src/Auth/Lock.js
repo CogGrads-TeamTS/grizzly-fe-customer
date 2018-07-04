@@ -12,7 +12,8 @@ class Lock extends Component {
       responseType: 'token id_token',
       scope: AUTH_CONFIG.scope,
       sso: false,
-      params: {scope: 'openid read:users'},
+      params: {scope: 'openid'},
+      redirect: false
     },
     theme: {
       primaryColor: '#F1A94E',
@@ -45,6 +46,8 @@ class Lock extends Component {
       
       this.setState({ loggedIn: true });
       this.props.fetchUserData();
+
+      this.lock.hide();
     });
   }
 
