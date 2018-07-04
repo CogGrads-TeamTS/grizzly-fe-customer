@@ -10,7 +10,6 @@ import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import './Homepage.css';
 import CategoryPanel from './../Common/CategoryPanel';
-
 import Header from '../Common/CommonHeader';
 import SalesPanel from '../Common/SalePanel';
 import FeaturedProducts from '../Common/FeaturedProducts';
@@ -72,8 +71,13 @@ class Homepage extends Component {
                             </span>
                         </Row>
                     <FeaturedProducts products={this.props.products}/>
-                    {/* {this.props.loading ? <p>Loading....</p> : <p></p>} */}
-                    {/* {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} /> : <p>No products</p>} */}
+
+                    <div className="footer" style={{bottom: "0", color: "#000", fontSize: "13px"}}>
+                        Privacy Policy |
+                            Terms & Conditions |
+                            Grizzly Store Limited. Copyright 2018
+                            
+                            </div>
                 </Container>
             
             </div>

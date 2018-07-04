@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './styles/SalePanel.css';
 import {Row, Col} from 'reactstrap';
-import snow from "./../../assets/snow.png";
+import snow from './../../assets/snow.png';
 
 const SalesPanel = () => {
     return(
         <Row className="sale-panel">
             <div> </div>
-	            <div id="flakes" class="flakes">
+	            <div id="flakes" className="flakes">
                     {/* <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i> */}
                         <i className="snow-1024px"></i><i className="snow-1024px"></i><i className="snow-1024px"></i>
                         <i className="snow-1280px"></i><i className="snow-1280px"></i>
