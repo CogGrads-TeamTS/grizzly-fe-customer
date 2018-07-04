@@ -56,13 +56,14 @@ class Homepage extends Component {
                         <Header />    
                     </div>
                 </div>
-                
-                <Container fluid>
-                    <CustomerSortBy className="sort-by-col"/>     
-                    <div className="m-t-20"> 
-                        <AdBanner />
-                    </div>
 
+                <CustomerSortBy className="sort-by-col"/>     
+                
+                <div className="m-t-20"> 
+                    <AdBanner />
+                </div>
+
+                <Container fluid>
                     <CategoryPanel categories={this.props.categories} />
                     <SalesPanel />
                     <Row className="rewards-panel">

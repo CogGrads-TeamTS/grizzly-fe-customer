@@ -8,7 +8,7 @@ const SalesPanel = () => {
         <Row className="sale-panel">
             <div> </div>
 	            <div id="flakes" class="flakes">
-                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    {/* <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i> */}
                         <i className="snow-1024px"></i><i className="snow-1024px"></i><i className="snow-1024px"></i>
                         <i className="snow-1280px"></i><i className="snow-1280px"></i>
                         <i className="snow-1366px"></i><i className="snow-1366px"></i>
