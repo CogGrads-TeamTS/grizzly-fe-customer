@@ -373,8 +373,7 @@ tbody {
 
 /* START Customer Advert Banner */
 .advert {
-  width: 80%;
-  height: 220px;
+  height: 350px;
   color: #FFFFFF;
   padding: 3em;
 }
@@ -390,8 +389,8 @@ tbody {
   background-size: cover;
 }
 
-.book {
-  background-image: url('components/AdBanner/images/books.jpg');
+.games {
+  background-image: url('components/AdBanner/images/games1.jpg');
   background-size: cover;
   text-align: left;
 }
@@ -405,9 +404,8 @@ tbody {
 }
 
 .slick-list {
-  width: 80%;
+  width: 100%;
   margin: auto;
-  border-radius: 5px;
 }
 
 
