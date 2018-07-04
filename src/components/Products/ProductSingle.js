@@ -1,27 +1,39 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { productFetchDataByID, productFetchImagesByID } from '../../actions/productActions';
-import { Container, Row, Col, Button, FormGroup, Label, Input} from 'reactstrap';
-
+import {productFetchDataByID, productFetchImagesByID} from '../../actions/productActions';
+import { CardColumns,Container, Row, Col, Button, FormGroup, Label, Input} from 'reactstrap';
 import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
 
 class ProductSingle extends Component{
 
-    componentDidMount(){ 
+    componentDidMount(){
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);
+
     }
-    
-    render(){
-            
+
+    componentDidUpdate(prevProps) {
+        if(this.props.match.params.id !== prevProps.match.params.id){
+            this.props.fetchData(this.props.match.params.id);
+            this.props.fetchImages(this.props.match.params.id);
+        }
+        if(JSON.stringify(this.props.images) !== JSON.stringify(prevProps.images)){
+            this.props.fetchImages(this.props.match.params.id);
+        }
+    }
+
+    render(){{console.log(this.props.product)}
         const isLoading = (this.props.product === undefined) ?
-                (  
+                (
                     <p>The product is loading...</p>
                 ) : (
                     <div className="container-fluid">
-                        <Row>
+                        <Row> {console.log(this.props.product)}
+                            {/*{*/}
+                                {/*console.log(this.props.products)*/}
+                            {/*}*/}
                             <Col md="4" sm="6" xs="12">
                                 <ProductViewCarusel images={this.props.images} /> 
                             </Col>
@@ -38,8 +50,10 @@ class ProductSingle extends Component{
                             </Col>
 
                             <Col className="buy-panel" md="3" sm="12">
-                                
-                            <ProductsSearched />
+                                <div className="searched-title">People also searched for</div>
+                                <CardColumns style={{columnCount: "2"}}>
+                                    <ProductsSearched category={this.props.product.category}/>
+                                </CardColumns>
                             </Col>
                         </Row>
                         
@@ -56,8 +70,8 @@ class ProductSingle extends Component{
     }
 
 const MapStateToProps = (state) =>{ 
-    return{
-        product: state.products.selected, 
+    return {
+        product: state.products.selected,
         images: state.products.images
     }
 }
@@ -65,7 +79,7 @@ const MapStateToProps = (state) =>{
 const MapDispatchToProps = (dispatch) => {
     return{
         fetchData: (id) => dispatch(productFetchDataByID(id)),
-        fetchImages: (id) => dispatch(productFetchImagesByID(id))
+        fetchImages: (id) => dispatch(productFetchImagesByID(id)),
     }
 }
 export default connect(MapStateToProps, MapDispatchToProps)(ProductSingle);
