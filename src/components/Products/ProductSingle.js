@@ -24,16 +24,14 @@ class ProductSingle extends Component{
         }
     }
 
-    render(){{console.log(this.props.product)}
+    render(){
         const isLoading = (this.props.product === undefined) ?
                 (
                     <p>The product is loading...</p>
                 ) : (
-                    <div className="container-fluid">
-                        <Row> {console.log(this.props.product)}
-                            {/*{*/}
-                                {/*console.log(this.props.products)*/}
-                            {/*}*/}
+                    <div className="container-fluid" style={{ marginTop: `15px` }}>
+                        <Row>
+
                             <Col md="4" sm="6" xs="12">
                                 <ProductViewCarusel images={this.props.images} /> 
                             </Col>
