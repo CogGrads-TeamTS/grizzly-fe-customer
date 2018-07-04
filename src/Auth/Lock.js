@@ -11,6 +11,7 @@ class Lock extends Component {
       scope: AUTH_CONFIG.scope,
       sso: false,
       params: {scope: 'openid'},
+      redirect: false
     },
     theme: {
       primaryColor: '#F1A94E',
@@ -41,6 +42,8 @@ class Lock extends Component {
       localStorage.setItem('expires_at', expiresAt);
 
       this.setState({ loggedIn: true });
+
+      this.lock.hide();
     });
   }
 
