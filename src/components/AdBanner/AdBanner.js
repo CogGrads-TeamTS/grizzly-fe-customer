@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 
 import '../../App.css'
@@ -18,19 +19,25 @@ class AdBanner extends React.Component {
     return (
       <Slider {...settings} style={{'padding-bottom': '10px'}}>
         <div className="advert watch">
-          <h3>All watches 20% off!</h3>
+          <h1>All watches 20% off!</h1>
           <p>Including major brands</p>
-          <Button id="btn-rounded" color="warning">Click here for all watches</Button>
+          <Link to="/category/Watches/34">
+            <Button id="btn-rounded" color="warning">Click here for all watches</Button>
+          </Link>
         </div>
         <div className="advert camera">
-          <h3>Cameras now on sale!</h3>
+          <h1>Cameras now on sale!</h1>
           <p>*Limited time only</p>
-          <Button id="btn-rounded" color="warning">See Deals</Button>
+          <Link to="/category/Cameras/7">
+            <Button id="btn-rounded" color="warning">See Deals</Button>
+          </Link>
         </div>
-        <div className="advert book">
-          <h3>Latest Books</h3>
-          <p>Including Ebooks and Audiobooks</p>
-          <Button id="btn-rounded" color="warning">Browse Books</Button>
+        <div className="advert games">
+          <h1>Latest Video Games</h1>
+          <p>Including consoles and accessories</p>
+          <Link to="/category/Video%20Games/9">
+            <Button id="btn-rounded" color="warning">Browse Games</Button>
+          </Link>
         </div>
       </Slider>
     );
