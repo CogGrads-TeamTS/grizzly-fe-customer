@@ -1,0 +1,21 @@
+.featured-row{
+    margin-top: 35px;
+}
+
+.featured-col{
+    max-width: 90% !important;
+}
+
+.featured-toolbar{
+    background-color: #ffd27f;
+    width: 92.5%;
+    margin-bottom: 20px;
+}
+.featured-toolbar-title{
+    background-color: #ffae19;
+    padding: 1%;
+    width: 70%;
+    color: white;
+    font-weight: 300;
+    font-size: 20px;
+}

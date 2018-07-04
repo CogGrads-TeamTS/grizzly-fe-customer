@@ -116,7 +116,7 @@ tbody {
 }
 
 .header,.user-header {
-  position: fixed;
+  /* position: fixed; */
   height: 75px;
   background: #fff;
   z-index: 1000;

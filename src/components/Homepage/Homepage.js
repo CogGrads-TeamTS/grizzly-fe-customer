@@ -8,8 +8,12 @@ import ProductTiles from '../Products/ProductTiles';
 import AdBanner from '../AdBanner/AdBanner';
 import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
+import './Homepage.css';
+import CategoryPanel from './../Common/CategoryPanel';
 
 import Header from '../Common/CommonHeader';
+import SalesPanel from '../Common/SalePanel';
+import FeaturedProducts from '../Common/FeaturedProducts';
 
 
 class Homepage extends Component {
@@ -43,20 +47,35 @@ class Homepage extends Component {
         this.props.fetchData(); // Initial fetch
     }
 
-    render() {//console.log(this.props.products);
+    render() {
 
         return (
-            <Container fluid>
-                <div className="nav-user-row">
-                    <Header />    
+            <div>
+                <div className="user-header">
+                    <div className="nav-user-row">
+                        <Header />    
+                    </div>
                 </div>
-                <CustomerSortBy className="sort-by-col"/>     
-                <div className="m-t-20"> 
-                    <AdBanner />
-                </div>
-                {this.props.loading ? <p>Loading....</p> : <p></p>}
-                {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} /> : <p>No products</p>}
-            </Container>
+                
+                <Container fluid>
+                    <CustomerSortBy className="sort-by-col"/>     
+                    <div className="m-t-20"> 
+                        <AdBanner />
+                    </div>
+
+                    <CategoryPanel categories={this.props.categories} />
+                    <SalesPanel />
+                    <Row className="rewards-panel">
+                        <span className="rewards-text">Join our rewards program 
+                             <a href="#" style={{color: "#e67e22"}}> <u>NOW!</u></a>
+                            </span>
+                        </Row>
+                    <FeaturedProducts products={this.props.products}/>
+                    {/* {this.props.loading ? <p>Loading....</p> : <p></p>} */}
+                    {/* {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} /> : <p>No products</p>} */}
+                </Container>
+            
+            </div>
 
         );
     }

@@ -41,7 +41,6 @@ class Lock extends Component {
       localStorage.setItem('access_token', authResult.accessToken);
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
-      console.log("Access token stored");
       
       this.setState({ loggedIn: true });
       this.props.fetchUserData();
@@ -55,12 +54,11 @@ class Lock extends Component {
   }
 
   render() {
-    const style = { marginTop: '32px' }
 
     return(
       !this.state.loggedIn ? (
         <div>
-          <div id={AUTH_CONFIG.container} style={style}></div>
+          <div id={AUTH_CONFIG.container}></div>
         </div>
       ) : (
         <Redirect to={{

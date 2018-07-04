@@ -22,3 +22,11 @@
 {
     transition: all 1s ease;
 }
+
+.tiles{
+    
+    /* border-left: 1px solid #eee; */
+    border-right: 1px solid #eee;
+    max-height: 350px;
+    height: 350px;
+}
