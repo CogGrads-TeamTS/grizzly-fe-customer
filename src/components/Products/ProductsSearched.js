@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import _ from 'lodash';
 class ProductsSearched extends Component{
 
-    constructor(props) {console.log(props.category);
+    constructor(props) {console.log(props);
         super(props);
         this.search="";
         this.page = 0;
@@ -17,6 +17,11 @@ class ProductsSearched extends Component{
     }
     componentDidMount(){
         this.props.fetchData(this.search,this.page,this.size,this.sort,this.props.category.id);
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.category.id !== prevProps.category.id) {
+            this.props.fetchData(this.search,this.page,this.size,this.sort,this.props.category.id);
+        }
     }
     render(){
         const imageUrl = 'http://ts.ausgrads.academy/images/';
