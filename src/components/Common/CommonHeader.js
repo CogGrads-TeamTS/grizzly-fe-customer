@@ -19,6 +19,7 @@ import grizzlogo from '../../assets/griz-logo.png';
 import { fetchUserByID } from '../../actions/userActions';
 import Cart from '../Common/cart/cart';
 import CartIndicator from '../Common/cart/cartindicator';
+import { fetchCart } from '../../actions/cartActions';
 
 
 class Header extends Component {
@@ -35,6 +36,7 @@ class Header extends Component {
 
     componentDidMount(){
         this.props.fetchUserData();
+        this.props.fetchCart(false);
     }
 
     toggle() {
@@ -129,13 +131,14 @@ const mapStateToProps = (state) => {
     return {
         user: state.user.user,
         userIsLoading: state.userIsLoading,
-        
+        cart: state.cart.cart,
     };
 };
 
 const mapDispatchToProps = (dispatch) => { 
     return {
-        fetchUserData: ()=> dispatch(fetchUserByID())
+        fetchUserData: ()=> dispatch(fetchUserByID()),
+        fetchCart: (loggedIn) => dispatch(fetchCart(loggedIn))
         
     };
 };
