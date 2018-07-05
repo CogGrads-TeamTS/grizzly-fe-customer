@@ -28,20 +28,20 @@ class Header extends Component {
     
         this.state = {
           isOpen: false,
-          cartIsActive: false,
-          cart: [
-              {
-              id: 1,
-              name: "Product1",
-              price: 12.99,
-              qty: 2
-              },{
-                id: 1,
-                name: "Product1",
-                price: 12.99,
-                qty: 2
-                }
-          ]
+          cartIsActive: false
+        //   cart: [
+        //       {
+        //       id: 1,
+        //       name: "Product1",
+        //       price: 12.99,
+        //       qty: 2
+        //       },{
+        //         id: 1,
+        //         name: "Product1",
+        //         price: 12.99,
+        //         qty: 2
+        //         }
+        //   ]
         };
         this.toggle = this.toggle.bind(this);
         this.cartToggle = this.cartToggle.bind(this);
@@ -70,7 +70,7 @@ class Header extends Component {
     
 
     render() {
-        const { cart } = this.state;
+        const { cart } = this.props;
         return (
                 <Navbar light expand="md">
                     <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
@@ -85,7 +85,7 @@ class Header extends Component {
                                         )
                                     }
                                 </NavItem>
-                                {console.log(this.state.cart)}
+                                {console.log(cart)}
                                 <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
                                 <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
                                     <Cart cart={cart}/>

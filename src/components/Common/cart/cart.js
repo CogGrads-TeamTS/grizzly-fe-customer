@@ -15,7 +15,7 @@ const CartItem = ({product}) => {
         </div>
         <div className="column">
           <div><NavLink to={urlpath}>{product.name}</NavLink></div>
-          {product.price.length > 0 &&
+          {/* {product.price.length > 0 && */}
             <div className="cart-option-name">{product.price}</div>
           }
           <div className="cart-quantity">Qty: {product.qty}</div>
@@ -33,8 +33,8 @@ export default class Cart extends React.PureComponent {
     render() {
         const {cart} = this.props;
         console.log(cart);
-        if(cart && cart.length > 0) {
-            let products = cart.map(product =>
+        if(cart && cart.items.length > 0) {
+            let products = cart.items.map(product =>
                 <CartItem key={product.id} product={product} />
             );
 

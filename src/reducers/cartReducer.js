@@ -11,7 +11,7 @@ export function cart(state = {}, action){
             console.log(action.data)
             return {
                 ...state,
-                cart: [...state.cart, action.data]
+                cart: action.data
             }
 
         default:
