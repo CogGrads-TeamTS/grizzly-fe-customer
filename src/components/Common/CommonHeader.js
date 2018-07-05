@@ -45,6 +45,7 @@ class Header extends Component {
         };
         this.toggle = this.toggle.bind(this);
         this.cartToggle = this.cartToggle.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     componentDidMount(){
@@ -56,6 +57,10 @@ class Header extends Component {
         this.setState({
           isOpen: !this.state.isOpen
         });
+    }
+
+    deleteItem = (e) => {
+        console.log("DELETEd " + e);
     }
 
     cartToggle = () => {
@@ -88,7 +93,7 @@ class Header extends Component {
                                 {console.log(cart)}
                                 <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
                                 <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
-                                    <Cart cart={cart}/>
+                                    <Cart cart={cart} deleteCartItem={this.deleteItem}/>
                                 </div>
                                 <NavItem>
                                     <NavLink href="#">                             

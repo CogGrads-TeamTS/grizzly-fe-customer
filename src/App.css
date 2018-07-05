@@ -238,7 +238,7 @@ tbody {
   width: 550px;
 }
 
-.global-search-user:focus {
+.global-search-user.has-focus {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
 .user-search-rounded{
