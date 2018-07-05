@@ -12,8 +12,8 @@ const CartIcon = ({ cartIsActive }) => {
 }
 
 const CartCount = ({ cart }) => {
-    if (cart && cart.length > 0) {
-      return <span className="cart-count">{cart.length}</span>;
+    if (cart && cart.items.length > 0) {
+      return <span className="cart-count">{cart.items.length}</span>;
     } else {
       return null;
     }

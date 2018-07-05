@@ -15,14 +15,12 @@ const CartItem = ({ product }) => {
             </div>
             <div className="column">
                 <div><NavLink to={urlpath}>{product.name}</NavLink></div>
-                {/* {product.price.length > 0 && */}
                 <div className="cart-option-name">{product.price}</div>
                 <div className="cart-quantity">Qty: {product.qty}</div>
             </div>
             <div className="column is-4 has-text-right">
                 <div className="mini-cart-item-price">{product.price}</div>
                 <a className="button is-light is-small" >Remove</a>
-                {/* <a className="button is-light is-small" onClick={() => deleteCartItem(product.id)}>Remove</a> */}
             </div>
         </div>
     );
