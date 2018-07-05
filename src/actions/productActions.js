@@ -46,7 +46,6 @@ const loadSingleProductError = (error) => ({type: types.LOAD_SINGLE_PRODUCT_ERRO
 const loadSingleProductLoading = (loading) =>({type: types.LOAD_SINGLE_PRODUCT_LOADING, singleProductIsLoading:loading});
 
 export function productFetchDataByID(id){
-
      const url = `${API_URL}/${id}`;
      return function (dispatch) {
          dispatch(loadSingleProductLoading(true));

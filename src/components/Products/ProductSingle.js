@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { productFetchDataByID, productFetchImagesByID } from '../../actions/productActions';
+import { addProductToCart } from '../../actions/cartActions';
 import { Container, Row, Col, Button, FormGroup, Label, Input } from 'reactstrap';
-
 import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
@@ -26,8 +26,11 @@ class ProductSingle extends Component {
 
     handleDone = instance => {this.setState({loaded: " complete-loaded"});};
 
-    render() {
+    addToCartClick = () => {
+        this.props.addToCart(this.props.product.id)
+    }
 
+    render() {
         const isLoading = (this.props.product === undefined) ?
             (
                 <div className="loading-container-full-pre">
@@ -35,7 +38,7 @@ class ProductSingle extends Component {
                 </div>
             ) : (
                 <div className="container-fluid">
-                    <div className={"loading-container-full loaded" + this.state.loaded}>
+                    <div className={"loading-container-full loaded" + (this.state ? this.state.loaded : "") }>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </div>
 
@@ -61,7 +64,7 @@ class ProductSingle extends Component {
                             <div className="discount">{this.props.product.discount}% Off</div>
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
                                 <Button className="buy-button" id="btn-rounded">Buy Now</Button>
-                                <Button className="add-button" id="btn-rounded">Add to Cart</Button>
+                                <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
                             </Row>
                         </Col>
 
@@ -93,7 +96,8 @@ const MapStateToProps = (state) => {
 const MapDispatchToProps = (dispatch) => {
     return {
         fetchData: (id) => dispatch(productFetchDataByID(id)),
-        fetchImages: (id) => dispatch(productFetchImagesByID(id))
+        fetchImages: (id) => dispatch(productFetchImagesByID(id)),
+        addToCart: (pid) => dispatch(addProductToCart(pid)),
     }
 }
 export default connect(MapStateToProps, MapDispatchToProps)(ProductSingle);
