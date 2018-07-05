@@ -29,7 +29,7 @@ class Homepage extends Component {
 
                 <Container fluid>
                     <CategoryPanel categories={this.props.categories} />
-                    <SalesPanel />
+                    <SalesPanel products={this.props.products}/>
                     <Row className="rewards-panel">
                         <span className="rewards-text">Join our rewards program 
                              <a href="#" style={{color: "#e67e22"}}> <u>NOW!</u></a>

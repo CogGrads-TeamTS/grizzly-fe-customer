@@ -4,7 +4,8 @@ import { Col, CardDeck } from 'reactstrap';
 import './ProductTiles.css';
 import { Link } from 'react-router-dom';
 
-const ProductTiles = (props) => {//console.log(props.products);
+const ProductTiles = (props) => {
+    let colOffset = "";
   return (
     <div>
                 <CardDeck>
@@ -15,10 +16,18 @@ const ProductTiles = (props) => {//console.log(props.products);
                         </Col>
                     }
                     {   
-                        props.products.map(product =>
-                            
-                                <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} className="tiles" key={product.id}>
+                        props.products.map((product,i) =>{
+                                {
+                                    if(i === 0 && props.type === 'sale'){
+                                       colOffset = "offset-md-2";
 
+                                    }else if(props.type === 'sale'){
+                                        colOffset = "offset-md-1";
+                                    }
+
+                                }
+                                return(
+                                <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} style={props.customStyle} className={`tiles ${colOffset}`} key={product.id}>
                                     <Link to={{ pathname: `/product/${product.id}`, state: {foo: 'bar'} }}>
                                         <ProductTile product={product} 
                                                         badge={"Product"} 
@@ -28,7 +37,7 @@ const ProductTiles = (props) => {//console.log(props.products);
                                                                         imageUrl={product.images.length > 0 ? product.images[0].url : ''}/>
                                         </Link>
                                 </Col>
-                            
+                                )}
                         )                        
                     }
                 </CardDeck>
