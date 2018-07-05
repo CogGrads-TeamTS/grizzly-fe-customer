@@ -5,7 +5,7 @@ import './ProductTile.css';
 import StarRatings from 'react-star-ratings';
 
 
-const ProductTile = (props) => { console.log(props)
+const ProductTile = (props) => { 
     const tileId = props.product ? props.product.id : props.id;
     const tooltip_price = `price_${tileId}`;
     const tooltip_brand = `brand_${tileId}`;

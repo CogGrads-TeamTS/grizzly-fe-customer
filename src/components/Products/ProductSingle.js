@@ -30,7 +30,7 @@ class ProductSingle extends Component {
 
         const isLoading = (this.props.product === undefined) ?
             (
-                <div className="loading-container-full">
+                <div className="loading-container-full-pre">
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
             ) : (

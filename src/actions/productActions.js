@@ -21,14 +21,14 @@ export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAU
 
     const urlParams = `search=${search}&page=${pageNumber}&size=${size}&sort=${sortParam}&category=${catId}&brand=${brand}&rating=${rating}`;
     const url = `${API_URL}/page?${urlParams}`;
-    console.log(url);
+ 
     return function (dispatch) {
         // get data from external data source
         dispatch(loadProductsLoading(true));
         const request=axios.get(url);
         request
-            .then((response) =>{ //console.log(response);
-                if(!response.status == 200)
+            .then((response) =>{ 
+                if(!response.status === 200)
                 {
                     throw Error(response.statusText);
                 }
@@ -78,8 +78,8 @@ const loadSingleProductImageLoading = (loading) =>({type: types.LOAD_SINGLE_PROD
          dispatch(loadSingleProductImageLoading(true));
          const request=axios.get(url);
          request
-             .then((response) =>{ console.log(response);
-                 if(!response.status == 200)
+             .then((response) =>{ 
+                 if(!response.status === 200)
                  {
                      throw Error(response.statusText);
                  }
