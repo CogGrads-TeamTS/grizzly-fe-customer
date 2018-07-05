@@ -9,23 +9,30 @@ import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
 
 class ProductSingle extends Component {
+    constructor(props){
+        super(props);
+
+        console.log("Set to true in constructor")
+        this.loading = true;
+    }
+
     componentDidMount() {
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);
-
         this.setState({loaded: ""});
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.match.params.id !== prevProps.match.params.id){
+            this.loading = true;
             this.props.fetchData(this.props.match.params.id);
             this.props.fetchImages(this.props.match.params.id);
-        }
+        } else this.loading = false;
+
         if(JSON.stringify(this.props.images) !== JSON.stringify(prevProps.images)){
             this.props.fetchImages(this.props.match.params.id);
         }
     }
-
 
     handleOnAlways = instance => { };
 
@@ -33,21 +40,22 @@ class ProductSingle extends Component {
 
     handleOnFail = instance => { };
 
-    handleDone = instance => {this.setState({loaded: " complete-loaded"});};
+    handleDone = instance => {console.log("Images have loaded"); this.loading = false; this.setState({loaded: " complete-loaded"});};
 
     addToCartClick = () => {
         this.props.addToCart(this.props.product.id)
     }
 
     render() {
-        const isLoading = (this.props.product === undefined) ?
+        console.log(this.loading)
+        const isLoading = (this.loading) ?
             (
                 <div className="loading-container-full-pre">
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
             ) : (
                 <div className="container-fluid">
-                    <div className={"loading-container-full loaded" + (this.state ? this.state.loaded : "") }>
+                    <div className={"loading-container-full loaded" + (this.state && !this.loading ? this.state.loaded : "") }>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </div>
 
