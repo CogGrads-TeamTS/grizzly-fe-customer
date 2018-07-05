@@ -883,7 +883,7 @@ tbody {
 }
 
 /*Snowflakes*/
-/* .flakes {
+.flakes {
   position: absolute;
   top: 0;
   left: 0;
@@ -897,7 +897,7 @@ tbody {
   display:flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 53px;
+  margin-top: 17px;
 }
 
 .flakes div {
@@ -1031,14 +1031,14 @@ tbody {
     transform:
       translate(0, 0)
       rotate(0deg)
-      scale(0.8);
+      scale(1);
   }
   to {
     transform:
       translate(0vh, 60vh)
       rotate(360deg)
-      scale(1.2);
+      scale(0.6);
       opacity: 0;
-  transition: visibility 0s 10s, opacity 10s linear;
+      transition: visibility 0s 10s, opacity 10s linear;
   }
-} */
+}
