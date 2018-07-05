@@ -17,6 +17,7 @@ import '../../App.css';
 import isAuthenticated from '../../Auth/isAuthenticated'
 import grizzlogo from '../../assets/griz-logo.png';
 import { fetchUserByID } from '../../actions/userActions';
+import Cart from '../Common/cart/cart';
 
 
 const CartCount = ({ cart }) => {
@@ -91,7 +92,7 @@ class Header extends Component {
                                     <CartCount cart={cart} />
                                 </span>
                                 <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
-                                    <div className="mini-cart"><p>Your cart is empty</p></div>
+                                    <Cart />
                                 </div>
                                 <NavItem>
                                     <NavLink href="#">                             
