@@ -52,28 +52,6 @@ const SalesPanel = (props) => {
                 <div style={{width: "99%", margin: "25px 0 25px 0"}}>
                 
                     <ProductTiles products={buildDiscount()} colOffset={colOffset} customStyle={customStyle} type="sale"/></div>
-
-            {/* {
-                _.map(buildDiscount(), product => { console.log(product)
-                    return(
-                        <Col md="4" key={product.id}>
-
-                                    <Link to={{ pathname: `/product/${product.id}`, state: {foo: 'bar'} }}>
-                                    <Col md="4" className="center-align">
-                        <ProductTile product={product} />
-			            <div className="image-centered">
-				            <img className="img-fluid" src={product.images.length > 0 ? `http://ts.ausgrads.academy/images/${product.images[0].url}` : ''}  />
-			            </div>
-		            </Col>
-                                        </Link>
-                                </Col>
-                        
-                    )
-                        
-                    
-            })
-        } */}
-
 		            
 	    </Row>
     );

@@ -35,7 +35,7 @@ class CategoryPanel extends Component{
 
                                 return (
                         
-                                    <Col xl="2" lg="2" md="2" sm="4" className="category-tile offset-md-1 offset-sm-2" onClick={() => this.loadProducts(cat)}>
+                                    <Col key={cat.id} xl="2" lg="2" md="2" sm="4" className="category-tile offset-md-1 offset-sm-2" onClick={() => this.loadProducts(cat)}>
                                         <ReactImageFallback
                                         src={`http://ts.ausgrads.academy/images/category_images/${cat.name}.jpg`}
                                         fallbackImage={`http://ts.ausgrads.academy/images/category_images/no-image.jpg`}
@@ -49,7 +49,7 @@ class CategoryPanel extends Component{
                             }else{
                                 return (
                         
-                                    <Col xl="2" lg="2" md="2" sm="4" className="category-tile" onClick={() => this.loadProducts(cat)}>
+                                    <Col key={cat.id} xl="2" lg="2" md="2" sm="4" className="category-tile" onClick={() => this.loadProducts(cat)}>
                                     <ReactImageFallback
                                         src={`http://ts.ausgrads.academy/images/category_images/${cat.name}.jpg`}
                                         fallbackImage={`http://ts.ausgrads.academy/images/category_images/no-image.jpg`}

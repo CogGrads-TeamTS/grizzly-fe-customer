@@ -16,7 +16,7 @@ export function fetchUserByID() {
         const request=axios.get(url, { headers: { authorization: `Bearer ${accessToken}` } });
         request
             .then((response) =>{ 
-                if(!response.status == 200)
+                if(!response.status === 200)
                 {
                     throw Error(response.statusText);
                 }
@@ -25,7 +25,7 @@ export function fetchUserByID() {
                 return response.data;
             })
             .then((data)=> 
-            { console.log(data);
+            { 
               dispatch(loadUserSuccess(data))})
             .catch((error)=>{
               dispatch(loadUserError(error))});

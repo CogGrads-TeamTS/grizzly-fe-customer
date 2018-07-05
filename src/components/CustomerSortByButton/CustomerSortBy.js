@@ -29,7 +29,7 @@ class CustomerSortBy extends Component {
         this.rating="";
         this.toggle = this.toggle.bind(this);
     }
-    componentDidMount(){//console.log(this.size);
+    componentDidMount(){
         this.props.fetchData(this.search, this.page, this.size, this.sort);
     }
 
@@ -39,10 +39,10 @@ class CustomerSortBy extends Component {
         });
     }
 
-    renderSwitch= (state)=> { //console.log(state);
+    renderSwitch= (state)=> { 
         switch (state.value) {
             case 'category':
-                //console.log(event.currentTarget.value);
+                
 
                 return (
                     (_.isEmpty(this.props.categories) ?
@@ -51,9 +51,9 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {//console.log(state);
+                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {
                                 return (
-                                    <Col>
+                                    <Col key={cat.id}>
                                         <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
                                     </Col>
                                 )
@@ -71,9 +71,9 @@ class CustomerSortBy extends Component {
                             </Col>
                         ) : (
                             _.map(_.take(_.shuffle(this.props.brands),5), brand => {
-                                console.log(this.props.brands);
+                               
                                 return (
-                                    <Col>
+                                    <Col key={brand.id}>
                                         <CustomerSortByButton  object={brand} name={brand} load={this.loadProductsByBrand}/>
                                     </Col>
                                 )
@@ -92,9 +92,9 @@ class CustomerSortBy extends Component {
                             </Col>
                         ) : (
                             _.map(_.take(_.shuffle(this.props.ratings),5), rating => {
-                                //console.log(prod.rating);
+                                
                                 return (
-                                    <Col>
+                                    <Col key={rating.id}>
                                         <CustomerSortByButton  object={rating} name={rating} load={this.loadProductsByRating}/>
                                     </Col>
                                 )
@@ -112,7 +112,7 @@ class CustomerSortBy extends Component {
             //                 </Col>
             //             ) : (
             //                 _.map(_.take(_.shuffle(this.props.products),5), prod => {
-            //                     //console.log(prod.price);
+            //                     
             //                     return (
             //                         <Col>
             //                             <CustomerSortByButton  key={prod.id} object={prod} name={prod.price} load={this.loadProductsByBrand}/>
@@ -130,9 +130,9 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {//console.log(cat);
+                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {
                                 return (
-                                    <Col>
+                                    <Col key={cat.id}>
                                         <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
                                     </Col>
                                 )
@@ -151,17 +151,17 @@ class CustomerSortBy extends Component {
         this.renderSwitch(this.state);
     };
 
-    loadProducts = (cat) =>{ //console.log(cat.name);
+    loadProducts = (cat) =>{ 
         this.props.fetchData(this.search, this.page, this.size,this.sort,cat.id,this.brand,this.rating);
         this.props.history.push(`/category/${cat.name}/${cat.id}`);
     };
 
-    loadProductsByBrand = (brandName) =>{ //console.log(this.size);
+    loadProductsByBrand = (brandName) =>{ 
         this.props.fetchData(this.search, this.page, this.size,this.sort,this.category,brandName,this.rating);
         this.props.history.push(`/brand/${brandName}`);
     };
 
-    loadProductsByRating = (rating) =>{ console.log(rating);
+    loadProductsByRating = (rating) =>{ 
         this.props.fetchData(this.search, this.page, this.size,this.sort,this.category,this.brand,rating);
         this.props.history.push(`rating/${rating}`);
     };
