@@ -14,15 +14,17 @@ class GlobalSearch extends React.Component {
   render() { 
     const classes = `col-12 btn-left-curve ${this.props.rounded}`;
     return (
-      <Form>
+      <Form autoComplete="off">
         <FormGroup>
-        <InputGroup className={this.props.classname}>
-            <Style scopeSelector='.global-search-user' rules={{
+        {/* <InputGroup className={this.props.classname}> */}
+        <InputGroup className="global-search-user">
+            {/* <Style scopeSelector='.global-search-user' rules={{
                 '::-webkit-input-placeholder': {
                     color: '#ffb732'
-                }}} />
-          <Input 
-          className={classes}
+                }}} /> */}
+          <input 
+          // className={classes}
+          className={"exampleSearch"}
           type="search" 
           name="search" 
           id="exampleSearch" 

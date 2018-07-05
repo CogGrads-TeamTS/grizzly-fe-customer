@@ -17,6 +17,9 @@ import '../../App.css';
 import isAuthenticated from '../../Auth/isAuthenticated'
 import grizzlogo from '../../assets/griz-logo.png';
 import { fetchUserByID } from '../../actions/userActions';
+import Cart from '../Common/cart/cart';
+import CartIndicator from '../Common/cart/cartindicator';
+import { fetchCart } from '../../actions/cartActions';
 
 
 class Header extends Component {
@@ -24,13 +27,29 @@ class Header extends Component {
         super(props);
     
         this.state = {
-          isOpen: false
+          isOpen: false,
+          cartIsActive: false
+        //   cart: [
+        //       {
+        //       id: 1,
+        //       name: "Product1",
+        //       price: 12.99,
+        //       qty: 2
+        //       },{
+        //         id: 1,
+        //         name: "Product1",
+        //         price: 12.99,
+        //         qty: 2
+        //         }
+        //   ]
         };
         this.toggle = this.toggle.bind(this);
+        this.cartToggle = this.cartToggle.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchUserData();
+        this.props.fetchCart(false);
     }
 
     toggle() {
@@ -39,7 +58,19 @@ class Header extends Component {
         });
     }
 
+    cartToggle = () => {
+        console.log("TEST");
+        console.log(!this.state.cartIsActive);
+        this.setState({
+          cartIsActive: !this.state.cartIsActive,
+          mobileMenuIsActive: false
+        });
+        document.body.classList.toggle('noscroll');
+      }
+    
+
     render() {
+        const { cart } = this.props;
         return (
                 <Navbar light expand="md">
                     <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
@@ -53,7 +84,12 @@ class Header extends Component {
                                             <NavLink className="welcome-name" disabled href="#">Welcome, {this.props.user !== undefined && this.props.user.name}!</NavLink>
                                         )
                                     }
-                                </NavItem>            
+                                </NavItem>
+                                {console.log(cart)}
+                                <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
+                                <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
+                                    <Cart cart={cart}/>
+                                </div>
                                 <NavItem>
                                     <NavLink href="#">                             
                                         {
@@ -108,13 +144,15 @@ class Header extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user.user,
-        userIsLoading: state.userIsLoading
+        userIsLoading: state.userIsLoading,
+        cart: state.cart.cart,
     };
 };
 
 const mapDispatchToProps = (dispatch) => { 
     return {
-        fetchUserData: ()=> dispatch(fetchUserByID())
+        fetchUserData: ()=> dispatch(fetchUserByID()),
+        fetchCart: (loggedIn) => dispatch(fetchCart(loggedIn))
         
     };
 };

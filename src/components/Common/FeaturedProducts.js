@@ -1,0 +1,51 @@
+import React, {Component} from 'react';
+import './styles/Featuredproducts.css';
+import {Row, Col} from 'reactstrap';
+import _ from 'lodash';
+import ProductTiles from '../Products/ProductTiles';
+
+class FeaturedProducts extends Component{
+    render(){ console.log(this.props.products)
+        const ratedItems = [];
+
+        const buildRatedProduct = () => { 
+            if(!this.props.products){
+                return ratedItems;
+            }
+            _.map(_.shuffle(Object.values(this.props.products)), (product,i) => { 
+                if(ratedItems.length >= 5) return ratedItems;
+                
+                if(product.rating === 5){
+                    ratedItems.push(product);
+                }
+            })
+            return ratedItems;
+        };
+        
+    const colOffset = "offset-md-1";
+
+    const customStyle = {
+        backgroundColor: "#fff",
+        border: "1px solid #cccccc",
+        boxShadow: "0 8px 16px -4px #222",
+        minHeight: "360px"
+    } 
+        return( 
+            <Row className="featured-row">
+                <Col md="12" className="featured-col offset-md-1" >
+                    <div className="featured-toolbar">
+                        <div className="featured-toolbar-title">
+                            <span>FEATURED PRODUCTS</span>
+                        </div>
+                    </div>
+                </Col>
+                <div style={{width: "98%", margin: "0 0 100px 0"}}>
+                <ProductTiles products={buildRatedProduct()} type="featured" colOffset={colOffset}/>
+                </div>
+            </Row>
+        )
+    }
+}
+
+
+export default FeaturedProducts;

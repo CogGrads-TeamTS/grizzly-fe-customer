@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 export function category(state = {}, action) {
-    // console.log(action.type);
+    
     switch (action.type) {
         case types.LOAD_CATEGORIES_SUCCESS:
             // create array from fetched data from database
