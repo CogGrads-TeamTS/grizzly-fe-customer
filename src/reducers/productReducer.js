@@ -6,19 +6,15 @@ export function products(state = {}, action) {
             const productArray = action.data.products.content;
             const productFirst = action.data.products.first;
             const productLast = action.data.products.last;
-            const selected = undefined;
             const filterByCat = action.data.filterCats;
             const filterBrand = action.data.filterBrands;
             const filterRating = action.data.filterRatings;
            
-           
-
             return {
                 ...state,
                 content: (!productFirst ? [ ...state.content, ...productArray] : productArray),
                 productFirst,
                 last: productLast,
-                selected,
                 filterByCat,
                 filterBrand,
                 filterRating

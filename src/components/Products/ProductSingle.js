@@ -11,6 +11,7 @@ import ImagesLoaded from 'react-images-loaded';
 class ProductSingle extends Component {
 
     componentDidMount() {
+        console.log("IS fetching data")
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);
 
@@ -84,6 +85,7 @@ class ProductSingle extends Component {
 }
 
 const MapStateToProps = (state) => {
+    console.log(state.products)
     return {
         product: state.products.selected,
         images: state.products.images
