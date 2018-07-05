@@ -21,8 +21,12 @@ const ProductTiles = (props) => {
                                     if(i === 0 && props.type === 'sale'){
                                        colOffset = "offset-md-2";
 
-                                    }else if(props.type === 'sale'){
-                                        colOffset = "offset-md-1";
+                                    }
+                                    else if(props.type === 'sale' || (i === 0 && props.type === 'featured')){
+                                        colOffset = props.colOffset;
+                                    }
+                                    else if(props.type === 'featured'){
+                                        colOffset = "";
                                     }
 
                                 }
