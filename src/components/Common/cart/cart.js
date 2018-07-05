@@ -1,37 +1,41 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+import avatar from '../../../assets/griz-head.png'
 
-const CartItem = ({product, deleteCartItem, settings}) => {
-    // const thumbnail = helper.getThumbnailUrl(item.image_url, themeSettings.cartThumbnailWidth);
+
+const CartItem = ({product}) => {
+    const urlpath = `/product/${product.id}`;
   
     return (
-    //   <div className="columns is-mobile">
-    //     <div className="column is-2">
-    //       <div className="image">
-    //         <NavLink to={item.path}><img src={thumbnail} /></NavLink>
-    //       </div>
-    //     </div>
-    //     <div className="column">
-    //       <div><NavLink to={item.path}>{item.name}</NavLink></div>
-    //       {item.variant_name.length > 0 &&
-    //         <div className="cart-option-name">{item.variant_name}</div>
-    //       }
-    //       <div className="cart-quantity">{text.qty}: {item.quantity}</div>
-    //     </div>
-    //     <div className="column is-4 has-text-right">
-    //       <div className="mini-cart-item-price">{helper.formatCurrency(item.price_total, settings)}</div>
-    //       <a className="button is-light is-small" onClick={() => deleteCartItem(item.id)}>{text.remove}</a>
-    //     </div>
-    //   </div>
-    <div>Item Here</div>
+        <div className="columns is-mobile">
+        <div className="column is-2">
+          <div className="image">
+            <NavLink to={urlpath}><img src={avatar} /></NavLink>
+          </div>
+        </div>
+        <div className="column">
+          <div><NavLink to={urlpath}>{product.name}</NavLink></div>
+          {product.price.length > 0 &&
+            <div className="cart-option-name">{product.price}</div>
+          }
+          <div className="cart-quantity">Qty: {product.qty}</div>
+        </div>
+        <div className="column is-4 has-text-right">
+          <div className="mini-cart-item-price">{product.price}</div>
+          <a className="button is-light is-small" >Remove</a>
+          {/* <a className="button is-light is-small" onClick={() => deleteCartItem(product.id)}>Remove</a> */}
+        </div>
+      </div>
     );
   }
 
 export default class Cart extends React.PureComponent {
     render() {
         const {cart} = this.props;
-        if(cart && cart.items && cart.items.length > 0) {
-            let products = cart.products.map(product =>
-                <CartItem key={products.id} product={product} />
+        console.log(cart);
+        if(cart && cart.length > 0) {
+            let products = cart.map(product =>
+                <CartItem key={product.id} product={product} />
             );
 
             return (
@@ -39,12 +43,14 @@ export default class Cart extends React.PureComponent {
                     {products}
                 <hr className="separator" />
                 <div className="columns is-mobile is-gapless">
-                    <div className="column is-7"><b>subtotal</b></div>
+                    <div className="column is-7"><b>Subtotal</b></div>
                     <div className="column is-5 has-text-right">
                     {/* <b>{helper.formatCurrency(cart.subtotal, settings)}</b> */}
+                    <b>$100.00</b>
                     </div>
                 </div>
                 {/* <NavLink className="button is-primary is-fullwidth has-text-centered" style={{ textTransform: 'uppercase' }} to="/checkout" onClick={cartToggle}>{text.proceedToCheckout}</NavLink> */}
+                <NavLink className="button is-primary is-fullwidth has-text-centered" style={{ textTransform: 'uppercase' }} to="/checkout">GO TO CHECKOUT</NavLink>
                 </div>
             )
         }else {

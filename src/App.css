@@ -885,6 +885,9 @@ tbody {
   box-shadow: 2px 2px #eee;
 }
 
+/**
+ * Cart CSS
+**/
 .cart-button {
   cursor: pointer;
   margin: 0.7rem 1.5rem 0.7rem 1.5rem;
@@ -926,3 +929,115 @@ tbody {
   border-radius: 100%;
   text-align: center;
 }
+
+.columns.is-mobile > .column.is-2 {
+  flex: none;
+  width: 16.66667%;
+}
+
+.image img {
+  max-width: 60px;
+  max-height: 70px;
+  border: 1px solid #eee;
+}
+
+a {
+  color: #000 !important;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #363636 !important;
+}
+
+a, input, button {
+  outline: none;
+}
+
+.cart-quantity {
+  color: #999;
+}
+
+.column {
+  display: block;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 0.75rem;
+}
+
+.columns.is-mobile > .column.is-4 {
+  flex: none;
+  width: 33.33333%;
+}
+
+.mini-cart-item-price {
+  padding-bottom: 6px;
+}
+
+.columns.is-mobile {
+  display: flex;
+}
+
+.button.is-light {
+  background-color: whitesmoke;
+  border-color: transparent;
+  color: #363636;
+}
+
+.button.is-small {
+  border-radius: 2px;
+  font-size: 0.75rem;
+}
+.button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.25em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(0.375em - 1px);
+  position: relative;
+  vertical-align: top;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: white;
+  border-color: #dbdbdb;
+  color: #363636;
+  cursor: pointer;
+  justify-content: center;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.has-text-right {
+  text-align: right !important;
+}
+
+.button.is-primary {
+  background-color: #00b366;
+  border-color: transparent;
+  color: #fff !important;
+}
+
+.button.is-fullwidth {
+  display: flex;
+  width: 100%;
+}
+/**
+ * Cart End CSS
+**/
