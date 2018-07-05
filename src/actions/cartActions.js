@@ -17,7 +17,11 @@ export function fetchCart(loggedIn) {
         if (loggedIn)
             request = axios.get(url, { headers: { authorization: `Bearer ${accessToken}` } });
         else
-            request = axios.get(url);
+            request = axios.get(url, {
+                method: "get",
+                withCredentials: true
+            }
+            );
 
         request
             .then((response) => {
