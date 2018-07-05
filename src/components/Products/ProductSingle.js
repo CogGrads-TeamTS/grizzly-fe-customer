@@ -9,7 +9,6 @@ import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
 
 class ProductSingle extends Component {
-
     componentDidMount() {
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);

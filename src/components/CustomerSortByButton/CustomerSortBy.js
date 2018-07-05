@@ -102,7 +102,6 @@ class CustomerSortBy extends Component {
                         ))
 
                 );
-
             // case 'price':
             //     return (
             //         (_.isEmpty(this.props.products) ?
@@ -180,7 +179,6 @@ class CustomerSortBy extends Component {
                             <DropdownItem onClick={this.changeValue} value="category">Shop By Category</DropdownItem>
                             <DropdownItem onClick={this.changeValue} value="brand">Shop By Brand</DropdownItem>
                             <DropdownItem onClick={this.changeValue} value="rating">Shop By Rating</DropdownItem>
-                            {/* <DropdownItem onClick={this.changeValue} value="price">Shop By Price</DropdownItem>*/}
                         </DropdownMenu>
                     </ButtonDropdown>
                 </Col>
@@ -205,7 +203,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (search, page, size, sort,catId, brand, rating)=> dispatch(productsFetchData(search, page, size, sort,catId,brand,rating)),
+        fetchData: (search, page, size, sort,catId, brand, rating)=> dispatch(productsFetchData(search, page, size, sort,catId,brand,rating))
     };
 };
 
