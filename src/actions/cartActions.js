@@ -50,7 +50,6 @@ export function addProductToCart(pid) {
 
     return function (dispatch) {
         // Change request based on user logged in
-        axios.defaults.withCredentials = true; 
         let request;
         if (loggedIn) request = axios.post(url, { headers: { authorization: `Bearer ${accessToken}` } })
         else request = axios(url, {

@@ -30,6 +30,7 @@ const ProductTile = (props) => {
                                     starDimension="20px"
                                     starSpacing="2px"
                                     starRatedColor='rgb(108, 116, 217)'
+                                    changeRating={() => {}}
                                 /></div>
                 <Button color="primary" className="add-btn">ADD TO CART</Button>
             </div>
