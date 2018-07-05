@@ -123,18 +123,6 @@
   }
 }
 
-/* .loading-container-full:empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    opacity: 0.2;
-    transition: opacity 1000ms ease-in;
-  } */
-
 /* Built for the loader */
 .lds-grid {
     display: inline-block;

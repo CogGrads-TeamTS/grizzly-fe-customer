@@ -48,7 +48,7 @@ class ProductSingle extends Component {
 
     render() {
         console.log(this.loading)
-        const isLoading = (this.loading) ?
+        const isLoading = (this.loading || !this.props.product) ?
             (
                 <div className="loading-container-full-pre">
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
