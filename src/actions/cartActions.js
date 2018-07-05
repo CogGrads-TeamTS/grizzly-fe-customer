@@ -17,7 +17,11 @@ export function fetchCart(loggedIn) {
         if (loggedIn)
             request = axios.get(url, { headers: { authorization: `Bearer ${accessToken}` } });
         else
-            request = axios.get(url);
+            request = axios.get(url, {
+                method: "get",
+                withCredentials: true
+            }
+            );
 
         request
             .then((response) => {
@@ -50,7 +54,6 @@ export function addProductToCart(pid) {
 
     return function (dispatch) {
         // Change request based on user logged in
-        axios.defaults.withCredentials = true; 
         let request;
         if (loggedIn) request = axios.post(url, { headers: { authorization: `Bearer ${accessToken}` } })
         else request = axios(url, {
