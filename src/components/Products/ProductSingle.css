@@ -11,15 +11,15 @@
 }
 
 .add-button, .add-button:focus{
-    background-color: #ffd27f !important;
-    border-color: #ffd27f !important;
+    background-color: #ffae19 !important;
+    border-color: #ffae19 !important;
     margin: 3%;
     box-shadow: none !important;
 }
 
 .buy-button:hover, .add-button:hover{
     transition: 0.3s;
-    opacity: 0.9;
+    opacity: 0.75;
 }
 
 

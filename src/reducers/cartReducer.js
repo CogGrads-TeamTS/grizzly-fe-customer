@@ -3,10 +3,15 @@ import * as types from '../actions/actionTypes';
 export function cart(state = {}, action){
     switch (action.type){
         case types.LOAD_CART_SUCCESS:
-        console.log(action.data);
             return {
                 ...state,
                 cart: action.data
+            }
+        case types.ADD_CART_ITEM_SUCCESS:
+            console.log(action.data)
+            return {
+                ...state,
+                cart: [...state.cart, action.data]
             }
 
         default:
