@@ -11,7 +11,6 @@ import ImagesLoaded from 'react-images-loaded';
 class ProductSingle extends Component {
 
     componentDidMount() {
-        console.log("IS fetching data")
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);
 
@@ -28,7 +27,6 @@ class ProductSingle extends Component {
     handleDone = instance => {this.setState({loaded: " complete-loaded"});};
 
     render() {
-
         const isLoading = (this.props.product === undefined) ?
             (
                 <div className="loading-container-full-pre">
@@ -36,7 +34,7 @@ class ProductSingle extends Component {
                 </div>
             ) : (
                 <div className="container-fluid">
-                    <div className={"loading-container-full loaded" + this.state.loaded}>
+                    <div className={"loading-container-full loaded" + (this.state ? this.state.loaded : "") }>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </div>
 
@@ -85,7 +83,6 @@ class ProductSingle extends Component {
 }
 
 const MapStateToProps = (state) => {
-    console.log(state.products)
     return {
         product: state.products.selected,
         images: state.products.images
