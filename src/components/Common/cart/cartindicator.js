@@ -4,7 +4,6 @@ import cart_close_icon from '../../../assets/images/close.svg';
 
 
 const CartIcon = ({ cartIsActive }) => {
-    console
   if(cartIsActive){
     return <img src={cart_close_icon} className="icon" style={{ minWidth: 20, paddingRight:4, marginLeft: 4, paddingTop:8 }}/>
   } else {
@@ -13,7 +12,6 @@ const CartIcon = ({ cartIsActive }) => {
 }
 
 const CartCount = ({ cart }) => {
-    console.log(cart.length);
     if (cart && cart.length > 0) {
       return <span className="cart-count">{cart.length}</span>;
     } else {
