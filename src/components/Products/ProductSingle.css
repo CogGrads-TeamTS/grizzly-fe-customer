@@ -67,7 +67,7 @@
     background-color:  rgba(0, 0, 0, 0.9);
     opacity: 1;
     z-index: 1000;
-    animation:fadeIn 0.3s linear;
+    animation:fadeIn 1s linear;
 }
 
 .loading-container-full.loaded{
@@ -110,7 +110,7 @@
   }
 }
 
-.loading-container-full:empty {
+/* .loading-container-full:empty {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,7 +120,7 @@
     background-color: blue;
     opacity: 0.2;
     transition: opacity 1000ms ease-in;
-  }
+  } */
 
 /* Built for the loader */
 .lds-grid {
