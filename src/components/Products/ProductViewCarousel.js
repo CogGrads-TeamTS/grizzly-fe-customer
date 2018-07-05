@@ -17,7 +17,7 @@ const urladdition="http://ts.ausgrads.academy/images/"
 const buildImages = (images) => {
 
   items = [];
-  console.log(images)
+
 
   const size = images == null ? 0 : images.length;
   let i;
@@ -30,7 +30,7 @@ const buildImages = (images) => {
   } else {
 
     for(i = 0; i < size; i++){
-      console.log(images[i].url)
+     
       items.push({
         src: urladdition + images[i].url,
         captionText: "Stop throwing errors pls"
@@ -38,7 +38,7 @@ const buildImages = (images) => {
     }
   }
 
-  console.log(items)
+  
 };
 
 

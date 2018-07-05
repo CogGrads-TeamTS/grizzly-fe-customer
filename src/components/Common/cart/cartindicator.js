@@ -1,11 +1,12 @@
 import React from 'react';
 import cart_icon from '../../../assets/images/shopping-bag.svg';
-import close_icon from '../../../assets/images/close.svg';
+import cart_close_icon from '../../../assets/images/close.svg';
+
 
 const CartIcon = ({ cartIsActive }) => {
     console
   if(cartIsActive){
-    return <img src={close_icon} className="icon"   style={{ minWidth: 20, paddingRight:4, marginLeft: 4, paddingTop:8 }}/>
+    return <img src={cart_close_icon} className="icon" style={{ minWidth: 20, paddingRight:4, marginLeft: 4, paddingTop:8 }}/>
   } else {
     return <img src={cart_icon} className="icon"   style={{ minWidth: 24, padding: 4}}/>
   }

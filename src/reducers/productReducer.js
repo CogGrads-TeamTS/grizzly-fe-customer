@@ -10,8 +10,8 @@ export function products(state = {}, action) {
             const filterByCat = action.data.filterCats;
             const filterBrand = action.data.filterBrands;
             const filterRating = action.data.filterRatings;
-            console.log(action.data);
-           //console.log(productArray)
+           
+           
 
             return {
                 ...state,
@@ -42,7 +42,7 @@ export function products(state = {}, action) {
 }
 
 export function productsIsLoading(state = false, action) {
-  //  console.log("IS LOADING")
+
     switch (action.type) {
         case types.LOAD_PRODUCTS_LOADING:
             return action.productsIsLoading;
