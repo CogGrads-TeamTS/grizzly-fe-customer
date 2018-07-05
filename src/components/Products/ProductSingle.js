@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { productFetchDataByID, productFetchImagesByID } from '../../actions/productActions';
 import { addProductToCart } from '../../actions/cartActions';
-import { Container, Row, Col, Button, FormGroup, Label, Input } from 'reactstrap';
+import { CardColumns, Container, Row, Col, Button, FormGroup, Label, Input } from 'reactstrap';
 import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
@@ -14,6 +14,16 @@ class ProductSingle extends Component {
         this.props.fetchImages(this.props.match.params.id);
 
         this.setState({loaded: ""});
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.match.params.id !== prevProps.match.params.id){
+            this.props.fetchData(this.props.match.params.id);
+            this.props.fetchImages(this.props.match.params.id);
+        }
+        if(JSON.stringify(this.props.images) !== JSON.stringify(prevProps.images)){
+            this.props.fetchImages(this.props.match.params.id);
+        }
     }
 
 
@@ -68,9 +78,11 @@ class ProductSingle extends Component {
                         </Col>
 
                         <Col className="buy-panel" md="3" sm="12">
-
-                            <ProductsSearched />
-                        </Col>
+                                <div className="searched-title">People also searched for</div>
+                                <CardColumns style={{columnCount: "2"}}>
+                                    <ProductsSearched category={this.props.product.category}/>
+                                </CardColumns>
+                            </Col>
                     </Row>
 
                 </div>

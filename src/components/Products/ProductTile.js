@@ -25,12 +25,11 @@ const ProductTile = (props) => {
                 <StarRatings 
                                     rating={props.product.rating}
                                     numberOfStars={5}
-                                    changeRating={false}
                                     name='rating'
                                     starDimension="20px"
                                     starSpacing="2px"
                                     starRatedColor='rgb(108, 116, 217)'
-                                    changeRating={() => {}}
+                                    isSelectable={false}
                                 /></div>
                 <Button color="primary" className="add-btn">ADD TO CART</Button>
             </div>
