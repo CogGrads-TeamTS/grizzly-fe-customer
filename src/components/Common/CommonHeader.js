@@ -18,25 +18,8 @@ import isAuthenticated from '../../Auth/isAuthenticated'
 import grizzlogo from '../../assets/griz-logo.png';
 import { fetchUserByID } from '../../actions/userActions';
 import Cart from '../Common/cart/cart';
+import CartIndicator from '../Common/cart/cartindicator';
 
-
-const CartCount = ({ cart }) => {
-    if (cart && cart.items && cart.items.length > 0) {
-      let itemsCount = cart.items.reduce((a, b) => a + b.quantity, 0);
-      return <span className="cart-count">{itemsCount}</span>;
-    } else {
-      return null;
-    }
-  }
-  
-  const CartIcon = ({ cartIsActive }) => {
-      console
-    if(cartIsActive){
-      return <img src="/assets/images/close.svg" className="icon"   style={{ minWidth: 24, padding: 4 }}/>
-    } else {
-      return <img src="/assets/images/shopping-bag.svg" className="icon"   style={{ minWidth: 24, padding: 4}}/>
-    }
-  }
 
 class Header extends Component {
     constructor(props) {
@@ -87,12 +70,9 @@ class Header extends Component {
                                         )
                                     }
                                 </NavItem>
-                                <span className="cart-button" onClick={this.cartToggle}>
-                                    <CartIcon cartIsActive={this.state.cartIsActive} />
-                                    <CartCount cart={cart} />
-                                </span>
+                                <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
                                 <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
-                                    <Cart />
+                                    <Cart cart={cart}/>
                                 </div>
                                 <NavItem>
                                     <NavLink href="#">                             
@@ -148,7 +128,8 @@ class Header extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user.user,
-        userIsLoading: state.userIsLoading
+        userIsLoading: state.userIsLoading,
+        
     };
 };
 

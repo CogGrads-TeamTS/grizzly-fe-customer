@@ -911,3 +911,18 @@ tbody {
 .mini-cart-open .mini-cart {
   right: 0;
 }
+
+.cart-count {
+  position: absolute;
+  top: 19px;
+  right: 207px;
+  height: 1.05rem;
+  width: 1.05rem;
+  background-color: #ff3860;
+  color: #fff;
+  line-height: 1.05rem;
+  font-size: 0.55rem;
+  font-weight: 600;
+  border-radius: 100%;
+  text-align: center;
+}
