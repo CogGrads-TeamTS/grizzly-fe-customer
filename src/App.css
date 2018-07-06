@@ -199,6 +199,13 @@ tbody {
   
 }
 
+.user-name-disp{
+  /* background-color:blue !important;
+  width: 250px;
+  margin-top: -10px;
+  margin-right: -20px; */
+}
+
 .griz-logo{
   width:95%;
   margin-left: -100%;
