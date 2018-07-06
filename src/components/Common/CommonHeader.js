@@ -19,7 +19,7 @@ import grizzlogo from '../../assets/griz-logo.png';
 import { fetchUserByID } from '../../actions/userActions';
 import Cart from '../Common/cart/cart';
 import CartIndicator from '../Common/cart/cartindicator';
-import { fetchCart } from '../../actions/cartActions';
+import { fetchCart, removeCartItem } from '../../actions/cartActions';
 
 
 class Header extends Component {
@@ -29,22 +29,10 @@ class Header extends Component {
         this.state = {
           isOpen: false,
           cartIsActive: false
-        //   cart: [
-        //       {
-        //       id: 1,
-        //       name: "Product1",
-        //       price: 12.99,
-        //       qty: 2
-        //       },{
-        //         id: 1,
-        //         name: "Product1",
-        //         price: 12.99,
-        //         qty: 2
-        //         }
-        //   ]
         };
         this.toggle = this.toggle.bind(this);
         this.cartToggle = this.cartToggle.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     componentDidMount(){
@@ -58,9 +46,13 @@ class Header extends Component {
         });
     }
 
+    // Used to delete a cart item
+    deleteItem = (id) => {
+        console.log("DELETED " + id);
+        this.props.removeCartItem(id)
+    }
+
     cartToggle = () => {
-        console.log("TEST");
-        console.log(!this.state.cartIsActive);
         this.setState({
           cartIsActive: !this.state.cartIsActive,
           mobileMenuIsActive: false
@@ -88,7 +80,7 @@ class Header extends Component {
                                 {console.log(cart)}
                                 <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
                                 <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
-                                    <Cart cart={cart}/>
+                                    <Cart cart={cart} deleteCartItem={this.deleteItem}/>
                                 </div>
                                 <NavItem>
                                     <NavLink href="#">                             
@@ -152,8 +144,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => { 
     return {
         fetchUserData: ()=> dispatch(fetchUserByID()),
-        fetchCart: (loggedIn) => dispatch(fetchCart(loggedIn))
-        
+        fetchCart: (loggedIn) => dispatch(fetchCart(loggedIn)),
+        removeCartItem: (pid) => dispatch(removeCartItem(pid))
     };
 };
 

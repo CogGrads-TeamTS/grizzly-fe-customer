@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import avatar from '../../../assets/griz-head.png'
 
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, deleteCartItem }) => {
     const urlpath = `/product/${product.id}`;
 
     return (
@@ -20,7 +20,7 @@ const CartItem = ({ product }) => {
             </div>
             <div className="column is-4 has-text-right">
                 <div className="mini-cart-item-price">{product.price}</div>
-                <a className="button is-light is-small" >Remove</a>
+                <a className="button is-light is-small" onClick={() => deleteCartItem(product.id)}>Remove</a>
             </div>
         </div>
     );
@@ -28,11 +28,11 @@ const CartItem = ({ product }) => {
 
 export default class Cart extends React.PureComponent {
     render() {
-        const { cart } = this.props;
+        const { cart, deleteCartItem } = this.props;
         console.log(cart);
         if (cart && cart.items.length > 0) {
             let products = cart.items.map(product =>
-                <CartItem key={product.id} product={product} />
+                <CartItem key={product.id} product={product} deleteCartItem={deleteCartItem}/>
             );
 
             return (

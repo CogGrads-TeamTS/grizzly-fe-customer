@@ -13,15 +13,14 @@ export function fetchCart(loggedIn) {
 
     return function (dispatch) {
         dispatch(loadCartLoading(true));
-        let request;
-        if (loggedIn)
-            request = axios.get(url, { headers: { authorization: `Bearer ${accessToken}` } });
-        else
-            request = axios.get(url, {
-                method: "get",
-                withCredentials: true
-            }
-            );
+        let headers = {};
+        if (loggedIn) headers = { authorization: `Bearer ${accessToken}` };
+
+        const request = axios(url, {
+            method: "get",
+            withCredentials: true,
+            headers
+        });
 
         request
             .then((response) => {
@@ -54,12 +53,14 @@ export function addProductToCart(pid) {
 
     return function (dispatch) {
         // Change request based on user logged in
-        let request;
-        if (loggedIn) request = axios.post(url, { headers: { authorization: `Bearer ${accessToken}` } })
-        else request = axios(url, {
+        let headers = {};
+        if (loggedIn) headers = { authorization: `Bearer ${accessToken}` };
+
+        const request = axios(url, {
             method: "post",
-            withCredentials: true
-        })
+            withCredentials: true,
+            headers
+        });
 
         dispatch(addCartItemLoading(true));
         request
@@ -76,6 +77,47 @@ export function addProductToCart(pid) {
             })
             .catch((error) => {
                 dispatch(addCartItemError(error))
+            });
+    }
+}
+
+const removeCartItemSuccess = (data) => ({ type: types.REMOVE_CART_ITEM_SUCCESS, data });
+const removeCartItemError = (error) => ({ type: types.REMOVE_CART_ITEM_ERROR, cartHasErrored: error });
+const removeCartItemLoading = (loading) => ({ type: types.REMOVE_CART_ITEM_LOADING, cartIsLoading: loading });
+
+export function removeCartItem(pid) {
+    const accessToken = localStorage.getItem('access_token');
+    const url = `${API_URL}/${pid}`;
+    const loggedIn = false;
+
+    return function (dispatch) {
+        // Change request based on user logged in
+        let headers = {};
+        if (loggedIn) headers = { authorization: `Bearer ${accessToken}` };
+
+        const request = axios(url, {
+            method: "delete",
+            withCredentials: true,
+            headers
+        });
+
+        console.log(request)
+
+        dispatch(removeCartItemLoading(true));
+        request
+            .then((response) => {
+                if (!response.status === 200) {
+                    throw Error(response.statusText);
+                }
+                dispatch(removeCartItemLoading(false));
+
+                return response.data;
+            })
+            .then((data) => {
+                dispatch(removeCartItemSuccess(data))
+            })
+            .catch((error) => {
+                dispatch(removeCartItemError(error))
             });
     }
 }

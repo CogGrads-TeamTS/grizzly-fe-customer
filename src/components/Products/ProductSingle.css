@@ -81,7 +81,7 @@
     background-color:  rgba(0, 0, 0, 0.9);
     opacity: 1;
     z-index: 1000;
-    animation:fadeIn 1s linear;
+    animation:fadeIn 0.3s linear;
 }
 
 .loading-container-full.loaded{
@@ -95,7 +95,6 @@
     height: 100vh;
     background-color:  rgba(0, 0, 0, 0.9);
     opacity: 1;
-    z-index: 10;
     z-index: 1000;
   }
 
@@ -123,18 +122,6 @@
     opacity:1;
   }
 }
-
-/* .loading-container-full:empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    opacity: 0.2;
-    transition: opacity 1000ms ease-in;
-  } */
 
 /* Built for the loader */
 .lds-grid {
