@@ -44,7 +44,7 @@ class ProductSingle extends Component {
     }
 
     calculateNewPrice(price, discount) {
-        return price - ((discount / 100) * price);
+        return price - ((discount / 100) * price).toFixed(2);
     }
 
     render() {
