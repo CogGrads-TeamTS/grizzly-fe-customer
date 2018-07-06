@@ -4,7 +4,13 @@ import {productFetchDataByID, productFetchImagesByID} from '../../actions/produc
 import { CardColumns,Container, Row, Col, Button, FormGroup, Label, Input} from 'reactstrap';
 import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
+import PaypalButton from './PaypalButton';
+import config from '../../config';
 import './ProductSingle.css';
+const CLIENT = {
+    sandbox: config.paypal.sandbox
+};
+const ENV = 'sandbox';
 
 class ProductSingle extends Component{
 
@@ -25,6 +31,20 @@ class ProductSingle extends Component{
     }
 
     render(){
+
+        const onSuccess = (payment,name) =>{
+            console.log(payment);
+            alert('Successful payment '+ name);
+            this.props.history.push('/');
+        };
+
+
+        const onError = (error) =>
+            console.log('Erroneous payment OR failed to load script!', error);
+
+        const onCancel = (data) =>
+            console.log('Cancelled payment!', data);
+
         const isLoading = (this.props.product === undefined) ?
                 (
                     <p>The product is loading...</p>
@@ -42,7 +62,16 @@ class ProductSingle extends Component{
                                 <div className="price">AUD ${this.props.product.price}</div>
                                 <div className="discount">{this.props.product.discount}% Off</div>
                                 <Row style={{borderTop: "1px solid #eee", marginTop: "5%"}}>
-                                <Button  className="buy-button" id="btn-rounded">Buy Now</Button>
+                                    <PaypalButton
+                                        client={CLIENT}
+                                        env={ENV}
+                                        commit={true}
+                                        currency={'AUD'}
+                                        total={this.props.product.price}
+                                        onSuccess={onSuccess}
+                                        onError={onError}
+                                        onCancel={onCancel}
+                                        />
                                     <Button  className="add-button" id="btn-rounded">Add to Cart</Button>
                                     </Row>
                             </Col>
