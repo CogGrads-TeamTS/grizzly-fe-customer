@@ -29,7 +29,7 @@ class Homepage extends Component {
 
                 <Container fluid>
                     <CategoryPanel categories={this.props.categories} />
-                    <SalesPanel products={this.props.products}/>
+                    <SalesPanel products={this.props.products} />
                     <Row className="rewards-panel">
                         <span className="rewards-text">Join our rewards program 
                              <a href="#" style={{color: "#e67e22"}}> <u>NOW!</u></a>
@@ -63,7 +63,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (search, page, size, sort, catId,brand,rating)=> dispatch(productsFetchData(search, page, size, sort, catId,brand,rating))
-
     };
 };
 
