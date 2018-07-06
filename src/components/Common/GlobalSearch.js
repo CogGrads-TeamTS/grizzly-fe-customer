@@ -10,7 +10,24 @@ import {
 import  { Style } from 'radium';
 
 class GlobalSearch extends React.Component {
- 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchFocus: true
+    }
+
+    this.toggleSearch = this.toggleSearch.bind(this);
+
+
+  }
+
+  toggleSearch = () => {
+    this.setState({ 
+      searchFocus: !this.state.searchFocus 
+    });
+    console.log(this.state.searchFocus);
+  }
   render() { 
     const classes = `col-12 btn-left-curve ${this.props.rounded}`;
     return (
@@ -43,9 +60,9 @@ class GlobalSearch extends React.Component {
       <div className="row">
         <div className="col-md-12 col-md-offset-3">
           <form autoComplete="off" action="" className="search-form">
-            <div className="form-group has-feedback">
+            <div className={this.state.searchFocus? "form-group has-feedback" : "form-group has-feedback searchFocus" }>
               <label for="search" className="sr-only"></label>
-              <input type="text" className="form-control" name="search" id="search" placeholder="search" />
+              <input type="text" className="form-control" name="search" id="search" placeholder="search"  onMouseDown={() => this.toggleSearch()} onBlur={() => this.toggleSearch()} />
               <span className="fas fa-search form-control-feedback"></span>
             </div>
 

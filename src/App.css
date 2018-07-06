@@ -1257,11 +1257,26 @@ SESARCH BAR TEST
 .search-form .form-group input.form-control:-ms-input-placeholder {
   display: none;
 }
-.search-form .form-group:hover,
-.search-form .form-group.hover {
+
+.search-form .form-group:hover
+ {
   width: 720px;
   border-radius: 4px 25px 25px 4px;
 }
+
+.searchFocus {
+  width: 720px !important;
+  border-radius: 4px 25px 25px 4px;
+}
+
+/* .search-form .form-group:active,
+.search-form .form-group.active {
+  width: 720px;
+  border-radius: 4px 25px 25px 4px;
+} */
+
+
+
 .search-form .form-group span.form-control-feedback {
   position: absolute;
   top: -1px;
@@ -1288,3 +1303,7 @@ img.griz-logo {
 /**
 SEARCH BAR TEST END
 **/
+
+.img-fluid {
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
