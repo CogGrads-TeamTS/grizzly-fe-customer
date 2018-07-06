@@ -54,7 +54,7 @@ class GlobalSearch extends React.Component {
       //       </InputGroup>
       //   </FormGroup>
       // </Form>
-      <div class="container">
+      <div class="nav-search-container">
       <div className="row">
         <div className="col-md-12 col-md-offset-3">
           <form autoComplete="off" action="" className="search-form">

@@ -36,6 +36,7 @@ class Header extends Component {
         this.cartToggle = this.cartToggle.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
 
+        // Used to truncate long strings
         String.prototype.trunc =
             function (n, useWordBoundary) {
                 if (this.length <= n) { return this; }
@@ -49,6 +50,10 @@ class Header extends Component {
     componentDidMount() {
         this.props.fetchUserData();
         this.props.fetchCart(false);
+    }
+
+    cleanName = (name) => { // Get first name element
+        return name.split(' ')[0];
     }
 
     callbackLogoUpdate(active) {
@@ -90,79 +95,67 @@ class Header extends Component {
     render() {
         const { cart } = this.props;
         return (
-            <div>
-                <div style={{ width: "100%" }}>
-                    <NavbarBrand><Link to="/"><img className={"griz-logo" + this.state.grizzlyClass} src={grizzlogo} /></Link></NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                </div>
-
-            </div>
-            // <Navbar light expand="md">
-            //     
-            //     <div>
-            //         <Collapse isOpen={this.state.isOpen} navbar>
-            //             <Nav className="ml-auto" navbar>
-            //                 <GlobalSearch classname="global-search-user" logoCallback={this.callbackLogoUpdate.bind(this)} rounded="user-search-rounded" placeholder="Search" />
-            //                 <NavItem className="user-name-disp">
-            //                     {
-            //                         isAuthenticated() && (
-            //                             <NavLink className="welcome-name" disabled href="#">Welcome, {this.props.user !== undefined && this.props.user.name.trunc(10, true)}!</NavLink>
-            //                         )
-            //                     }
-            //                 </NavItem>
-            //                 {console.log(cart)}
-            //                 <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
-            //                 <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
-            //                     <Cart cart={cart} deleteCartItem={this.deleteItem} />
-            //                 </div>
-            //                 <NavItem>
-            //                     <NavLink href="#">
-            //                         {
-            //                             !isAuthenticated() && (
-            //                                 <Link to="/login">
-            //                                     <Button
-            //                                         id="btn-rounded"
-            //                                         className="login-button"
-            //                                     >
-            //                                         Log In
-            //                                     </Button>
-            //                                 </Link>
-            //                             )
-            //                         }
-            //                         {
-            //                             isAuthenticated() && (
-            //                                 <Link to="/logout">
-            //                                     <Button
-            //                                         id="btn-rounded"
-            //                                         className="signup-button"
-            //                                     >
-            //                                         Log Out
-            //                                     </Button>
-            //                                 </Link>
-            //                             )
-            //                         }
-            //                     </NavLink>
-            //                 </NavItem>
-            //                 <NavItem>
-            //                     <NavLink href="#">
-            //                         {
-            //                             !isAuthenticated() && (
-            //                                 <Link to="/login">
-            //                                     <Button
-            //                                         className="signup-button"
-            //                                         id="btn-rounded"
-            //                                     >
-            //                                         Signup
-            //                                     </Button>
-            //                                 </Link>
-            //                             )
-            //                         }
-            //                     </NavLink>
-            //                 </NavItem>
-            //             </Nav>
-            //         </Collapse>
-            //     </div>
-            // </Navbar>
+            <Navbar light expand="md">
+                <NavbarBrand className="navbar-brand-logo">
+                    <Link to="/">
+                        <img className={"griz-logo" + this.state.grizzlyClass} src={grizzlogo} />
+                    </Link>
+                </NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                    <Nav className="ml-auto" navbar>
+                        <NavItem className="user-name-disp">
+                            {
+                                isAuthenticated() && (
+                                    <NavLink className="welcome-name" disabled href="#">Welcome, {this.props.user !== undefined && this.cleanName(this.props.user.name)}!</NavLink>
+                                )
+                            }
+                        </NavItem>
+                        <NavItem>
+                            <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
+                            <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
+                                <Cart cart={cart} deleteCartItem={this.deleteItem} />
+                            </div>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="#">
+                                {
+                                    !isAuthenticated() && (
+                                        <Link to="/login">
+                                            <div className="header-btn-container">
+                                                <Button className="navbar-button-generic">Log In</Button>
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                                {
+                                    isAuthenticated() && (
+                                        <div className="header-btn-container">
+                                            <Link to="/logout">
+                                                <Button className="navbar-button-generic">Log Out</Button>
+                                            </Link>
+                                        </div>
+                                    )
+                                }
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="#">
+                                {
+                                    !isAuthenticated() && (
+                                        <Link to="/login">
+                                            <div className="header-btn-container">
+                                                <Button className="navbar-button-generic">Signup</Button>
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                            </NavLink>
+                        </NavItem>
+                        <GlobalSearch logoCallback={this.callbackLogoUpdate.bind(this)} rounded="user-search-rounded" placeholder="Search" />
+                    </Nav>
+                </Collapse>
+            </Navbar >
         )
     }
 }
