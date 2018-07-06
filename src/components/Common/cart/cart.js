@@ -5,12 +5,12 @@ import avatar from '../../../assets/griz-head.png'
 
 const CartItem = ({ product, deleteCartItem }) => {
     const urlpath = `/product/${product.id}`;
-
+    const imageUrl = 'http://ts.ausgrads.academy/images/';
     return (
         <div className="columns is-mobile">
             <div className="column is-2">
                 <div className="image">
-                    <NavLink to={urlpath}><img src={avatar} /></NavLink>
+                    <NavLink to={urlpath}><img style={{"border":"none"}} src={product.images.length > 0 ? `${imageUrl}${product.images[0].url}` : avatar} /></NavLink>
                 </div>
             </div>
             <div className="column">
