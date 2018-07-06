@@ -72,6 +72,16 @@ class PaypalButton extends React.Component {
                         amount: {
                             total,
                             currency,
+                        },
+                        item_list: {
+                            items: [{
+                                name: 'hat',
+                                description: 'brown hat',
+                                quantity: '1',
+                                price: '499',
+                                sku: '1',
+                                currency: 'AUD'
+                            }]
                         }
                     },
                 ],
