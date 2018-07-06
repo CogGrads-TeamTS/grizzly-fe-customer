@@ -14,19 +14,17 @@ class GlobalSearch extends React.Component {
     super(props);
 
     this.state = {
-      searchFocus: true
+      searchFocus: false
     }
 
-    this.toggleSearch = this.toggleSearch.bind(this);
-
-
+    this.toggleSearch = this.toggleSearch.bind(this)
   }
 
-  toggleSearch = () => {
+  toggleSearch = toggle => {
+    this.props.logoCallback(toggle)
     this.setState({ 
-      searchFocus: !this.state.searchFocus 
+      searchFocus: toggle
     });
-    console.log(this.state.searchFocus);
   }
   render() { 
     const classes = `col-12 btn-left-curve ${this.props.rounded}`;
@@ -60,9 +58,9 @@ class GlobalSearch extends React.Component {
       <div className="row">
         <div className="col-md-12 col-md-offset-3">
           <form autoComplete="off" action="" className="search-form">
-            <div className={this.state.searchFocus? "form-group has-feedback" : "form-group has-feedback searchFocus" }>
+            <div className={this.state.searchFocus? "form-group has-feedback searchFocus" : "form-group has-feedback" }>
               <label for="search" className="sr-only"></label>
-              <input type="text" className="form-control" name="search" id="search" placeholder="search"  onMouseDown={() => this.toggleSearch()} onBlur={() => this.toggleSearch()} />
+              <input type="text" className="form-control" name="search" id="search" placeholder="search" onMouseOver={() => this.props.logoCallback(true)} onMouseOut={() => !this.state.searchFocus ? this.props.logoCallback(false) : null} onMouseDown={() => this.toggleSearch(true)} onBlur={() => this.toggleSearch(false)} />
               <span className="fas fa-search form-control-feedback"></span>
             </div>
 

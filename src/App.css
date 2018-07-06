@@ -201,7 +201,15 @@ tbody {
 
 .griz-logo{
   width:95%;
+  margin-left: -100%;
+  transition:  margin-left 0.4s linear 0s;
 }
+
+.griz-logo.logo-active{
+  margin-left: 0%;
+  transition:  margin-left 0.4s linear 0s;
+}
+
 .main{
   position: absolute;
   margin-top: 40px;
@@ -1227,7 +1235,7 @@ SESARCH BAR TEST
 **/
 .search-form .form-group {
   float: right !important;
-  transition: all 0.35s, border-radius 0s;
+  transition: all 0.35s;
   width: 32px;
   height: 32px;
   background-color: #fff;
@@ -1261,12 +1269,10 @@ SESARCH BAR TEST
 .search-form .form-group:hover
  {
   width: 720px;
-  border-radius: 4px 25px 25px 4px;
 }
 
 .searchFocus {
   width: 720px !important;
-  border-radius: 4px 25px 25px 4px;
 }
 
 /* .search-form .form-group:active,
@@ -1291,6 +1297,7 @@ SESARCH BAR TEST
   left: initial;
   font-size: 14px;
   margin-right: 16px;
+  pointer-events: none;
 }
 
 input#search {
