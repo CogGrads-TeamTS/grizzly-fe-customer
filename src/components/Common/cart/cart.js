@@ -15,11 +15,11 @@ const CartItem = ({ product, deleteCartItem }) => {
             </div>
             <div className="column">
                 <div><NavLink to={urlpath}>{product.name}</NavLink></div>
-                <div className="cart-option-name">{product.price}</div>
+                {/* <div className="cart-option-name">${product.price}</div> */}
                 <div className="cart-quantity">Qty: {product.qty}</div>
             </div>
             <div className="column is-4 has-text-right">
-                <div className="mini-cart-item-price">{product.price}</div>
+                <div className="mini-cart-item-price">${product.totalPrice}</div>
                 <a className="button is-light is-small" onClick={() => deleteCartItem(product.id)}>Remove</a>
             </div>
         </div>
@@ -43,7 +43,7 @@ export default class Cart extends React.PureComponent {
                         <div className="column is-7"><b>Subtotal</b></div>
                         <div className="column is-5 has-text-right">
                             {/* <b>{helper.formatCurrency(cart.subtotal, settings)}</b> */}
-                            <b>$100.00</b>
+                            <b>${cart.totalPrice}</b>
                         </div>
                     </div>
                     {/* <NavLink className="button is-primary is-fullwidth has-text-centered" style={{ textTransform: 'uppercase' }} to="/checkout" onClick={cartToggle}>{text.proceedToCheckout}</NavLink> */}

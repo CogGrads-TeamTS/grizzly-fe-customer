@@ -72,14 +72,25 @@ class Header extends Component {
         });
         document.body.classList.toggle('noscroll');
       }
+
+      onMouseLeaveHandler = () => {
+        if(!this.props.isMobile && this.props.level === 1){
+          this.setState({
+            isActive: false
+          })
+        }
+      }
     
 
     render() {
         const { cart } = this.props;
         return (
                 <Navbar light expand="md">
+                <div style={{width: "100%"}}>
                     <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
+                    </div>
+                    <div>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <GlobalSearch classname="global-search-user" rounded="user-search-rounded" placeholder="Search" />
@@ -141,6 +152,7 @@ class Header extends Component {
                                 </NavItem>
                         </Nav>
                     </Collapse>
+                    </div>
                 </Navbar>
         )
     }
