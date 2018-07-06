@@ -3,6 +3,65 @@
     font-weight: bold;
 }
 
+.badge-ribbon {
+  position: relative;
+  background: red;
+  height: 50px;
+  width: 100px;
+  -moz-border-radius:    50px;
+  -webkit-border-radius: 50px;
+  border-radius:         50px;
+ }
+ 
+ .badge-ribbon:before,
+ .badge-ribbon:after {
+   content: '';
+   position: absolute;
+   border-bottom: 70px solid red;
+   border-left: 40px solid transparent;
+   border-right: 40px solid transparent;
+   top: 70px;
+   left: -10px;
+   -webkit-transform: rotate(-140deg);
+   -moz-transform:    rotate(-140deg);
+   -ms-transform:     rotate(-140deg);
+   -o-transform:      rotate(-140deg);
+ }
+ 
+ .badge-ribbon:after {
+   left: auto;
+   right: -10px;
+   -webkit-transform: rotate(140deg);
+   -moz-transform:    rotate(140deg);
+   -ms-transform:     rotate(140deg);
+   -o-transform:      rotate(140deg);
+ }
+
+.discount-product-single{
+  background-color: red;
+  color: white;
+  width: 20%;
+  height: 30px;
+  margin-right: 22%; 
+  float: right;
+  text-align: center;
+}
+
+.old-price {
+  background-color: rgba(128, 128, 128, 0.288);
+  display: inline-block;
+  margin-left: -22%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 25px;
+  text-decoration: line-through;
+  font-size: 16px;
+}
+
+.price {
+  display: inline-block;
+}
+
 .product-container {
     padding-top: 5%;
 }

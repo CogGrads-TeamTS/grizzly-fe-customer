@@ -33,7 +33,7 @@ class ProductSingle extends Component {
 
     handleOnAlways = instance => { };
 
-    handleOnProgress = (instance, image) => {this.loading = true;};
+    handleOnProgress = (instance, image) => { this.loading = true; };
 
     handleOnFail = instance => { };
 
@@ -41,6 +41,10 @@ class ProductSingle extends Component {
 
     addToCartClick = () => {
         this.props.addToCart(this.props.product.id)
+    }
+
+    calculateNewPrice(price, discount) {
+        return price - ((discount / 100) * price);
     }
 
     render() {
@@ -73,10 +77,13 @@ class ProductSingle extends Component {
                         </Col>
 
                         <Col md="5" sm="6" xs="12">
-                            <div className="title">{this.props.product.name}</div>
+                            <div className="title">
+                                {this.props.product.name}
+                                {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
+                            </div>
                             <div className="description">{this.props.product.description}</div>
-                            <div className="price">AUD ${this.props.product.price}</div>
-                            <div className="discount">{this.props.product.discount}% Off</div>
+                            <div className="price">AUD ${this.calculateNewPrice(this.props.product.price, this.props.product.discount)}</div>
+                            {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
                                 <Button className="buy-button" id="btn-rounded">Buy Now</Button>
                                 <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>

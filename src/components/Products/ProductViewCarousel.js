@@ -8,7 +8,6 @@ import {
 } from 'reactstrap';
 import noimage from '../../assets/griz-logo.png';
 import logo from '../../assets/griz-logo.png';
-import './ProductSingle.css';
 
 let items = [];
 
