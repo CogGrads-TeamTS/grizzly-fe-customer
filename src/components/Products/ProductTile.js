@@ -19,7 +19,7 @@ const ProductTile = (props) => {
                 <div className="props-text">{props.text}</div>
                <div className="tile-parent">
                     <div className="price">${props.product.price}.00</div>
-                    <div className="discount">SAVE {props.product.discount}%</div>
+                    {(props.product.discount > 0 ? <div className="discount">SAVE {props.product.discount}%</div> : null )}
                 </div>
                 <div className="star-cont">
                 <StarRatings 
