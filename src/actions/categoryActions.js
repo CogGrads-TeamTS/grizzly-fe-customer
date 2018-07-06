@@ -19,16 +19,15 @@ export function categoriesFetchData(search = SEARCH_DEFAULT, pageNumber = PAGE_D
     // BUILD URL
 
     const urlParams = `search=${search}&page=${pageNumber}&size=${size}&sort=${sortParam}`;
-    //console.log("url param: " + urlParams);
+
     const url = `${API_URL}/page?${urlParams}`;
-    //console.log(url);
 
     return (dispatch) => {
         dispatch(loadCategoriesLoading(true));
 
         const request = axios.get(url);
         request
-            .then((response) => { //console.log(response)
+            .then((response) => { 
                 if (!response.status === 200) {
                     throw Error(response.statusText);
                 }

@@ -1,0 +1,29 @@
+.slick-prev, .slick-next{
+    display: none !important;
+}
+
+  .rewards-panel{
+    background-color: #004890;
+    margin-top: 65px;
+  }
+  
+  .rewards-text{
+       color: white;
+      font-size: 30px;
+      text-align: center;
+      padding: 14px;
+      font-weight: 300;
+      text-align: center; letter-spacing: 3px;    text-align: center;
+      letter-spacing: 3px;
+      width: 100%;
+  }
+
+  .footer{
+    border: none;
+    margin-left: -15px; 
+    margin-right: -15px; 
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 17px;
+  }

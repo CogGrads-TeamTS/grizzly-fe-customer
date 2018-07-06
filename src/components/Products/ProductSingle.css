@@ -1,50 +1,117 @@
-.title{
+.title {
     font-size: 20px;
     font-weight: bold;
 }
 
-.buy-button{
+.badge-ribbon {
+  position: relative;
+  background: red;
+  height: 50px;
+  width: 100px;
+  -moz-border-radius:    50px;
+  -webkit-border-radius: 50px;
+  border-radius:         50px;
+ }
+ 
+ .badge-ribbon:before,
+ .badge-ribbon:after {
+   content: '';
+   position: absolute;
+   border-bottom: 70px solid red;
+   border-left: 40px solid transparent;
+   border-right: 40px solid transparent;
+   top: 70px;
+   left: -10px;
+   -webkit-transform: rotate(-140deg);
+   -moz-transform:    rotate(-140deg);
+   -ms-transform:     rotate(-140deg);
+   -o-transform:      rotate(-140deg);
+ }
+ 
+ .badge-ribbon:after {
+   left: auto;
+   right: -10px;
+   -webkit-transform: rotate(140deg);
+   -moz-transform:    rotate(140deg);
+   -ms-transform:     rotate(140deg);
+   -o-transform:      rotate(140deg);
+ }
+
+.discount-product-single{
+  background-color: red;
+  color: white;
+  width: 20%;
+  height: 30px;
+  margin-right: 22%; 
+  float: right;
+  text-align: center;
+}
+
+.old-price {
+  background-color: rgba(128, 128, 128, 0.288);
+  display: inline-block;
+  margin-left: -22%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 25px;
+  text-decoration: line-through;
+  font-size: 16px;
+}
+
+.price {
+  display: inline-block;
+}
+
+.product-container {
+    padding-top: 5%;
+}
+
+.buy-button {
     background-color: #ffae19 !important;
     border-color: #ffae19 !important;
     margin: 3%;
     box-shadow: none !important;
 }
 
-.add-button, .add-button:focus{
-    background-color: #ffd27f !important;
-    border-color: #ffd27f !important;
+.add-button,
+.add-button:focus {
+    background-color: #ffae19 !important;
+    border-color: #ffae19 !important;
     margin: 3%;
     box-shadow: none !important;
 }
 
-.buy-button:hover, .add-button:hover{
+.buy-button:hover,
+.add-button:hover {
     transition: 0.3s;
-    opacity: 0.9;
+    opacity: 0.75;
 }
 
-
-.coupon{
-    width:250px !important;
+.coupon {
+    width: 250px !important;
     margin: 10%;
 }
 
-.description{
+.description {
     margin-top: 30px;
     min-height: 300px;
     overflow-y: scroll;
     max-width: 450px;
 }
 
-.price{
+.price {
     font-weight: bold;
     font-size: 22px;
 }
 
 .image-thumb {
     margin-bottom: 15px;
-   transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
     cursor: pointer;
+    width: 100px;
+    height: 130px;
 }
+
 .image-thumb:hover {
     margin-bottom: 15px;
     transform: scale(1.1);
@@ -54,11 +121,12 @@
 .card-img-top {
     width: 100%;
     object-fit: cover;
-    overflow:hidden;
+    overflow: hidden;
     display: block;
     height: auto;
 }
-.searched-title{
+
+.searched-title {
     background-color: #ffae19;
     width: 100%;
     padding: 3%;
@@ -67,4 +135,198 @@
     color: #fff;
     font-size: 18px;
     text-align: center;
+}
+
+.loading-container-full-pre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    z-index: 1000;
+    animation: fadeIn 0.3s linear;
+}
+
+.loading-container-full.loaded {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    z-index: 1000;
+}
+
+.loading-container-full.loaded.complete-loaded {
+    display: flex;
+    pointer-events: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transition: opacity 1s ease-in 0.2s;
+    z-index: 1000;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.carousel {
+  height: 100%;
+}
+
+.carousel-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-item{
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.carousel-indicators li {
+  background-color: rgba(128, 128, 128, 0.78) !important;
+}
+
+.carousel-indicators .active{ 
+  background-color: rgba(0, 0, 0, 0.78) !important;
+}
+
+
+.carousel-control-next-icon {
+  background-image: url(../../assets/arrownext.svg) !important;
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.carousel-control-prev-icon {
+  background-image: url(../../assets/arrowback.svg) !important;
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.prod-body-images {
+  width: 100%;
+  height: 300px;
+}
+
+.consistent-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.consistent-image-container>img {
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 25%;
+    min-height: 25%;
+}
+
+/* Built for the loader */
+
+.lds-grid {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 210px;
+}
+
+.lds-grid div {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgb(226, 150, 80);
+    animation: lds-grid 1.2s linear infinite;
+}
+
+.lds-grid div:nth-child(1) {
+    top: 6px;
+    left: 6px;
+    animation-delay: 0s;
+}
+
+.lds-grid div:nth-child(2) {
+    top: 6px;
+    left: 80px;
+    animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(3) {
+    top: 6px;
+    left: 156px;
+    animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(4) {
+    top: 86px;
+    left: 6px;
+    animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(5) {
+    top: 86px;
+    left: 80px;
+    animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(6) {
+    top: 86px;
+    left: 156px;
+    animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(7) {
+    top: 166px;
+    left: 6px;
+    animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(8) {
+    top: 166px;
+    left: 80px;
+    animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(9) {
+    top: 166px;
+    left: 156px;
+    animation-delay: -1.6s;
+}
+
+@keyframes lds-grid {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
