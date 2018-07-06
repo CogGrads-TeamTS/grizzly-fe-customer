@@ -49,7 +49,7 @@ const SalesPanel = (props) => {
             </div>
             <Col className="sale-title" md="12">WINTER SALE</Col>
                 <Col className="sale-sub" md="12">UP TO 30% OFF</Col>
-                <div style={{width: "99%", margin: "25px 0 25px 0"}}>
+                <div style={{width: "98%", margin: "25px 0 25px 0"}}>
                 
                     <ProductTiles products={buildDiscount()} colOffset={colOffset} customStyle={customStyle} type="sale"/></div>
 		            

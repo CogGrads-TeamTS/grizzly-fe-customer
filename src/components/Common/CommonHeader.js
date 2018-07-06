@@ -19,7 +19,7 @@ import grizzlogo from '../../assets/griz-logo.png';
 import { fetchUserByID } from '../../actions/userActions';
 import Cart from '../Common/cart/cart';
 import CartIndicator from '../Common/cart/cartindicator';
-import { fetchCart } from '../../actions/cartActions';
+import { fetchCart, removeCartItem } from '../../actions/cartActions';
 
 
 class Header extends Component {
@@ -69,13 +69,13 @@ class Header extends Component {
         });
     }
 
-    deleteItem = (e) => {
-        console.log("DELETEd " + e);
+    // Used to delete a cart item
+    deleteItem = (id) => {
+        console.log("DELETED " + id);
+        this.props.removeCartItem(id)
     }
 
     cartToggle = () => {
-        console.log("TEST");
-        console.log(!this.state.cartIsActive);
         this.setState({
             cartIsActive: !this.state.cartIsActive,
             mobileMenuIsActive: false
@@ -170,9 +170,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUserData: () => dispatch(fetchUserByID()),
-        fetchCart: (loggedIn) => dispatch(fetchCart(loggedIn))
-
+        fetchUserData: ()=> dispatch(fetchUserByID()),
+        fetchCart: (loggedIn) => dispatch(fetchCart(loggedIn)),
+        removeCartItem: (pid) => dispatch(removeCartItem(pid))
     };
 };
 

@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import './styles/Featuredproducts.css';
 import {Row, Col} from 'reactstrap';
 import _ from 'lodash';
+import ProductTiles from '../Products/ProductTiles';
 
 class FeaturedProducts extends Component{
-    render(){ 
+    render(){ console.log(this.props.products)
         const ratedItems = [];
 
         const buildRatedProduct = () => { 
@@ -14,13 +15,13 @@ class FeaturedProducts extends Component{
             _.map(_.shuffle(Object.values(this.props.products)), (product,i) => { 
                 if(ratedItems.length >= 5) return ratedItems;
                 
-                if(product.discount <= 30  && product.discount > 0){
+                if(product.rating === 5){
                     ratedItems.push(product);
                 }
             })
             return ratedItems;
         };
-
+        
     const colOffset = "offset-md-1";
 
     const customStyle = {
@@ -28,8 +29,8 @@ class FeaturedProducts extends Component{
         border: "1px solid #cccccc",
         boxShadow: "0 8px 16px -4px #222",
         minHeight: "360px"
-    }
-        return(
+    } 
+        return( 
             <Row className="featured-row">
                 <Col md="12" className="featured-col offset-md-1" >
                     <div className="featured-toolbar">
@@ -38,6 +39,9 @@ class FeaturedProducts extends Component{
                         </div>
                     </div>
                 </Col>
+                <div style={{width: "98%", margin: "0 0 100px 0"}}>
+                <ProductTiles products={buildRatedProduct()} type="featured" colOffset={colOffset}/>
+                </div>
             </Row>
         )
     }

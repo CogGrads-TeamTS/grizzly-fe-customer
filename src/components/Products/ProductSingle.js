@@ -2,43 +2,60 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { productFetchDataByID, productFetchImagesByID } from '../../actions/productActions';
 import { addProductToCart } from '../../actions/cartActions';
-import { Container, Row, Col, Button, FormGroup, Label, Input } from 'reactstrap';
+import { CardColumns, Container, Row, Col, Button, FormGroup, Label, Input } from 'reactstrap';
 import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
 
 class ProductSingle extends Component {
+    constructor(props) {
+        super(props);
+        this.loading = true;
+    }
 
     componentDidMount() {
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);
-
-        this.setState({loaded: ""});
+        this.setState({ loaded: "" });
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.props.fetchData(this.props.match.params.id);
+            this.props.fetchImages(this.props.match.params.id);
+        } else this.loading = false;
+
+        if (JSON.stringify(this.props.images) !== JSON.stringify(prevProps.images)) {
+            this.props.fetchImages(this.props.match.params.id);
+        }
+    }
 
     handleOnAlways = instance => { };
 
-    handleOnProgress = (instance, image) => {};
+    handleOnProgress = (instance, image) => { this.loading = true; };
 
     handleOnFail = instance => { };
 
-    handleDone = instance => {this.setState({loaded: " complete-loaded"});};
+    handleDone = instance => { this.loading = false; this.setState({ loaded: " complete-loaded" }); };
 
     addToCartClick = () => {
         this.props.addToCart(this.props.product.id)
     }
 
+    calculateNewPrice(price, discount) {
+        return price - ((discount / 100) * price);
+    }
+
     render() {
-        const isLoading = (this.props.product === undefined) ?
+        const isLoading = (this.loading || !this.props.product) ?
             (
                 <div className="loading-container-full-pre">
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
             ) : (
-                <div className="container-fluid">
-                    <div className={"loading-container-full loaded" + (this.state ? this.state.loaded : "") }>
+                <div className="container-fluid product-container">
+                    <div className={"loading-container-full loaded" + (this.state && !this.loading ? this.state.loaded : "")}>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </div>
 
@@ -53,15 +70,20 @@ class ProductSingle extends Component {
                                 done={this.handleDone}
                                 background=".image" // true or child selector
                             >
-                                <ProductViewCarusel images={this.props.images} />
+                                <div className="prod-body-images">
+                                    <ProductViewCarusel images={this.props.images} />
+                                </div>
                             </ImagesLoaded>
                         </Col>
 
                         <Col md="5" sm="6" xs="12">
-                            <div className="title">{this.props.product.name}</div>
+                            <div className="title">
+                                {this.props.product.name}
+                                {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
+                            </div>
                             <div className="description">{this.props.product.description}</div>
-                            <div className="price">AUD ${this.props.product.price}</div>
-                            <div className="discount">{this.props.product.discount}% Off</div>
+                            <div className="price">AUD ${this.calculateNewPrice(this.props.product.price, this.props.product.discount)}</div>
+                            {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
                                 <Button className="buy-button" id="btn-rounded">Buy Now</Button>
                                 <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
@@ -69,8 +91,10 @@ class ProductSingle extends Component {
                         </Col>
 
                         <Col className="buy-panel" md="3" sm="12">
-
-                            <ProductsSearched />
+                            <div className="searched-title">People also searched for</div>
+                            <CardColumns style={{ columnCount: "2" }}>
+                                <ProductsSearched product={this.props.product} category={this.props.product.category} />
+                            </CardColumns>
                         </Col>
                     </Row>
 

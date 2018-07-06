@@ -7,11 +7,11 @@ import {
   CarouselCaption
 } from 'reactstrap';
 import noimage from '../../assets/griz-logo.png';
-import logo from '../../assets/griz-logo.png'
+import logo from '../../assets/griz-logo.png';
 
 let items = [];
 
-const urladdition="http://ts.ausgrads.academy/images/"
+const urladdition = "http://ts.ausgrads.academy/images/"
 
 
 const buildImages = (images) => {
@@ -22,15 +22,15 @@ const buildImages = (images) => {
   const size = images == null ? 0 : images.length;
   let i;
 
-  if(size == 0){
+  if (size == 0) {
     items.push({
       src: noimage,
       captionText: "Stop throwing errors pls"
     })
   } else {
 
-    for(i = 0; i < size; i++){
-     
+    for (i = 0; i < size; i++) {
+
       items.push({
         src: urladdition + images[i].url,
         captionText: "Stop throwing errors pls"
@@ -38,7 +38,7 @@ const buildImages = (images) => {
     }
   }
 
-  
+
 };
 
 
@@ -53,8 +53,8 @@ class ProductViewCarousel extends Component {
     this.onExited = this.onExited.bind(this);
   }
 
-  componentDidMount(){
-    
+  componentDidMount() {
+
   }
 
   onExiting() {
@@ -95,7 +95,9 @@ class ProductViewCarousel extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} style={{width: '100%', height: '100%'}}/>
+          <div className="consistent-image-container">
+            <img src={item.src} alt={item.altText} />
+          </div>
         </CarouselItem>
       );
     });
