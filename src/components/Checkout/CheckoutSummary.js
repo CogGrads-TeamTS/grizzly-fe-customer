@@ -49,8 +49,31 @@ class CheckoutSummary extends React.Component {
                     <CardBody>
                         {products}
                         <hr className="separator" />
-                        <p class="lead">Shipping: <span class="text-success">FREE</span></p>
-                        <p class="font-weight-bold lead">Total: ${cart.totalPrice}</p>
+                        <Row>
+                            <Col xs="6">
+                                <p class="lead ">Subtotal</p>
+                            </Col>
+                            <Col xs="6">
+                                <p class="lead float-right">${cart.totalPrice}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs="6">
+                                <p class="lead">Shipping</p>
+                            </Col>
+                            <Col xs="6">
+                                <p class="lead text-success float-right">FREE</p>
+                            </Col>
+                        </Row>
+                        <hr className="separator" />
+                        <Row>
+                            <Col xs="6">
+                                <p class="lead font-weight-bold">Grand Total</p>
+                            </Col>
+                            <Col xs="6">
+                                <p class="lead float-right font-weight-bold">${cart.totalPrice}</p>
+                            </Col>
+                        </Row>
                         
                     </CardBody>
                 </Card>

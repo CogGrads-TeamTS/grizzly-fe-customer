@@ -37,6 +37,7 @@ export default class Cart extends React.PureComponent {
 
             return (
                 <div className="mini-cart">
+                    <p class="lead">Items in your cart</p>
                     {products}
                     <hr className="separator" />
                     <div className="columns is-mobile is-gapless">
