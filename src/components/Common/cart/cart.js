@@ -53,7 +53,7 @@ export default class Cart extends React.PureComponent {
             )
         } else {
             return (
-                <div className="mini-cart"><p>Your cart is empty</p></div>
+                <div className="mini-cart"><p class="lead">There are no items in your cart</p></div>
             )
         }
     }
