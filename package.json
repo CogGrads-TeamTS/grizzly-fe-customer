@@ -14,6 +14,7 @@
     "paypal-checkout": "^4.0.204",
     "prop-types": "^15.6.1",
     "radium": "^0.24.0",
+    "rc-input-number": "^4.0.12",
     "react": "^16.4.1",
     "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.4.1",
