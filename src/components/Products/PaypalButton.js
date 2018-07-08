@@ -106,15 +106,13 @@ class PaypalButton extends React.Component {
         }
 
         let paypal1={
-            color: 'gold',
-            shape: 'pill',
+            shape: 'rect',
             tagline: 'false',
-            label: 'buynow',
             size: 'medium'
         };
         return (
             <div  style={{marginTop: "4%"}}>
-                {showButton && <paypal.Button.react
+                {showButton && <paypal.Button.react style={paypal1}
                     env={env}
                     client={client}
                     commit={commit}
