@@ -23,7 +23,7 @@ class CheckoutSummary extends React.Component {
     render() {
         const { cart } = this.props;
         console.log(cart);
-        if (cart) {
+        if (cart && cart.items.length > 0) {
             const qtyChanged = _.debounce((pid,qty) => { this.updateQty(pid,qty) }, 500);
             const products = cart.items.map(product =>
                 <Row>
@@ -38,7 +38,7 @@ class CheckoutSummary extends React.Component {
                     </Col>
                     <Col xs="2">
                         <p class="text-info">${product.price * product.qty}</p>
-                        <a className="button is-light is-small" onClick={() => removeCartItem(product.id)}>Remove</a>
+                        <a className="button is-light is-small" onClick={() => this.props.removeCartItem(product.id)}>Remove</a>
                     </Col>
                     
                 </Row>
@@ -79,7 +79,13 @@ class CheckoutSummary extends React.Component {
                 </Card>
             )
         } 
-        return <div></div>
+        return (
+            <Card style={{padding:"20px",margin: "25px"}}>
+                <CardTitle>
+                    <h1 class="display-4">Your cart is empty</h1>
+                </CardTitle>
+            </Card>
+        )
     }
 }
 
