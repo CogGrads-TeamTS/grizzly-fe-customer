@@ -5,7 +5,7 @@ import scriptLoader from 'react-async-script-loader';
 import paypal from 'paypal-checkout';
 import './ProductSingle.css';
 import isAuthenticated from '../../Auth/isAuthenticated';
-
+import axios from 'axios';
 class PaypalButton extends React.Component {
     constructor(props) {
         super(props);
@@ -67,42 +67,33 @@ class PaypalButton extends React.Component {
             showButton,
         } = this.state;
 
-        const payment = () =>
-            paypal.rest.payment.create(
-                'sandbox', client, {
-                transactions: [
-                    {
-                        amount: {
-                            total,
-                            currency,
-                        },
-                        item_list: {
-                            'items':items
-                        }
-                    },
-                ],
-                    redirect_urls: {
-                        cancel_url:'http://ts.ausgrads.academy'
-                    }
+        const payment = (data, actions) => {
+            return axios.post(`http://ts.ausgrads.academy:8765/products/paypal/make/payment/`, {
+                items,
+                total,
+                currency
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(function(res) {
+                // 3. Return res.id from the response
+                return res.data.id;
             });
+        }
 
         const onAuthorize = (data, actions) =>{
-            actions.payment.get().then(function(data) {
-                console.log(data);
-                const name= data.payer.payer_info.shipping_address.recipient_name;
-                actions.payment.execute()
-                    .then(() => {
-                        const payment = {
-                            paid: true,
-                            cancelled: false,
-                            payerID: data.payerID,
-                            paymentID: data.paymentID,
-                            paymentToken: data.paymentToken,
-                            returnUrl: data.returnUrl
-                        };
-                        onSuccess(payment,name);
-                    });
-            });
+            console.log(data);
+            // 2. Make a request to your server
+            return actions.request.post('http://ts.ausgrads.academy:8765/products/paypal/complete/payment/', {
+                paymentID: data.paymentID,
+                payerID:   data.payerID
+            })
+                .then(function(res) {
+                // 3. Show the buyer a confirmation message.
+                    console.log(res);
+                });
         }
 
         let paypal1={

@@ -27,40 +27,10 @@ class CheckoutSummary extends React.Component {
         this.props.updateCartItemQty(pid, value);
     }
 
-    buildItemList() {
-        // returns items array that the paypal checkout button can use
-        // example:
-        //     items: [{
-        //         name: 'hat',
-        //         description: 'brown hat',
-        //         quantity: '1',
-        //         price: '499',
-        //         sku: '1',
-        //         currency: 'AUD'
-        //     }]
-
-        let itemsArray = [];
-        for (var product of this.props.cart.items) {
-            itemsArray.push(
-                {
-                    name: product.name,
-                    description: product.description,
-                    quantity: product.qty,
-                    price: product.price,
-                    sku: product.id,
-                    currency: 'AUD'
-                }
-            )
-        }
-        console.log(itemsArray)
-        return itemsArray;
-    }
-
     render() {
         const { cart } = this.props;
         console.log(cart);
         if (cart && cart.items.length > 0) {
-            this.buildItemList();
             const qtyChanged = _.debounce((pid,qty) => { this.updateQty(pid,qty) }, 500);
             const products = cart.items.map(product =>
                 <Row>
@@ -113,7 +83,7 @@ class CheckoutSummary extends React.Component {
                         </Row>
                         <Row>
                             <PaypalButton 
-                                    items={this.buildItemList()}
+                                    items={this.props.cart.items}
                                     client={CLIENT}
                                     env={ENV}
                                     commit={true}
