@@ -47,6 +47,8 @@ class PaypalButton extends React.Component {
         }
     }
 
+    
+
     render() {
         const ReactButton = paypal.Button.driver('react', {React,ReactDOM});
         const {
@@ -58,6 +60,7 @@ class PaypalButton extends React.Component {
             onSuccess,
             onError,
             onCancel,
+            items
         } = this.props;
 
         const {
@@ -74,14 +77,7 @@ class PaypalButton extends React.Component {
                             currency,
                         },
                         item_list: {
-                            items: [{
-                                name: 'hat',
-                                description: 'brown hat',
-                                quantity: '1',
-                                price: '499',
-                                sku: '1',
-                                currency: 'AUD'
-                            }]
+                            'items':items
                         }
                     },
                 ],
@@ -118,7 +114,7 @@ class PaypalButton extends React.Component {
         };
         return (
             <div  style={{marginTop: "4%"}}>
-                {showButton && <paypal.Button.react style={paypal1}
+                {showButton && <paypal.Button.react
                     env={env}
                     client={client}
                     commit={commit}

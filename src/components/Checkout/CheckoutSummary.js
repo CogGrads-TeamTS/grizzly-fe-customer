@@ -6,8 +6,15 @@ import CartItem from '../Common/cart/cart';
 import QtyInput from '../Common/cart/QtyInput'
 
 import { fetchCart, removeCartItem, updateCartItemQty, toggleCart } from '../../actions/cartActions';
+import PaypalButton from '../Products/PaypalButton';
+import config from '../../config';
 
 const imageUrl = 'http://ts.ausgrads.academy/images/';
+
+const CLIENT = {
+    sandbox: config.paypal.sandbox
+};
+const ENV = 'sandbox';
 
 class CheckoutSummary extends React.Component {
 
@@ -20,10 +27,40 @@ class CheckoutSummary extends React.Component {
         this.props.updateCartItemQty(pid, value);
     }
 
+    buildItemList() {
+        // returns items array that the paypal checkout button can use
+        // example:
+        //     items: [{
+        //         name: 'hat',
+        //         description: 'brown hat',
+        //         quantity: '1',
+        //         price: '499',
+        //         sku: '1',
+        //         currency: 'AUD'
+        //     }]
+
+        let itemsArray = [];
+        for (var product of this.props.cart.items) {
+            itemsArray.push(
+                {
+                    name: product.name,
+                    description: product.description,
+                    quantity: product.qty,
+                    price: product.price,
+                    sku: product.id,
+                    currency: 'AUD'
+                }
+            )
+        }
+        console.log(itemsArray)
+        return itemsArray;
+    }
+
     render() {
         const { cart } = this.props;
         console.log(cart);
         if (cart && cart.items.length > 0) {
+            this.buildItemList();
             const qtyChanged = _.debounce((pid,qty) => { this.updateQty(pid,qty) }, 500);
             const products = cart.items.map(product =>
                 <Row>
@@ -37,7 +74,7 @@ class CheckoutSummary extends React.Component {
                         </p>
                     </Col>
                     <Col xs="2">
-                        <p class="text-info">${product.price * product.qty}</p>
+                        <p className="text-info">${product.price * product.qty}</p>
                         <a className="button is-light is-small" onClick={() => this.props.removeCartItem(product.id)}>Remove</a>
                     </Col>
                     
@@ -45,36 +82,45 @@ class CheckoutSummary extends React.Component {
             );
             return (
                 <Card style={{padding:"20px",margin: "25px"}}>
-                    <CardTitle><h1 class="display-4">Order Summary</h1></CardTitle>
+                    <CardTitle><h1 className="display-4">Order Summary</h1></CardTitle>
                     <CardBody>
                         {products}
                         <hr className="separator" />
                         <Row>
                             <Col xs="6">
-                                <p class="lead ">Subtotal</p>
+                                <p className="lead ">Subtotal</p>
                             </Col>
                             <Col xs="6">
-                                <p class="lead float-right">${cart.totalPrice}</p>
+                                <p className="lead float-right">${cart.totalPrice}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs="6">
-                                <p class="lead">Shipping</p>
+                                <p className="lead">Shipping</p>
                             </Col>
                             <Col xs="6">
-                                <p class="lead text-success float-right">FREE</p>
+                                <p className="lead text-success float-right">FREE</p>
                             </Col>
                         </Row>
                         <hr className="separator" />
                         <Row>
                             <Col xs="6">
-                                <p class="lead font-weight-bold">Grand Total</p>
+                                <p className="lead font-weight-bold">Grand Total</p>
                             </Col>
                             <Col xs="6">
-                                <p class="lead float-right font-weight-bold">${cart.totalPrice}</p>
+                                <p className="lead float-right font-weight-bold">${cart.totalPrice}</p>
                             </Col>
                         </Row>
-                        
+                        <Row>
+                            <PaypalButton 
+                                    items={this.buildItemList()}
+                                    client={CLIENT}
+                                    env={ENV}
+                                    commit={true}
+                                    currency={'AUD'}
+                                    total={this.props.cart.totalPrice}
+                                />
+                        </Row>
                     </CardBody>
                 </Card>
             )
