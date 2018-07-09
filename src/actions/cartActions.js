@@ -44,7 +44,7 @@ export function fetchCart(loggedIn) {
 
 const addCartItemSuccess = (data) => ({ type: types.ADD_CART_ITEM_SUCCESS, data });
 const addCartItemError = (error) => ({ type: types.ADD_CART_ITEM_ERROR, cartHasErrored: error });
-const addCartItemLoading = (loading) => ({ type: types.ADD_CART_ITEM_LOADING, cartIsLoading: loading });
+const addCartItemLoading = (loading) => ({ type: types.LOAD_CART_LOADING, cartIsLoading: loading });
 
 export function addProductToCart(pid) {
     const accessToken = localStorage.getItem('access_token');
@@ -52,6 +52,8 @@ export function addProductToCart(pid) {
     const loggedIn = false;
 
     return function (dispatch) {
+
+        dispatch(addCartItemLoading(true));
         // Change request based on user logged in
         let headers = {};
         if (loggedIn) headers = { authorization: `Bearer ${accessToken}` };
@@ -61,8 +63,6 @@ export function addProductToCart(pid) {
             withCredentials: true,
             headers
         });
-
-        dispatch(addCartItemLoading(true));
         request
             .then((response) => {
                 if (!response.status === 200) {
@@ -102,7 +102,7 @@ export function updateCartItemQty(pid, qty) {
 
 const removeCartItemSuccess = (data) => ({ type: types.REMOVE_CART_ITEM_SUCCESS, data });
 const removeCartItemError = (error) => ({ type: types.REMOVE_CART_ITEM_ERROR, cartHasErrored: error });
-const removeCartItemLoading = (loading) => ({ type: types.REMOVE_CART_ITEM_LOADING, cartIsLoading: loading });
+const removeCartItemLoading = (loading) => ({ type: types.LOAD_CART_LOADING, cartIsLoading: loading });
 
 export function removeCartItem(pid) {
     const accessToken = localStorage.getItem('access_token');
@@ -110,6 +110,7 @@ export function removeCartItem(pid) {
     const loggedIn = false;
 
     return function (dispatch) {
+        dispatch(removeCartItemLoading(true));
         // Change request based on user logged in
         let headers = {};
         if (loggedIn) headers = { authorization: `Bearer ${accessToken}` };
@@ -119,10 +120,6 @@ export function removeCartItem(pid) {
             withCredentials: true,
             headers
         });
-
-        console.log(request)
-
-        dispatch(removeCartItemLoading(true));
         request
             .then((response) => {
                 if (!response.status === 200) {
