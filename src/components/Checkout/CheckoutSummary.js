@@ -9,6 +9,8 @@ import { fetchCart, removeCartItem, updateCartItemQty, toggleCart } from '../../
 import PaypalButton from '../Products/PaypalButton';
 import config from '../../config';
 
+import {getFormValues, getFormSyncErrors} from 'redux-form';
+
 const imageUrl = 'http://ts.ausgrads.academy/images/';
 
 const CLIENT = {
@@ -82,14 +84,17 @@ class CheckoutSummary extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <PaypalButton 
-                                    items={this.props.cart.items}
-                                    client={CLIENT}
-                                    env={ENV}
-                                    commit={true}
-                                    currency={'AUD'}
-                                    total={this.props.cart.totalPrice}
+                            {Object.keys(this.props.checkoutFormErrors).length ? <span></span> : 
+                                <PaypalButton 
+                                items={this.props.cart.items}
+                                checkout={this.props.checkoutForm}
+                                client={CLIENT}
+                                env={ENV}
+                                commit={true}
+                                currency={'AUD'}
+                                total={this.props.cart.totalPrice}
                                 />
+                            }
                         </Row>
                     </CardBody>
                 </Card>
@@ -107,7 +112,9 @@ class CheckoutSummary extends React.Component {
 
 const mapStateToProps = (state) => { 
     return {
-        cart: state.cart.cart
+        cart: state.cart.cart,
+        checkoutForm: getFormValues('CheckoutForm')(state),
+        checkoutFormErrors: getFormSyncErrors('CheckoutForm')(state)
     };
 };
 
@@ -118,5 +125,7 @@ const mapDispatchToProps = (dispatch) => {
         toggleCart: (isOpen) => dispatch(toggleCart(isOpen))
     };
 };
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutSummary);

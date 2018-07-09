@@ -28,11 +28,12 @@ class Checkout extends Component {
     }
 
     onSubmit(values) {
-        
+        console.log(values);
     }
 
     render() {
         const { handleSubmit } = this.props;
+        
         return (
             <div>
                 <Row>
@@ -53,12 +54,14 @@ class Checkout extends Component {
                                     <Field type="text" label="Shipping Address" name="ship_address" component={this.renderField} />
                                 </FormGroup>
                                 <FormGroup>
+                                    <Field type="text" label="Shipping City" name="ship_city" component={this.renderField} />
+                                </FormGroup>
+                                <FormGroup>
                                     <Field type="text" label="Shipping Postal Code" name="ship_postcode" component={this.renderField} />
                                 </FormGroup>
                                 <FormGroup>
                                     <Field type="text" label="Comments" name="comments" component={this.renderField} />
                                 </FormGroup>
-                                <button type="submit" className="btn btn-primary">Submit</button>
                             </form>
                         </Card>
                     </Col>
@@ -78,11 +81,20 @@ function validate(values) {
     if (!values.email) {
         errors.email = "This field is required.";
     }
-    if (!values.address) {
-        errors.address = "This field is required.";
-    }
     if (!values.phone) {
         errors.phone = "This field is required.";
+    }
+    if (!values.ship_name) {
+        errors.ship_name = "This field is required.";
+    }
+    if (!values.ship_address) {
+        errors.ship_address = "This field is required.";
+    }
+    if (!values.ship_city) {
+        errors.ship_city = "This field is required.";
+    }
+    if (!values.ship_postcode) {
+        errors.ship_postcode = "This field is required.";
     }
 
     // If errors is empty, form is fine to submit

@@ -6,6 +6,10 @@ import paypal from 'paypal-checkout';
 import './ProductSingle.css';
 import isAuthenticated from '../../Auth/isAuthenticated';
 import axios from 'axios';
+
+import config from '../../config';
+
+
 class PaypalButton extends React.Component {
     constructor(props) {
         super(props);
@@ -60,7 +64,8 @@ class PaypalButton extends React.Component {
             onSuccess,
             onError,
             onCancel,
-            items
+            items,
+            checkout
         } = this.props;
 
         const {
@@ -68,10 +73,11 @@ class PaypalButton extends React.Component {
         } = this.state;
 
         const payment = (data, actions) => {
-            return axios.post(`http://ts.ausgrads.academy:8765/products/paypal/make/payment/`, {
+            return axios.post(`${config.paypal.createUrl}`, {
                 items,
                 total,
-                currency
+                currency,
+                checkout
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,7 +92,7 @@ class PaypalButton extends React.Component {
         const onAuthorize = (data, actions) =>{
             console.log(data);
             // 2. Make a request to your server
-            return actions.request.post('http://ts.ausgrads.academy:8765/products/paypal/complete/payment/', {
+            return actions.request.post(`${config.paypal.completeUrl}`, {
                 paymentID: data.paymentID,
                 payerID:   data.payerID
             })
