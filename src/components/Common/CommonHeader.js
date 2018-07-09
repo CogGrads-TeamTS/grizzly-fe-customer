@@ -71,7 +71,6 @@ class Header extends Component {
 
     // Used to delete a cart item
     deleteItem = (id) => {
-        console.log("DELETED " + id);
         this.props.removeCartItem(id)
     }
 
