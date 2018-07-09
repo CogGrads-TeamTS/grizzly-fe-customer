@@ -30,7 +30,8 @@ class CustomerSortBy extends Component {
         this.toggle = this.toggle.bind(this);
     }
     componentDidMount(){
-        this.props.fetchData(this.search, this.page, this.size, this.sort);
+        // Keep here it may fix a problem later on - Dan
+        // this.props.fetchData(this.search, this.page, this.size, this.sort);
     }
 
     toggle(event) {

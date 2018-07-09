@@ -20,7 +20,8 @@ class CustomerSortByView extends Component {
     }
 
     componentDidMount(){ 
-        this.props.fetchData(this.search, this.page, this.size, this.sort,this.category,this.brand,this.rating);
+        // Keep here it may fix a problem later on - Dan
+        // this.props.fetchData(this.search, this.page, this.size, this.sort,this.category,this.brand,this.rating);
     }
 
     render() { 

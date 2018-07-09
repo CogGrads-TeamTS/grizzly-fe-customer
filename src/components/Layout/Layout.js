@@ -13,6 +13,8 @@ class Layout extends Component {
         this.page = 0;
         this.size = 20;
         this.sort = "id,desc";
+
+        console.log(props.match);
         (props.match.params.id)?this.category=props.match.params.id:this.category="";
         (props.match.params.name)?this.brand=props.match.params.name:this.brand="";
         (props.match.params.rating)?this.rating=props.match.params.rating:this.rating="";
@@ -20,6 +22,7 @@ class Layout extends Component {
     }
 
     componentDidMount(){
+        console.log(this)
         this.props.fetchData(this.search, this.page, this.size, this.sort,this.category,this.brand,this.rating);
     }
 
@@ -52,7 +55,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (search, page, size, sort, catId,brand,rating)=> dispatch(productsFetchData(search, page, size, sort, catId,brand,rating))
-        
+
     };
 };
 
