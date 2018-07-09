@@ -96,73 +96,6 @@ class Header extends Component {
         const { cart } = this.props;
         return (
                 <Navbar light expand="md">
-                    <NavbarBrand><Link to="/"><img className="griz-logo" src={grizzlogo} /></Link></NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            
-                                <NavItem>
-                                    {
-                                        isAuthenticated() && (
-                                            <NavLink className="welcome-name" disabled href="#">Welcome, {this.props.user !== undefined && this.props.user.name}!</NavLink>
-                                        )
-                                    }
-                                </NavItem>
-                                {console.log(cart)}
-                                <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
-                                <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
-                                    <Cart cart={cart} deleteCartItem={this.deleteItem}/>
-                                </div>
-                                <NavItem>
-                                    <NavLink href="#">                             
-                                        {
-                                            !isAuthenticated() && (   
-                                                <Link to="/login">
-                                                <Button
-                                                id="btn-rounded"
-                                                className="login-button"
-                                                >
-                                                Log In
-                                                </Button>
-                                                </Link>                                    
-                                            )
-                                        }
-                                        {
-                                            isAuthenticated() && (
-                                                <Link to="/logout">
-                                                <Button
-                                                id="btn-rounded"
-                                                className="signup-button"     
-                                                >
-                                                Log Out
-                                                </Button>
-                                                </Link>
-                                            )
-                                        } 
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#">
-                                        {
-                                            !isAuthenticated() && (     
-                                                <Link to="/login">          
-                                                <Button 
-                                                className="signup-button" 
-                                                id="btn-rounded"
-                                                >
-                                                Signup
-                                                </Button>
-                                                </Link>
-                                            )
-                                        }               
-                                    </NavLink>
-                                </NavItem>
-                              <GlobalSearch logoCallback={this.callbackLogoUpdate.bind(this)} rounded="user-search-rounded" placeholder="Search" />
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-                        
-            <Navbar light expand="md">
                 <NavbarBrand className="navbar-brand-logo">
                     <Link to="/">
                         <img className={"griz-logo" + this.state.grizzlyClass} src={grizzlogo} />
@@ -179,8 +112,8 @@ class Header extends Component {
                             }
                         </NavItem>
                         <NavItem>
-                            <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} cartIsLoading={this.props.cartIsLoading}/>
-                            <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
+                            <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.props.cartIsActive} cartIsLoading={this.props.cartIsLoading}/>
+                            <div className={this.props.cartIsActive ? 'mini-cart-open' : ''}>
                                 <Cart cart={cart} deleteCartItem={this.deleteItem} />
                             </div>
                         </NavItem>
@@ -232,7 +165,7 @@ const mapStateToProps = (state) => {
         user: state.user.user,
         userIsLoading: state.userIsLoading,
         cart: state.cart.cart,
-        cartIsActive: state.cart.cartIsActive
+        cartIsActive: state.cart.cartIsActive,
         cartIsLoading: state.cartIsLoading,
     };
 };
