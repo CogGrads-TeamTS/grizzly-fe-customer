@@ -111,7 +111,7 @@ class Header extends Component {
                             }
                         </NavItem>
                         <NavItem>
-                            <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} />
+                            <CartIndicator cart={cart} onClick={this.cartToggle} cartIsActive={this.state.cartIsActive} cartIsLoading={this.props.cartIsLoading}/>
                             <div className={this.state.cartIsActive ? 'mini-cart-open' : ''}>
                                 <Cart cart={cart} deleteCartItem={this.deleteItem} />
                             </div>
@@ -164,6 +164,7 @@ const mapStateToProps = (state) => {
         user: state.user.user,
         userIsLoading: state.userIsLoading,
         cart: state.cart.cart,
+        cartIsLoading: state.cartIsLoading,
     };
 };
 
