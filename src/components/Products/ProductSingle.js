@@ -7,11 +7,15 @@ import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
+import RateProduct from './RateProduct';
+import StarRatings from 'react-star-ratings';
 
 class ProductSingle extends Component {
     constructor(props) {
         super(props);
         this.loading = true;
+
+        this.submitRating = this.submitRating.bind(this);
     }
 
     componentDidMount() {
@@ -45,6 +49,10 @@ class ProductSingle extends Component {
 
     calculateNewPrice(price, discount) {
         return price - ((discount / 100) * price).toFixed(2);
+    }
+
+    submitRating(e){
+        console.log('test');
     }
 
     render() {
@@ -81,6 +89,17 @@ class ProductSingle extends Component {
                                 {this.props.product.name}
                                 {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
                             </div>
+                           
+                            <StarRatings 
+                                    rating={this.props.product.rating}
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension="20px"
+                                    starSpacing="2px"
+                                    starRatedColor='rgb(108, 116, 217)'
+                                    isSelectable={false}
+                                />
+                            
                             <div className="description">{this.props.product.description}</div>
                             <div className="price">AUD ${this.calculateNewPrice(this.props.product.price, this.props.product.discount)}</div>
                             {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
@@ -96,6 +115,8 @@ class ProductSingle extends Component {
                                 <ProductsSearched product={this.props.product} category={this.props.product.category} />
                             </CardColumns>
                         </Col>
+
+                        <RateProduct submitRating={this.submitRating}/>
                     </Row>
 
                 </div>

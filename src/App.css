@@ -1400,3 +1400,13 @@ SEARCH BAR TEST END
 .img-fluid {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
+
+/*Reviews*/
+.review-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.review-textarea{
+  width: 100%;
+}
