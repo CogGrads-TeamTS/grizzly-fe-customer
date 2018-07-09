@@ -2,21 +2,27 @@
 import React, { Component } from 'react';
 import CustomerSortBy from "../CustomerSortByButton/CustomerSortBy";
 import { connect } from 'react-redux';
-import { Container } from 'reactstrap';
 import { productsFetchData } from '../../actions/productActions'
-import ProductTiles from '../Products/ProductTiles';
-import AdBanner from '../AdBanner/AdBanner';
 import { withRouter } from 'react-router-dom';
-import { Row, Col } from 'reactstrap';
-
 import Header from '../Common/CommonHeader';
-import Homepage from '../Homepage/Homepage';
-
 
 class Layout extends Component {
-    componentDidMount(){
-        this.props.fetchData(); // Initial fetch
+    constructor(props) {
+        super(props);
+        this.search="";
+        this.page = 0;
+        this.size = 20;
+        this.sort = "id,desc";
+        (props.match.params.id)?this.category=props.match.params.id:this.category="";
+        (props.match.params.name)?this.brand=props.match.params.name:this.brand="";
+        (props.match.params.rating)?this.rating=props.match.params.rating:this.rating="";
+
     }
+
+    componentDidMount(){
+        this.props.fetchData(this.search, this.page, this.size, this.sort,this.category,this.brand,this.rating);
+    }
+
 
     render() {
 
