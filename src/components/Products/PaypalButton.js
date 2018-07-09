@@ -5,6 +5,10 @@ import scriptLoader from 'react-async-script-loader';
 import paypal from 'paypal-checkout';
 import './ProductSingle.css';
 import isAuthenticated from '../../Auth/isAuthenticated';
+import axios from 'axios';
+
+import config from '../../config';
+
 
 class PaypalButton extends React.Component {
     constructor(props) {
@@ -47,6 +51,8 @@ class PaypalButton extends React.Component {
         }
     }
 
+    
+
     render() {
         const ReactButton = paypal.Button.driver('react', {React,ReactDOM});
         const {
@@ -58,52 +64,47 @@ class PaypalButton extends React.Component {
             onSuccess,
             onError,
             onCancel,
+            items,
+            checkout
         } = this.props;
 
         const {
             showButton,
         } = this.state;
 
-        const payment = () =>
-            paypal.rest.payment.create(
-                'sandbox', client, {
-                transactions: [
-                    {
-                        amount: {
-                            total,
-                            currency,
-                        }
-                    },
-                ],
-                    redirect_urls: {
-                        cancel_url:'http://ts.ausgrads.academy'
-                    }
-            });
-
-        const onAuthorize = (data, actions) =>{
-            actions.payment.get().then(function(data) {
-                console.log(data);
-                const name= data.payer.payer_info.shipping_address.recipient_name;
-                actions.payment.execute()
-                    .then(() => {
-                        const payment = {
-                            paid: true,
-                            cancelled: false,
-                            payerID: data.payerID,
-                            paymentID: data.paymentID,
-                            paymentToken: data.paymentToken,
-                            returnUrl: data.returnUrl
-                        };
-                        onSuccess(payment,name);
-                    });
+        const payment = (data, actions) => {
+            return axios.post(`${config.paypal.createUrl}`, {
+                items,
+                total,
+                currency,
+                checkout
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(function(res) {
+                // 3. Return res.id from the response
+                return res.data.id;
             });
         }
 
+        const onAuthorize = (data, actions) =>{
+            console.log(data);
+            // 2. Make a request to your server
+            return actions.request.post(`${config.paypal.completeUrl}`, {
+                paymentID: data.paymentID,
+                payerID:   data.payerID
+            })
+                .then(function(res) {
+                // 3. Show the buyer a confirmation message.
+                    console.log(res);
+                });
+        }
+
         let paypal1={
-            color: 'gold',
-            shape: 'pill',
+            shape: 'rect',
             tagline: 'false',
-            label: 'buynow',
             size: 'medium'
         };
         return (

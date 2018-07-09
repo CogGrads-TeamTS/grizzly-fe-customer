@@ -81,6 +81,25 @@ export function addProductToCart(pid) {
     }
 }
 
+const updateCartItemSuccess = (data) => ({ type: types.UPDATE_CART_ITEM_SUCCESS, data });
+
+export function updateCartItemQty(pid, qty) {
+    const url = `${API_URL}/${pid}?qty=${qty}`;
+    return function(dispatch) {
+        const request = axios(url, {
+            method: "put",
+            withCredentials: true
+        });
+
+        request.then((response) => {
+            if (!response.status === 200) {
+                throw Error(response.statusText);
+            }
+            dispatch(updateCartItemSuccess(response.data))
+        })
+    }
+}
+
 const removeCartItemSuccess = (data) => ({ type: types.REMOVE_CART_ITEM_SUCCESS, data });
 const removeCartItemError = (error) => ({ type: types.REMOVE_CART_ITEM_ERROR, cartHasErrored: error });
 const removeCartItemLoading = (loading) => ({ type: types.LOAD_CART_LOADING, cartIsLoading: loading });
@@ -116,5 +135,13 @@ export function removeCartItem(pid) {
             .catch((error) => {
                 dispatch(removeCartItemError(error))
             });
+    }
+}
+
+
+const openCartToggled = (data) => ({ type: types.OPEN_CART_TOGGLED, data });
+export function toggleCart(isOpen) {
+    return function (dispatch) {
+        dispatch(openCartToggled(isOpen));
     }
 }
