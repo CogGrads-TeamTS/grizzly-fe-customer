@@ -1028,6 +1028,7 @@ tbody {
 .cart-count {
     position: absolute;
     top: 19px;
+    margin-left: -10px;
     height: 1.05rem;
     width: 1.05rem;
     background-color: #ff3860;
