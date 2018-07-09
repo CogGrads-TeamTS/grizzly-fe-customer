@@ -19,14 +19,6 @@ class FeaturedProducts extends Component {
             ratedItems = this.props.products.sort((a, b) => {
                 return b.rating - a.rating;
             }).slice(0,5)
-
-            // _.map(_.shuffle(Object.values(this.props.products)), (product, i) => {
-            //     if (ratedItems.length >= 5) return ratedItems;
-
-            //     if (product.rating === 5) {
-            //         ratedItems.push(product);
-            //     }
-            // })
             return ratedItems;
         };
 
