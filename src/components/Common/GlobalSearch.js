@@ -16,6 +16,7 @@ class GlobalSearch extends React.Component {
             searchFocus: false,
             overlayClass: "search-overlay-shadow",
             globalSearchBoxClass: "global-search-box",
+            iconDisappearClass: "",
         }
 
         this.toggleSearch = this.toggleSearch.bind(this)
@@ -72,8 +73,6 @@ class GlobalSearch extends React.Component {
         }
     }
     render() {
-
-        let overlay_class = this.state.overlayClass;
         let search_box_class = this.state.globalSearchBoxClass;
 
         console.log(this.props.results);
@@ -107,36 +106,28 @@ class GlobalSearch extends React.Component {
             //   </FormGroup>
             // </Form>
             <div class="nav-search-container">
-                {/* <div className="row"> */}
-                    <Select id="search"
-                        name="form-field-name"
-                        custom={"hello"}
-                        value={this.props.selected}
-                        onInputChange={this.searchDebounce}
-                        placeholder={"Search all products...."}
-                        onChange={(selected) => {
-                            this.determinePath(selected)
-                            this.props.saveSelected(selected)
-                        }}
-                        onFocus={this.activateBackdrop.bind(this)}
-                        onClose={this.deactivateBackdrop.bind(this)}
-                        className={search_box_class}
-                        valueComponent={customValue}
-                        optionComponent={OptionComponent}
-                        options={this.options}
-                        isLoading={this.props.loading}
-                    // arrowRenderer={() => { return <span><img className="global-search-icon" alt="img" src={searchIcon} /></span> }}
-                    />
-                    {/* <div className="col-md-12 col-md-offset-3"> */}
-                        {/* <form autoComplete="off" action="" className="search-form">
-                            <div className={this.state.searchFocus ? "form-group has-feedback searchFocus" : "form-group has-feedback"}>
-                                <label for="search" className="sr-only"></label>
-                                <span className="fas fa-search form-control-feedback"></span>
-                            </div>
-                        </form> */}
-                    {/* </div> */}
-                {/* </div> */}
+                <Select id="search"
+                    name="form-field-name"
+                    custom={"hello"}
+                    value={this.props.selected}
+                    onInputChange={this.searchDebounce}
+                    placeholder={"Search all products...."}
+                    onChange={(selected) => {
+                        this.determinePath(selected)
+                        this.props.saveSelected(selected)
+                    }}
+                    onFocus={this.activateBackdrop.bind(this)}
+                    onClose={this.deactivateBackdrop.bind(this)}
+                    className={search_box_class}
+                    valueComponent={customValue}
+                    optionComponent={OptionComponent}
+                    options={this.options}
+                    isLoading={this.props.loading} />
+                <div className="global-search-icon">
+                    <i className="fa fa-search"></i>
+                </div>
             </div>
+
         )
     }
 }
