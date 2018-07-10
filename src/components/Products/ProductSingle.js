@@ -7,7 +7,6 @@ import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
-import  { Redirect } from 'react-router-dom'
 
 class ProductSingle extends Component {
     constructor(props) {
@@ -51,7 +50,7 @@ class ProductSingle extends Component {
 
     }
 
-    calculateNewPrice(price, discount) {
+    calculateNewPrice = (price, discount) =>{
         return price - ((discount / 100) * price).toFixed(2);
     }
 

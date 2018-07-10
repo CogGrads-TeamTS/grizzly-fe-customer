@@ -1,7 +1,9 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 
-const API_URL = 'http://ts.ausgrads.academy:8765/user';
+import config from '../config';
+
+const API_URL = config.endpoints.user;
 
 const loadUserSuccess = (data) => ({type: types.LOAD_USER_SUCCESS, data});
 const loadUserError = (error) => ({type: types.LOAD_USER_ERROR, userHasErrored:error});

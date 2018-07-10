@@ -53,7 +53,7 @@ class CategoryPanel extends Component{
                                         fallbackImage={`http://ts.ausgrads.academy/images/category_images/no-image.jpg`}
                                         initialImage="loader.gif"
                                         alt="cool image should be here"
-                                        className="img-fluid" />
+                                        className="img-fluid img-fluid-cat" />
                                             <div className="category-title" style={{textTransform: "uppercase"}}>{cat.name}</div>
                                     </Col>
                                     
@@ -67,7 +67,7 @@ class CategoryPanel extends Component{
                                         fallbackImage={`http://ts.ausgrads.academy/images/category_images/no-image.jpg`}
                                         initialImage="loader.gif"
                                         alt="cool image should be here"
-                                        className="img-fluid" />
+                                        className="img-fluid img-fluid-cat" />
                                       
                                         <div className="category-title" style={{textTransform: "uppercase"}}>{cat.name}</div>
                                     </Col>
