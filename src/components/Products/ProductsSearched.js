@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './ProductSingle.css';
-import { CardColumns, Card, CardImg } from 'reactstrap';
+import { CardColumns, Card, CardImg, Col } from 'reactstrap';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { productsFetchData } from "../../actions/productActions";
 import { connect } from "react-redux";
 import _ from 'lodash';
+import ProductTile from '../Products/ProductTile';
 class ProductsSearched extends Component {
 
     constructor(props) {
@@ -31,20 +32,24 @@ class ProductsSearched extends Component {
             (
                 <p>The product is loading...</p>
                 // Get 7 product so that if the selected product is in array, you can safely remove and still have 6
-            ) : (_.map(_.take(this.props.products, 7), prod => { 
+            ) : (_.map(_.take(this.props.products, 6), prod => { 
                 if(prod.id === this.props.product.id) return; // don't link to displayed product
                 else if(prod_count > 5) return; // Don't render 7 unique products (array starts at 0)
 
                 prod_count++;
                 return (
+                    <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={prod.id}>
                     <Link to={{ pathname: `/product/${prod.id}` }} >
-                        <Card className="image-thumb">
-                            <div className="consistent-image-container">
-                                <img key={prod.id}
-                                    src={`${imageUrl}${(prod.images.length > 0) ? prod.images[0].url : ''}`} alt="Card image tile" />
-                            </div>
-                        </Card>
+                        
+                        <ProductTile product={prod} 
+                                                                badge={"Product"} 
+                                                                    cardClass="hover" 
+                                                                        badgeColor={"primary"} 
+                                                                            text={prod.name} 
+                                                                                imageUrl={prod.images[0].url}
+                                                                                    addToCart={this.props.addToCart}/>
                     </Link>
+                    </Col>
                 )
             }
             ))
