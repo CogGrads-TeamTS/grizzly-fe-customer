@@ -1,23 +1,20 @@
-
 import React, { Component } from 'react';
-import CustomerSortBy from "../CustomerSortByButton/CustomerSortBy";
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 import { productsFetchData } from '../../actions/productActions'
-import ProductTiles from '../Products/ProductTiles';
 import AdBanner from '../AdBanner/AdBanner';
 import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import './Homepage.css';
 import CategoryPanel from './../Common/CategoryPanel';
-import Header from '../Common/CommonHeader';
 import SalesPanel from '../Common/SalePanel';
 import FeaturedProducts from '../Common/FeaturedProducts';
 
 
 class Homepage extends Component {
+
     componentDidMount(){
-        this.props.fetchData(); // Initial fetch
+        this.props.fetchData(); //Initial fetch
     }
 
     render() {
