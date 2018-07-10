@@ -19,7 +19,7 @@ const RateProduct = (props) => {
                 {
                     isAuthenticated() && (
                     
-                     <RateProductForm onSubmit={props.onSubmit} />
+                     <RateProductForm onSubmit={props.onSubmit}/>
                     )
                 }
                     
