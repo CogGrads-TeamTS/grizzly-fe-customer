@@ -5,20 +5,25 @@ import { addProductToCart } from '../../actions/cartActions';
 import { CardColumns, Container, Row, Col, Button, FormGroup, Label, Input } from 'reactstrap';
 import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
-import PaypalButton from './PaypalButton';
-import config from '../../config';
 import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
-
-const CLIENT = {
-    sandbox: config.paypal.sandbox
-};
-const ENV = 'sandbox';
+import Breadcrumb from '../Common/breadcrumb';
 
 class ProductSingle extends Component {
     constructor(props) {
         super(props);
         this.loading = true;
+
+        this.returnToHome = this.returnToHome.bind(this);
+        this.returnToCat = this.returnToCat.bind(this);
+    }
+
+    returnToCat = () => {
+        this.props.history.push(`/category/${this.props.product.catName}/${this.props.product.catId}`)
+    }
+    returnToHome = (e) => {
+        console.log(this.props.product.name);
+        this.props.history.push("/");
     }
 
     componentDidMount() {
@@ -48,33 +53,28 @@ class ProductSingle extends Component {
 
     addToCartClick = () => {
         this.props.addToCart(this.props.product.id)
+
     }
 
-    calculateNewPrice(price, discount) {
+    buyToClick = () => {
+        this.props.addToCart(this.props.product.id);
+        this.props.history.push('/checkout');
+
+    }
+
+    calculateNewPrice = (price, discount) =>{
         return price - ((discount / 100) * price).toFixed(2);
     }
 
     render() {
-        const onSuccess = (payment,name) =>{
-            console.log(payment);
-            alert('Successful payment '+ name);
-            this.props.history.push('/');
-        };
-
-
-        const onError = (error) =>
-            console.log('Erroneous payment OR failed to load script!', error);
-
-        const onCancel = (data) =>{
-            console.log('Cancelled payment!', data);
-            this.props.history.push('/');
-        };
         const isLoading = (this.loading || !this.props.product) ?
             (
+               
                 <div className="loading-container-full-pre">
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
-            ) : (
+            ) : (<div>
+                <Breadcrumb returnToHome={this.returnToHome} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
                 <div className="container-fluid product-container">
                     <div className={"loading-container-full loaded" + (this.state && !this.loading ? this.state.loaded : "")}>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -99,6 +99,7 @@ class ProductSingle extends Component {
 
                         <Col md="5" sm="6" xs="12">
                             <div className="title">
+                            {console.log(this.props.product)}
                                 {this.props.product.name}
                                 {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
                             </div>
@@ -106,16 +107,7 @@ class ProductSingle extends Component {
                             <div className="price">AUD ${this.calculateNewPrice(this.props.product.price, this.props.product.discount)}</div>
                             {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
-                                <PaypalButton
-                                    client={CLIENT}
-                                    env={ENV}
-                                    commit={true}
-                                    currency={'AUD'}
-                                    total={this.props.product.price}
-                                    onSuccess={onSuccess}
-                                    onError={onError}
-                                    onCancel={onCancel}
-                                />
+                                <Button className="buy-button" id="btn-rounded" onClick={this.buyToClick}>Buy Now</Button>
                                 <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
                             </Row>
                         </Col>
@@ -128,6 +120,7 @@ class ProductSingle extends Component {
                         </Col>
                     </Row>
 
+                </div>
                 </div>
             );
 

@@ -90,6 +90,8 @@ tbody {
 
 .m-t-20 {
     margin-top: 20px !important;
+    margin-left: 9.5%;
+    margin-right: 9.5%;
 }
 
 .no-padding {
@@ -115,9 +117,9 @@ tbody {
 .user-header {
     margin-left: -2px !important;
     margin-right: 0 !important;
-    -webkit-box-shadow: 0 4px 6px -6px #222;
+    /* -webkit-box-shadow: 0 4px 6px -6px #222;
     -moz-box-shadow: 0 4px 6px -6px #222;
-    box-shadow: 0 4px 6px -6px #222;
+    box-shadow: 0 4px 6px -6px #222; */
 }
 
 .header,
@@ -229,8 +231,7 @@ tbody {
 }
 
 .griz-logo {
-    width: 95%;
-    transition: margin-left 0.4s linear 0s;
+    width: 100%;
 }
 
 .griz-logo.logo-active {
@@ -295,7 +296,7 @@ tbody {
     margin-top: 4%;
 }
 
-.navbar-button-generic:hover, .navbar-button-generic:focus  {
+.navbar-button-generic:hover, .navbar-button-generic:focus   {
     border-radius: 2px !important;
     background-color: rgba(255, 255, 255, 0) !important;
     color: #000 !important;
@@ -305,7 +306,11 @@ tbody {
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0) !important;
 }
 
-.login-button,
+.navbar-button-generic:active   {
+    outline:none !important;
+}
+
+/* .login-button,
 .signup-button:hover {
     color: #17a2b8 !important;
     border-radius: 4em !important;
@@ -318,7 +323,7 @@ tbody {
     color: #fff !important;
     background-color: #17a2b8 !important;
     border-color: #17a2b8 !important;
-}
+} */
 
 /*LOGIN SCREEN */
 
@@ -1389,14 +1394,58 @@ input#search {
     line-height: 0.5;
 }
 
-img.griz-logo {
-    vertical-align: baseline;
-}
-
 /**
 SEARCH BAR TEST END
 **/
 
-.img-fluid {
+.img-fluid-cat {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
+
+
+/**
+* CAT HEAD
+**/
+
+.cat-nav {
+    padding: 0px;
+    text-align: center;
+    margin-bottom: -20px;
+    margin-left: 11% !important;
+    margin-right: 12% !important;
+}
+
+.cat-div {
+    padding: 0 !important;
+}
+
+.cat-div:hover {
+    background-color: #f5f5f5;
+}
+
+.cat-btn, .cat-btn:focus {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10%;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.btn-primary-griz {
+    color: #fff !important;
+    background-color: #34495e !important;
+    border-color: #34495e !important;
+}
+
+.btn-primary-griz:hover {
+    color: #fff !important;
+    background-color: #2c3e50 !important;
+    border-color: #2c3e50 !important;
+}
+
+/**
+* CAT HEAD END
+**/

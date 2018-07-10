@@ -37,7 +37,7 @@ class Checkout extends Component {
         return (
             <div>
                 <Row>
-                    <Col xs="6">
+                    <Col sm="12" md="6">
                         <Card style={{padding:"20px", margin: "25px"}}>
                             <h1 class="display-4">Checkout Details</h1>
                             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -65,7 +65,7 @@ class Checkout extends Component {
                             </form>
                         </Card>
                     </Col>
-                    <Col xs="6">
+                    <Col sm="12" md="6">
                         <CheckoutSummary />
                     </Col>
                 </Row>
