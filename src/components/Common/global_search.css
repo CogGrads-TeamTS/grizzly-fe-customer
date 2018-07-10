@@ -1,0 +1,142 @@
+/* USED TO MAKE THE SEARCH BAR HIDE AND BECOME VISIBLE AGAIN */
+.Select:not(.is-open) > .Select-control {
+    border-radius: 20px !important;
+    background: none !important;
+    border:none !important;
+    height: 32px !important;
+    margin-top: -2px;
+
+}
+
+.Select-control{
+    height: 32px !important;
+    margin-top: -2px;
+}
+
+.Select.is-open > .Select-control{
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    border:none !important;
+    color: rgb(190, 190, 190) !important;
+    height: 32px !important;
+    margin-top: -2px;
+}
+
+.Select-input > input {
+    margin-top: -1px !important;
+    color: rgb(75, 75, 75) !important;
+}
+
+.global-search-box:not(:hover) {
+    width: 32px;
+    height: 32px;
+    border: black 2px solid;
+    border-radius: 25px !important;
+    transition: width .4s linear;
+}
+
+.global-search-box:not(:hover) > .Select-control {
+    display: none !important;
+}
+
+
+.global-search-box:hover {
+    width: 420px;
+    height: 32px;
+    border: black 2px solid;
+    border-radius: 20px !important; 
+    transition: width .4s linear;
+}
+
+.Select.is-focused:not(.is-open) > .Select-control {
+    box-shadow: none !important;
+}
+
+.global-search-box:hover > .Select-control {
+    height: 32px !important;
+}
+
+.global-search-box-active{
+    width: 420px;
+    height: 32px !important;
+    border-radius: 20px;
+    border: black 2px solid;
+    border-radius: 20px !important; 
+    transition: width .4s linear;
+}
+
+.Select-input {
+    height: 32px !important;
+}
+
+.Select-placeholder{
+    line-height: 32px !important;
+    top: none !important;
+}
+
+/* END OF SEARCH BAR SETUP */
+
+.Select-value{
+    margin-top: -3px;
+}
+
+.srch-srvce-txt {
+    float: right;
+    margin-right: 20px;
+    color:  rgb(179, 179, 179);
+    font-weight: 100;
+    font-style: italic;
+}
+
+.global-search-icon{
+    width: 100%;
+    margin-bottom: 2px;
+    padding-left: 2px
+}
+
+.Select-menu-outer {
+    max-height: none !important;
+        background-color: transparent !important;
+        border: 2px solid #000 !important;
+        border-top-color: transparent !important;
+        left: -2px !important;
+        top: 60% !important;
+        padding-top: 15px !important;
+        width: 420px !important;
+}
+
+div#react-select-2--list{
+    background-color:white;
+}
+.Select-menu {
+    max-height: none !important;
+}
+
+.search-val-first {
+    border-top: 2px groove rgba(185, 185, 185, 0.212);
+}
+
+.search-overlay-shadow {
+    position: fixed;
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.5s;
+    opacity: 0;
+    background-color: rgba(45, 45, 45, .65);
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+.search-overlay-shadow-active {
+    pointer-events: all;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.5s;
+    opacity: 1;
+    background-color: rgba(45, 45, 45, .65);
+    top: 0;
+    left: 0;
+}

@@ -3,25 +3,30 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Select from 'react-select';
 import _ from 'lodash';
-import {globalFetchData,globalSaveSearch} from "../../actions/globalActions";
+import { globalFetchData, globalSaveSearch } from "../../actions/globalActions";
+import OptionComponent from "./optionComponent";
+import './global_search.css';
+import 'react-select/dist/react-select.css';
 
 class GlobalSearch extends React.Component {
-  constructor(props) {
-    super(props);
-    this.options=[];
-    this.state = {
-      searchFocus: false
+    constructor(props) {
+        super(props);
+        this.options = [];
+        this.state = {
+            searchFocus: false,
+            overlayClass: "search-overlay-shadow",
+            globalSearchBoxClass: "global-search-box",
+        }
+
+        this.toggleSearch = this.toggleSearch.bind(this)
     }
 
-    this.toggleSearch = this.toggleSearch.bind(this)
-  }
-
-  toggleSearch = toggle => {
-    this.props.logoCallback(toggle)
-    this.setState({ 
-      searchFocus: toggle
-    });
-  }
+    toggleSearch = toggle => {
+        this.props.logoCallback(toggle)
+        this.setState({
+            searchFocus: toggle
+        });
+    }
     searchValue = event => {
         this.searchDebounce(event.target.value);
     }
@@ -29,12 +34,13 @@ class GlobalSearch extends React.Component {
     searchDebounce = _.debounce((search) => { this.updateSearch(search) }, 500);
 
     updateSearch(search) {
-        this.props.fetchData({search});
+        this.props.fetchData({ search });
     }
 
     mapSearchElements() {
         _.map(this.props.results, (contents, service) => {
-            _.map(contents, (element, i) => { console.log(contents)
+            _.map(contents, (element, i) => {
+                console.log(contents)
                 const isFirst = (i === 0)
                 this.options.push({
                     value: element.id,
@@ -46,103 +52,103 @@ class GlobalSearch extends React.Component {
         })
     }
 
+    activateBackdrop() {
+        this.setState({
+            overlayClass: "search-overlay-shadow-active",
+            globalSearchBoxClass: "global-search-box-active"
+        })
+    }
+    deactivateBackdrop() {
+        this.setState({
+            overlayClass: "search-overlay-shadow",
+            globalSearchBoxClass: "global-search-box"
+        })
+    }
+
     determinePath(selected) {
         if (selected === null) return
         if (selected.service === "products") {
             this.props.history.push(`/product/${selected.value}`);
         }
     }
-  render() {console.log(this.props.results);
-      this.mapSearchElements();
-    const classes = `col-12 btn-left-curve ${this.props.rounded}`;
-    console.log(this.props.selected)
-    return (
-      // <Form autoComplete="off">
-      //   <FormGroup>
-      //   {/* <InputGroup className={this.props.classname}> */}
-      //   <InputGroup className="global-search-user">
-      //       {/* <Style scopeSelector='.global-search-user' rules={{
-      //           '::-webkit-input-placeholder': {
-      //               color: '#ffb732'
-      //           }}} /> */}
-      //     <input 
-      //     // className={classes}
-      //     className={"exampleSearch"}
-      //     type="search" 
-      //     name="search" 
-      //     id="exampleSearch" 
-      //     placeholder="What would you like to buy today...."
-      //     />
-      //       {/* <InputGroupAddon addonType="prepend">
-      //         <Button 
-      //         className="btn-search btn-right-curve">
-      //           <i className="fa fa-search"></i>
-      //         </Button>
-      //       </InputGroupAddon> */}
-      //       </InputGroup>
-      //   </FormGroup>
-      // </Form>
-      <div class="nav-search-container">
-          <Select id="search"
-                  name="form-field-name"
-                  custom={"hello"}
-                  value={this.props.selected}
-                  onInputChange={this.searchDebounce}
-                  placeholder={"Search all products...."}
-                  onChange={(selected) => {
-                      console.log("OnCHANGe")
-                      this.determinePath(selected)
-                      this.props.saveSelected(selected)
-                  }}
-                  options={this.options}
-                  isLoading={this.props.loading}
-                  onMouseOver={() => this.props.logoCallback(true)}
-                  onMouseOut={() => !this.state.searchFocus ? this.props.logoCallback(false) : null}
-                  onMouseDown={() => this.toggleSearch(true)}
-                  onBlur={() => this.toggleSearch(false)}
-          />
-      {/*<div className="row">*/}
-        {/*<div className="col-md-12 col-md-offset-3">*/}
-          {/*<form autoComplete="off" action="" className="search-form">*/}
-            {/*<div className={this.state.searchFocus? "form-group has-feedback searchFocus" : "form-group has-feedback" }>*/}
-              {/*<label for="search" className="sr-only"></label>*/}
-              {/*<Select id="search"*/}
-                       {/*name="form-field-name"*/}
-                      {/*custom={"hello"}*/}
-                     {/*value={this.props.selected}*/}
-                     {/*onInputChange={this.searchDebounce}*/}
-                      {/*placeholder={"Search all products...."}*/}
-                     {/*onChange={(selected) => {*/}
-                         {/*console.log("OnCHANGe")*/}
-                         {/*this.determinePath(selected)*/}
-                         {/*this.props.saveSelected(selected)*/}
-                     {/*}}*/}
-                      {/*options={this.options}*/}
-                      {/*isLoading={this.props.loading}*/}
-                     {/*onMouseOver={() => this.props.logoCallback(true)}*/}
-                     {/*onMouseOut={() => !this.state.searchFocus ? this.props.logoCallback(false) : null}*/}
-                     {/*onMouseDown={() => this.toggleSearch(true)}*/}
-                     {/*onBlur={() => this.toggleSearch(false)}*/}
-              {/*/>*/}
-              {/*<span className="fas fa-search form-control-feedback"></span>*/}
-            {/*</div>*/}
+    render() {
 
-          {/*</form>*/}
-        {/*</div>*/}
-      {/*</div>*/}
-      </div>
-    )
-  }
+        let overlay_class = this.state.overlayClass;
+        let search_box_class = this.state.globalSearchBoxClass;
+
+        console.log(this.props.results);
+        this.mapSearchElements();
+        const classes = `col-12 btn-left-curve ${this.props.rounded}`;
+        console.log(this.props.selected)
+        return (
+            // <Form autoComplete="off">
+            //   <FormGroup>
+            //   {/* <InputGroup className={this.props.classname}> */}
+            //   <InputGroup className="global-search-user">
+            //       {/* <Style scopeSelector='.global-search-user' rules={{
+            //           '::-webkit-input-placeholder': {
+            //               color: '#ffb732'
+            //           }}} /> */}
+            //     <input 
+            //     // className={classes}
+            //     className={"exampleSearch"}
+            //     type="search" 
+            //     name="search" 
+            //     id="exampleSearch" 
+            //     placeholder="What would you like to buy today...."
+            //     />
+            //       {/* <InputGroupAddon addonType="prepend">
+            //         <Button 
+            //         className="btn-search btn-right-curve">
+            //           <i className="fa fa-search"></i>
+            //         </Button>
+            //       </InputGroupAddon> */}
+            //       </InputGroup>
+            //   </FormGroup>
+            // </Form>
+            <div class="nav-search-container">
+                {/* <div className="row"> */}
+                    <Select id="search"
+                        name="form-field-name"
+                        custom={"hello"}
+                        value={this.props.selected}
+                        onInputChange={this.searchDebounce}
+                        placeholder={"Search all products...."}
+                        onChange={(selected) => {
+                            this.determinePath(selected)
+                            this.props.saveSelected(selected)
+                        }}
+                        onFocus={this.activateBackdrop.bind(this)}
+                        onClose={this.deactivateBackdrop.bind(this)}
+                        className={search_box_class}
+                        valueComponent={customValue}
+                        optionComponent={OptionComponent}
+                        options={this.options}
+                        isLoading={this.props.loading}
+                    // arrowRenderer={() => { return <span><img className="global-search-icon" alt="img" src={searchIcon} /></span> }}
+                    />
+                    {/* <div className="col-md-12 col-md-offset-3"> */}
+                        {/* <form autoComplete="off" action="" className="search-form">
+                            <div className={this.state.searchFocus ? "form-group has-feedback searchFocus" : "form-group has-feedback"}>
+                                <label for="search" className="sr-only"></label>
+                                <span className="fas fa-search form-control-feedback"></span>
+                            </div>
+                        </form> */}
+                    {/* </div> */}
+                {/* </div> */}
+            </div>
+        )
+    }
 }
 
 //  Component methods for Select Prop
 const customValue = props => {
     return (
         <div className="Select-value" title={props.value.title}>
-      <span className="Select-value-label">
-        {props.children}
-          <div className="srch-srvce-txt">{props.value.service}</div>
-      </span>
+            <span className="Select-value-label">
+                {props.children}
+                <div className="srch-srvce-txt">{props.value.service}</div>
+            </span>
         </div>
     );
 };
