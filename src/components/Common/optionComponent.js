@@ -35,7 +35,6 @@ class OptionComponent extends React.Component {
                 onMouseMove={this.handleMouseMove}
                 title={this.props.option.title}>
                 {this.props.children}
-                <div className="srch-srvce-txt">{this.props.option.service}</div>
             </div>
         );
     }

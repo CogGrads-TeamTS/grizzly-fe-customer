@@ -103,6 +103,7 @@ class GlobalSearch extends React.Component {
             //       </InputGroup>
             //   </FormGroup>
             // </Form>
+            <form autoComplete={"off"}>
             <div class="nav-search-container">
                 <Select id="search"
                     name="form-field-name"
@@ -125,6 +126,7 @@ class GlobalSearch extends React.Component {
                     <i className="fa fa-search"></i>
                 </div>
             </div>
+            </form>
 
         )
     }
@@ -136,7 +138,6 @@ const customValue = props => {
         <div className="Select-value" title={props.value.title}>
             <span className="Select-value-label">
                 {props.children}
-                <div className="srch-srvce-txt">{props.value.service}</div>
             </span>
         </div>
     );
