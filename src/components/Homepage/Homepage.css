@@ -27,3 +27,8 @@
     font-weight: 300;
     font-size: 17px;
   }
+
+  .rewards-text > a > u {
+    font-weight: 600;
+    color: white;
+  }
