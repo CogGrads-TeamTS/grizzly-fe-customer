@@ -40,8 +40,8 @@ class GlobalSearch extends React.Component {
 
     mapSearchElements() {
         _.map(this.props.results, (contents, service) => {
+            if(service !== "products") return;
             _.map(contents, (element, i) => {
-                console.log(contents)
                 const isFirst = (i === 0)
                 this.options.push({
                     value: element.id,
@@ -74,11 +74,9 @@ class GlobalSearch extends React.Component {
     }
     render() {
         let search_box_class = this.state.globalSearchBoxClass;
-
-        console.log(this.props.results);
+        this.options=[]; // Reset options on each render to avoid continuous append
         this.mapSearchElements();
-        const classes = `col-12 btn-left-curve ${this.props.rounded}`;
-        console.log(this.props.selected)
+        
         return (
             // <Form autoComplete="off">
             //   <FormGroup>
