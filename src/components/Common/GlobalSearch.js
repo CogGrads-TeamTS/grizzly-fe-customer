@@ -121,7 +121,8 @@ class GlobalSearch extends React.Component {
                     valueComponent={customValue}
                     optionComponent={OptionComponent}
                     options={this.options}
-                    isLoading={this.props.loading} />
+                    isLoading={this.props.loading} 
+                    arrowRenderer={null}/>
                 <div className="global-search-icon">
                     <i className="fa fa-search"></i>
                 </div>
