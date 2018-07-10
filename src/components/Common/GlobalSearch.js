@@ -56,7 +56,7 @@ class GlobalSearch extends React.Component {
       // </Form>
       <div class="nav-search-container">
       <div className="row">
-        <div className="col-md-12 col-md-offset-3">
+        <div className="col-md-12">
           <form autoComplete="off" action="" className="search-form">
             <div className={this.state.searchFocus? "form-group has-feedback searchFocus" : "form-group has-feedback" }>
               <label for="search" className="sr-only"></label>

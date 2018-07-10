@@ -1,7 +1,9 @@
 import * as types from './actionTypes';
 import axios from 'axios'
 
-const API_URL = 'http://ts.ausgrads.academy:8765/categories';
+import config from '../config';
+
+const API_URL = config.endpoints.category;
 const loadCategoriesSuccess = (data) => ({type: types.LOAD_CATEGORIES_SUCCESS, data})
 
 const loadCategoriesLoading = (loading) => ({type: types.LOAD_CATEGORIES_LOADING, categoryIsLoading:loading});

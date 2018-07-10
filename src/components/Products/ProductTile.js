@@ -39,7 +39,7 @@ const ProductTile = (props) => {
                                     isSelectable={false}
                                 /></div>
                                 </Link>
-                <Button color="primary" className="add-btn" onClick={addToCart}>ADD TO CART</Button>
+                <Button color="primary" className="add-btn btn-primary-griz" onClick={addToCart}>ADD TO CART</Button>
             </div>
   );
 };

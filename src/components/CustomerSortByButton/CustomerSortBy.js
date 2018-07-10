@@ -7,7 +7,6 @@ import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownMenu, ButtonDro
 import CustomerSortByButton from "./CustomerSortByButton";
 import {productsFetchData} from "../../actions/productActions";
 
-
 class CustomerSortBy extends Component {
 
     constructor(props) {
@@ -30,7 +29,8 @@ class CustomerSortBy extends Component {
         this.toggle = this.toggle.bind(this);
     }
     componentDidMount(){
-        this.props.fetchData(this.search, this.page, this.size, this.sort);
+        // Keep here it may fix a problem later on - Dan
+        // this.props.fetchData(this.search, this.page, this.size, this.sort);
     }
 
     toggle(event) {
@@ -53,7 +53,7 @@ class CustomerSortBy extends Component {
                         ) : (
                             _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {
                                 return (
-                                    <Col key={cat.id}>
+                                    <Col className="test" key={cat.id}>
                                         <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
                                     </Col>
                                 )
@@ -129,9 +129,9 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {
+                            _.map(_.take(Object.values(this.props.categories),5), cat => {
                                 return (
-                                    <Col key={cat.id}>
+                                    <Col className="cat-div" key={cat.id}>
                                         <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
                                     </Col>
                                 )
@@ -169,8 +169,9 @@ class CustomerSortBy extends Component {
     render()
     {
         return (
-            <Row style={{marginLeft: '0px',marginRight: '0px'}}>
-                <Col>
+            <Row className="cat-nav" style={{marginRight: '0px'}}>
+            {/* <Row className="cat-nav" style={{marginLeft: '0px',marginRight: '0px'}}> */}
+                {/* <Col>
                     <ButtonDropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                         <DropdownToggle className="signup-button m-t-10" id="btn-rounded"  caret>
                             {this.state.dropdownValue}
@@ -181,7 +182,7 @@ class CustomerSortBy extends Component {
                             <DropdownItem onClick={this.changeValue} value="rating">Shop By Rating</DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown>
-                </Col>
+                </Col> */}
                 {
                     this.renderSwitch(this.state)
                 }

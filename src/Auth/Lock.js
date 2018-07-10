@@ -12,14 +12,14 @@ class Lock extends Component {
       responseType: 'token id_token',
       scope: AUTH_CONFIG.scope,
       sso: false,
-      params: {scope: 'openid'},
+      params: { scope: 'openid' },
       redirect: false
     },
     theme: {
       primaryColor: '#F1A94E',
       title: "Grizzly Store",
       logo: 'https://i.imgur.com/WTynPTe.png'
-    }, 
+    },
     allowSignUp: false,
     languageDictionary: {
       emailInputPlaceholder: "something@youremail.com",
@@ -30,7 +30,8 @@ class Lock extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { loggedIn : false };
+
+    this.state = { loggedIn: false };
     this.onAuthenticated = this.onAuthenticated.bind(this);
 
     this.onAuthenticated();
@@ -42,7 +43,7 @@ class Lock extends Component {
       localStorage.setItem('access_token', authResult.accessToken);
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
-      
+
       this.setState({ loggedIn: true });
       this.props.fetchUserData();
 
@@ -50,40 +51,37 @@ class Lock extends Component {
     });
   }
 
-  componentDidMount() {
-    if ( !(/access_token|id_token|error/.test(this.props.location.hash)) ) {
+
+  openLockModal() {
+    if (!(/access_token|id_token|error/.test(this.props.location.hash))) {
       this.lock.show();
+      this.props.handleAuthModalToggle(false);
     }
   }
 
   render() {
-
-    return(
+    if(this.props.val) this.openLockModal();
+    return (
       !this.state.loggedIn ? (
         <div>
           <div id={AUTH_CONFIG.container}></div>
         </div>
-      ) : (
-        <Redirect to={{
-          pathname: '/',
-          state: { from: this.props.location }
-        }} />
-      ) 
-      )
+      ) : (<div>{console.log("this is working")}</div>)
+    )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-      user: state.user.user,
-      userIsLoading: state.userIsLoading
+    user: state.user.user,
+    userIsLoading: state.userIsLoading
   };
 };
 
-const mapDispatchToProps = (dispatch) => { 
+const mapDispatchToProps = (dispatch) => {
   return {
-      fetchUserData: ()=> dispatch(fetchUserByID())
-      
+    fetchUserData: () => dispatch(fetchUserByID())
+
   };
 };
 

@@ -7,6 +7,7 @@ import ProductViewCarusel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
+import Breadcrumb from '../Common/breadcrumb';
 import RateProduct from './RateProduct';
 import StarRatings from 'react-star-ratings';
 import { fetchRatings, addRating } from '../../actions/ratingActions';
@@ -17,7 +18,18 @@ class ProductSingle extends Component {
         super(props);
         this.loading = true;
 
+        this.returnToHome = this.returnToHome.bind(this);
+        this.returnToCat = this.returnToCat.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    returnToCat = () => {
+        this.props.history.push(`/category/${this.props.product.catName}/${this.props.product.catId}`)
+    }
+    returnToHome = (e) => {
+        console.log(this.props.product.name);
+        this.props.history.push("/");
     }
 
     componentDidMount() {
@@ -48,9 +60,16 @@ class ProductSingle extends Component {
 
     addToCartClick = () => {
         this.props.addToCart(this.props.product.id)
+
     }
 
-    calculateNewPrice(price, discount) {
+    buyToClick = () => {
+        this.props.addToCart(this.props.product.id);
+        this.props.history.push('/checkout');
+
+    }
+
+    calculateNewPrice = (price, discount) =>{
         return price - ((discount / 100) * price).toFixed(2);
     }
 
@@ -62,10 +81,12 @@ class ProductSingle extends Component {
     render() {
         const isLoading = (this.loading || !this.props.product) ?
             (
+               
                 <div className="loading-container-full-pre">
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
-            ) : (
+            ) : (<div>
+                <Breadcrumb returnToHome={this.returnToHome} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
                 <div className="container-fluid product-container">
                     <div className={"loading-container-full loaded" + (this.state && !this.loading ? this.state.loaded : "")}>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -90,6 +111,7 @@ class ProductSingle extends Component {
 
                         <Col md="4" sm="6" xs="12">
                             <div className="title">
+                            {console.log(this.props.product)}
                                 {this.props.product.name}
                                 {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
                             </div>
@@ -108,7 +130,7 @@ class ProductSingle extends Component {
                             <div className="price">AUD ${this.calculateNewPrice(this.props.product.price, this.props.product.discount)}</div>
                             {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
-                                <Button className="buy-button" id="btn-rounded">Buy Now</Button>
+                                <Button className="buy-button" id="btn-rounded" onClick={this.buyToClick}>Buy Now</Button>
                                 <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
                             </Row>
                         </Col>
@@ -126,6 +148,7 @@ class ProductSingle extends Component {
                         </Col>
                     </Row>
 
+                </div>
                 </div>
             );
 
