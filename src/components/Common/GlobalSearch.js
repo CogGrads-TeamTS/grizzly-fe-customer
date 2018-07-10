@@ -42,12 +42,10 @@ class GlobalSearch extends React.Component {
         _.map(this.props.results, (contents, service) => {
             if(service !== "products") return;
             _.map(contents, (element, i) => {
-                const isFirst = (i === 0)
                 this.options.push({
                     value: element.id,
                     label: element.name,
                     service,
-                    isFirst
                 })
             })
         })

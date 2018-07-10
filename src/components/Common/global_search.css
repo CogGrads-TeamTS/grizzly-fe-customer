@@ -13,6 +13,10 @@
     margin-top: -2px;
 }
 
+.Select-control:hover{
+    box-shadow:none !important;
+}
+
 .Select.is-open>.Select-control {
     border-radius: 0 !important;
     background-color: transparent !important;
