@@ -14,7 +14,7 @@ class Layout extends Component {
         this.size = 20;
         this.sort = "id,desc";
 
-        console.log(props.match);
+        //console.log(props.match);
         (props.match.params.id)?this.category=props.match.params.id:this.category="";
         (props.match.params.name)?this.brand=props.match.params.name:this.brand="";
         (props.match.params.rating)?this.rating=props.match.params.rating:this.rating="";
@@ -22,7 +22,7 @@ class Layout extends Component {
     }
 
     componentDidMount(){
-        console.log(this)
+       // console.log(this);
         this.props.fetchData(this.search, this.page, this.size, this.sort,this.category,this.brand,this.rating);
     }
 
