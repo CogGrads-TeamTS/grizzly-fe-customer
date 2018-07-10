@@ -1,7 +1,9 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 
-const API_URL = 'http://ts.ausgrads.academy:8765/products';
+import config from '../config';
+
+const API_URL = config.endpoints.product;
 
 const loadProductsSuccess = (data) => ({type: types.LOAD_PRODUCTS_SUCCESS, data});
 const loadProductsError = (error) => ({type: types.LOAD_PRODUCTS_ERROR, productsHasErrored:error});
