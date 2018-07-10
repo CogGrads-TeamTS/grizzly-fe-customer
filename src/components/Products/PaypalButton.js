@@ -81,6 +81,7 @@ class PaypalButton extends React.Component {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                 }
             })
             .then(function(res) {
@@ -91,15 +92,22 @@ class PaypalButton extends React.Component {
 
         const onAuthorize = (data, actions) =>{
             console.log(data);
+            var bodyFormData = new FormData();
+            bodyFormData.set('paymentID', data.paymentID);
+            bodyFormData.set('payerID', data.payerID);
             // 2. Make a request to your server
-            return actions.request.post(`${config.paypal.completeUrl}`, {
-                paymentID: data.paymentID,
-                payerID:   data.payerID
+            return axios.post(`${config.paypal.completeUrl}`, bodyFormData,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                }
             })
-                .then(function(res) {
-                // 3. Show the buyer a confirmation message.
-                    console.log(res);
-                });
+            .then(function(res) {
+                // order complete
+                // navigate to order history page
+                return res.data.id;
+            });
         }
 
         let paypal1={
