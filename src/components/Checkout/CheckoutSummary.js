@@ -46,7 +46,7 @@ class CheckoutSummary extends React.Component {
                         </p>
                     </Col>
                     <Col xs="2">
-                        <p className="text-info">${product.price * product.qty}</p>
+                        <p className="text-info">${product.totalPrice}</p>
                         <a className="button is-light is-small" onClick={() => this.props.removeCartItem(product.id)}>Remove</a>
                     </Col>
                     
