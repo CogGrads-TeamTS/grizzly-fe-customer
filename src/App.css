@@ -231,8 +231,7 @@ tbody {
 }
 
 .griz-logo {
-    width: 95%;
-    transition: margin-left 0.4s linear 0s;
+    width: 100%;
 }
 
 .griz-logo.logo-active {
@@ -1395,10 +1394,6 @@ input#search {
     line-height: 0.5;
 }
 
-img.griz-logo {
-    vertical-align: baseline;
-}
-
 /**
 SEARCH BAR TEST END
 **/
@@ -1421,8 +1416,7 @@ SEARCH BAR TEST END
 }
 
 .cat-div {
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding: 0 !important;
 }
 
 .cat-div:hover {
@@ -1434,8 +1428,10 @@ SEARCH BAR TEST END
     background: none;
     outline: none;
     cursor: pointer;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10%;
+    width: 100%;
+    height: 100%;
+    
 }
 
 .btn-primary-griz {
