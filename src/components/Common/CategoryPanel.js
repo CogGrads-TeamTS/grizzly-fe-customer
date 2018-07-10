@@ -28,6 +28,7 @@ class CategoryPanel extends Component{
             <Row className="category-row">
                 <Col md="12" className="category-col offset-md-1" >
                     <div className="cat-toolbar">
+                    <span className="cat-toolbar-subtitle">ALL CATEGORIES</span>
                         <div className="cat-toolbar-title">
                             <span>POPULAR CATEGORIES</span>
                         </div>
@@ -41,7 +42,7 @@ class CategoryPanel extends Component{
                             There are no categories to display.
                         </Col>
                     ) : (
-                        _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), (cat,i) => { 
+                        _.map(_.take(Object.values(this.props.categories), 5), (cat,i) => { 
                             
                             if(i === 0){
 
