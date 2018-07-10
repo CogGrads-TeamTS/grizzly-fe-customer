@@ -35,6 +35,7 @@ const ProductTile = (props) => {
                     {(props.product.discount > 0 ? <div className="discount">SAVE {props.product.discount}%</div> : null)}
                 </div>
                 <div className="star-cont">
+<<<<<<< HEAD
                     <StarRatings
                         rating={props.product.rating}
                         numberOfStars={5}
@@ -48,6 +49,21 @@ const ProductTile = (props) => {
             <Button color="primary" className="add-btn" onClick={addToCart}>ADD TO CART</Button>
         </div>
     );
+=======
+                <StarRatings 
+                                    rating={props.product.rating}
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension="20px"
+                                    starSpacing="2px"
+                                    starRatedColor='rgb(108, 116, 217)'
+                                    isSelectable={false}
+                                /></div>
+                                </Link>
+                <Button color="primary" className="add-btn btn-primary-griz" onClick={addToCart}>ADD TO CART</Button>
+            </div>
+  );
+>>>>>>> development
 };
 
 export default ProductTile;
