@@ -297,7 +297,7 @@ tbody {
     margin-top: 4%;
 }
 
-.navbar-button-generic:hover, .navbar-button-generic:focus  {
+.navbar-button-generic:hover, .navbar-button-generic:focus   {
     border-radius: 2px !important;
     background-color: rgba(255, 255, 255, 0) !important;
     color: #000 !important;
@@ -307,7 +307,11 @@ tbody {
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0) !important;
 }
 
-.login-button,
+.navbar-button-generic:active   {
+    outline:none !important;
+}
+
+/* .login-button,
 .signup-button:hover {
     color: #17a2b8 !important;
     border-radius: 4em !important;
@@ -320,7 +324,7 @@ tbody {
     color: #fff !important;
     background-color: #17a2b8 !important;
     border-color: #17a2b8 !important;
-}
+} */
 
 /*LOGIN SCREEN */
 

@@ -29,7 +29,7 @@ class CategoryPanel extends Component{
                             There are no categories to display.
                         </Col>
                     ) : (
-                        _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), (cat,i) => { 
+                        _.map(_.take(Object.values(this.props.categories), 5), (cat,i) => { 
                             
                             if(i === 0){
 
