@@ -107,14 +107,14 @@ class ProductSingle extends Component {
                             {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
                                 <PaypalButton
-                                client={CLIENT}
-                                env={ENV}
-                                commit={true}
-                                currency={'AUD'}
-                                total={this.props.product.price}
-                                onSuccess={onSuccess}
-                                onError={onError}
-                                onCancel={onCancel}
+                                    client={CLIENT}
+                                    env={ENV}
+                                    commit={true}
+                                    currency={'AUD'}
+                                    total={this.props.product.price}
+                                    onSuccess={onSuccess}
+                                    onError={onError}
+                                    onCancel={onCancel}
                                 />
                                 <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
                             </Row>

@@ -7,6 +7,7 @@ import history from './history';
 import Login from './Auth/Login';
 import Logout from './Auth/Logout';
 import Homepage from './components/Homepage/Homepage';
+import Checkout from './components/Checkout/Checkout';
 import PaypalConfirm from "./components/Products/PaypalConfirm";
 
 
@@ -20,6 +21,7 @@ const Routes = () => {
                 <Route path="/brand/:name" render={(props)=><Layout><CustomerSortByView {...props}/></Layout>} />
                 <Route path="/rating/:rating" render={(props)=><Layout><CustomerSortByView {...props}/></Layout>} />
                 <Route path="/login" render={(props)=><Layout><Login {...props}/></Layout>} />
+                <Route path="/checkout" render={(props)=><Layout><Checkout {...props}/></Layout>} />
                 <Route path="/checkout/confirm" component={PaypalConfirm} />
                 <Route path="/logout" component={Logout} />
             </Switch>
