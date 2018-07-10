@@ -134,17 +134,13 @@ class ProductSingle extends Component {
                                 <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
                             </Row>
                         </Col>
-                        <Col className="ratings-panel" md="4" sm="12">
-                            <span className="review-title">Customer Reviews</span>
-                            <ViewRatings ratings={this.props.ratings} />
-                            <RateProduct onSubmit={this.handleSubmit} productId={this.props.product.id} />
+
+                        <div class="featured-col offset-md-1 col-md-12"><div class="featured-toolbar"><div class="featured-toolbar-title"><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
+                        <Col className="buy-panel" md="12" sm="12" className="offset-md-1">
                             
-                        </Col>
-                        <Col className="buy-panel" md="3" sm="12">
-                            <div className="searched-title">People also searched for</div>
-                            <CardColumns style={{ columnCount: "2" }}>
+                            
                                 <ProductsSearched product={this.props.product} category={this.props.product.category} />
-                            </CardColumns>
+                            
                         </Col>
                     </Row>
 
