@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Container,Row,Col,Button } from 'reactstrap';
 import {productsFetchData} from '../../actions/productActions'
 import ProductTiles from '../Products/ProductTiles';
+import Breadcrumb from '../Common/breadcrumb';
 
 
 class CustomerSortByView extends Component {
@@ -25,17 +26,30 @@ class CustomerSortByView extends Component {
     }
 
     render() { 
+        let url = window.location.pathname;
+        let test = url.split("/");
+        let catName = test[2];
 
+        if(catName.includes("%20")) {
+            catName = catName.replace("%20", " ");
+            console.log(catName);
+        }
         return (
-            <Container fluid>
-                <Row>
+            <div>
+                <Breadcrumb returnToHome={this.returnToHome} catName={catName}/>
+                {/* // <Container fluid> */}
+                {/* <Row>
                     <Col md="2" sm="4" xs="12">
                         <Button outline id="btn-rounded" onClick={this.returnToHome} className="m-t-10 btn-block" color="info">Back</Button>
                     </Col>
-                </Row>
+                </Row> */}
+                {console.log(window.location.pathname)}
+                
                 {this.props.loading ? <p>Loading....</p> : <p></p>}
-                {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} /> : <p></p>}
-            </Container>
+                {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} catName={catName} returnToHome={this.returnToHome}/> : <p></p>}
+            {/* </Container> */}
+            
+            </div>
         );
     }
     returnToHome = () => {
