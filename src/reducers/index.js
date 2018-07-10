@@ -4,6 +4,7 @@ import { category, categoryHasErrored, categoryIsLoading } from './categoryReduc
 import { products, productsIsLoading } from './productReducer'
 import { user, userHasErrored, userIsLoading } from './userReducer'
 import {cart, cartHasErrored, cartIsLoading} from "./cartReducer"
+import {ratings, ratingsHasErrored, ratingsIsLoading} from "./ratingReducer";
 
 const rootReducer = combineReducers({
     form:formReducer, // Used for Redux Form
@@ -18,6 +19,9 @@ const rootReducer = combineReducers({
     cart: cart,
     cartHasErrored, cartHasErrored,
     cartIsLoading: cartIsLoading,
+    ratings: ratings,
+    ratingsHasErrored, ratingsHasErrored,
+    ratingsIsLoading: ratingsIsLoading
 });
 
 export default rootReducer;

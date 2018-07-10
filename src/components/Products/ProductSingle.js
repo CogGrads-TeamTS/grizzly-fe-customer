@@ -9,18 +9,21 @@ import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
 import RateProduct from './RateProduct';
 import StarRatings from 'react-star-ratings';
+import { fetchRatings, addRating } from '../../actions/ratingActions';
+import ViewRatings from '../../components/ViewRatings';
 
 class ProductSingle extends Component {
     constructor(props) {
         super(props);
         this.loading = true;
 
-        this.submitRating = this.submitRating.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);
+        this.props.fetchRatings(this.props.match.params.id);
         this.setState({ loaded: "" });
     }
 
@@ -51,8 +54,9 @@ class ProductSingle extends Component {
         return price - ((discount / 100) * price).toFixed(2);
     }
 
-    submitRating(e){
-        console.log('test');
+    handleSubmit = (payload) => {
+        console.log(this.props.product.id)
+        this.props.addRating(payload, this.props.product.id);
     }
 
     render() {
@@ -84,7 +88,7 @@ class ProductSingle extends Component {
                             </ImagesLoaded>
                         </Col>
 
-                        <Col md="5" sm="6" xs="12">
+                        <Col md="4" sm="6" xs="12">
                             <div className="title">
                                 {this.props.product.name}
                                 {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
@@ -108,15 +112,18 @@ class ProductSingle extends Component {
                                 <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
                             </Row>
                         </Col>
-
+                        <Col className="ratings-panel" md="4" sm="12">
+                            <span className="review-title">Customer Reviews</span>
+                            <ViewRatings ratings={this.props.ratings} />
+                            <RateProduct onSubmit={this.handleSubmit} productId={this.props.product.id} />
+                            
+                        </Col>
                         <Col className="buy-panel" md="3" sm="12">
                             <div className="searched-title">People also searched for</div>
                             <CardColumns style={{ columnCount: "2" }}>
                                 <ProductsSearched product={this.props.product} category={this.props.product.category} />
                             </CardColumns>
                         </Col>
-
-                        <RateProduct submitRating={this.submitRating}/>
                     </Row>
 
                 </div>
@@ -131,10 +138,11 @@ class ProductSingle extends Component {
     }
 }
 
-const MapStateToProps = (state) => {
+const MapStateToProps = (state) => {console.log(state)
     return {
         product: state.products.selected,
-        images: state.products.images
+        images: state.products.images,
+        ratings: state.ratings.ratings
     }
 }
 
@@ -143,6 +151,8 @@ const MapDispatchToProps = (dispatch) => {
         fetchData: (id) => dispatch(productFetchDataByID(id)),
         fetchImages: (id) => dispatch(productFetchImagesByID(id)),
         addToCart: (pid) => dispatch(addProductToCart(pid)),
+        fetchRatings: (pid) => dispatch(fetchRatings(pid)),
+        addRating: (payload, pid) => dispatch(addRating(payload, pid))
     }
 }
 export default connect(MapStateToProps, MapDispatchToProps)(ProductSingle);

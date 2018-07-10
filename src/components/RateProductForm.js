@@ -1,28 +1,28 @@
 
 
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, Form} from 'redux-form'
 import { Container, Row, Col,Button } from 'reactstrap';
 
 let RateProductForm = (props) => {
-
-    const { submitRating, pristine, reset, submitting } = props
+      console.log(props)
+    const { handleSubmit, pristine, reset, submitting } = props
 
     return (
         
-        <Col md="6">
-            <form onSubmit={submitRating} autoComplete="off">
+        <Col>
+            <form initialValues={{ id: "US" }} onSubmit={handleSubmit} autoComplete="off">
                 <div>
-                    <Field name="review" 
+                    <Field name="ratingDescription" 
                             component="textarea" 
                                 placeholder="Add Review" 
                                     rows={5} 
                                         className="review-textarea" />
                 </div>
-                                           
+  
                 <label>Select Rating</label>
                 <div>
-                    <Field name="rating" component="select" style={{width: "100px", height: "30px", marginBottom: "10px"}}>
+                    <Field name="rating" component="select" style={{wsidth: "100px", height: "30px", marginBottom: "10px"}}>
                         <option>Select</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -30,9 +30,8 @@ let RateProductForm = (props) => {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </Field>
-                
-                    
-                    <button type="submit" disabled={pristine || submitting} style={{float: "right"}}>Submit Review</button>
+
+                    <button type="submit" disabled={pristine || submitting } style={{float: "right"}}>Submit Review</button>
                     <button type="button" disabled={pristine || submitting} onClick={reset} style={{float: "right", marginRight: "10px"}}>Clear</button>
                 </div>
             </form>     
@@ -40,7 +39,8 @@ let RateProductForm = (props) => {
     )
 }
 
-export default reduxForm({
-    // a unique name for the form
+RateProductForm = reduxForm({
     form: 'ratingsForm'
-})(RateProductForm)
+  })(RateProductForm)
+
+export default RateProductForm;

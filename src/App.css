@@ -1410,3 +1410,26 @@ SEARCH BAR TEST END
 .review-textarea{
   width: 100%;
 }
+
+.ratings-panel{
+  border-left: 1px solid #2222;
+}
+
+.view-ratings{
+  margin: 20px 0 20px 0;
+}
+.view-ratings .star-ratings{
+  float: right;
+  margin-right: 100px;
+}
+
+.view-ratings-panel{
+  overflow-y: scroll;
+  max-height: 450px;
+  min-height: 300px;
+  margin-bottom: 30px;
+}
+
+.rating-description{
+  padding-top: 5px;
+}
