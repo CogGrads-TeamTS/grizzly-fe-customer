@@ -30,6 +30,7 @@ class Lock extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = { loggedIn: false };
     this.onAuthenticated = this.onAuthenticated.bind(this);
 
@@ -50,20 +51,22 @@ class Lock extends Component {
     });
   }
 
-  componentDidMount() {
+
+  openLockModal() {
     if (!(/access_token|id_token|error/.test(this.props.location.hash))) {
       this.lock.show();
+      this.props.handleAuthModalToggle(false);
     }
   }
 
   render() {
-
+    if(this.props.val) this.openLockModal();
     return (
       !this.state.loggedIn ? (
         <div>
           <div id={AUTH_CONFIG.container}></div>
         </div>
-      ) : (null)
+      ) : (<div>{console.log("this is working")}</div>)
     )
   }
 }
