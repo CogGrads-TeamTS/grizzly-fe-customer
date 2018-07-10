@@ -129,7 +129,7 @@ class CustomerSortBy extends Component {
                                 There are no categories to display.
                             </Col>
                         ) : (
-                            _.map(_.take(_.shuffle(Object.values(this.props.categories)),5), cat => {
+                            _.map(_.take(Object.values(this.props.categories),5), cat => {
                                 return (
                                     <Col className="cat-div" key={cat.id}>
                                         <CustomerSortByButton key={cat.id} object={cat} name={cat.name} load={this.loadProducts}/>
