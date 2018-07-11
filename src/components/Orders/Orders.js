@@ -1,9 +1,11 @@
 
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+
 import { fetchOrders } from '../../actions/orderActions';
 import OrderCard from "./OrderCard";
 import { Container, Col, Row } from 'reactstrap';
+import '../../App.css';
 
 class Orders extends Component {
     componentWillMount() {
@@ -12,12 +14,12 @@ class Orders extends Component {
     render() {
         return (
             <div>
-            <Container fluid>
-                <h1 className="lead">Your Orders</h1>
+            <Container>
+                <h1 className="lead order-heading">Your Orders</h1>
                 <Row>
                 {
                     this.props.orders.map(order => 
-                        <Col xs="12" sm="3" md="4" key={order.id}>
+                        <Col className="order-card" xs="12" sm="12" md="12" key={order.id}>
                             <OrderCard order={order} />
                         </Col>
                     )
