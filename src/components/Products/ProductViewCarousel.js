@@ -4,41 +4,42 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
 } from 'reactstrap';
-import noimage from '../../assets/griz-logo.png';
-import logo from '../../assets/griz-logo.png';
+import noimage from '../../assets/noimage.png';
 
 let items = [];
 
-const urladdition = "http://ts.ausgrads.academy/images/"
+const urladdition="http://ts.ausgrads.academy/images/"
+
+const sortImages = (images) => {
+  images.sort((x, y) => x.sort - y.sort);
+  return images;
+}
 
 
+// Build the slides for the caruosel using images parsed images
 const buildImages = (images) => {
-
-  items = [];
-
-
+  items = []; // Item array
   const size = images == null ? 0 : images.length;
   let i;
 
-  if (size == 0) {
+  // IF no images show default no-show image
+  if(size === 0){
     items.push({
       src: noimage,
-      captionText: "Stop throwing errors pls"
+      captionText: "Image Caption"
     })
   } else {
-
-    for (i = 0; i < size; i++) {
-
+    // Sort the images based on their sort values
+    images = sortImages(images);
+    // Arrange slides by order
+    for(i = 0; i < size; i++){
       items.push({
         src: urladdition + images[i].url,
-        captionText: "Stop throwing errors pls"
+        captionText: "Image Caption"
       })
     }
   }
-
-
 };
 
 
@@ -53,8 +54,8 @@ class ProductViewCarousel extends Component {
     this.onExited = this.onExited.bind(this);
   }
 
-  componentDidMount() {
-
+  componentDidMount(){
+    
   }
 
   onExiting() {
@@ -93,21 +94,20 @@ class ProductViewCarousel extends Component {
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
-        >
-          <div className="consistent-image-container">
-            <img src={item.src} alt={item.altText} />
-          </div>
+          key={item.src}>
+        <div className="carousel-item-img-contain">
+          <img src={item.src} alt={item.altText}/>
+        </div>
         </CarouselItem>
       );
     });
-
+    
     return (
       <Carousel
         activeIndex={activeIndex}
         next={this.next}
         previous={this.previous}
-        interval={30000}
+        interval={10000}
       >
         <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
         {slides}

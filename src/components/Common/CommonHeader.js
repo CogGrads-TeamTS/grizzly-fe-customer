@@ -106,10 +106,8 @@ class Header extends Component {
         const { cart } = this.props;
         return (
             <Navbar light expand="md">
-                <NavbarBrand className="navbar-brand-logo">
-                    <Link to="/">
-                        <img className={"griz-logo" + this.state.grizzlyClass} src={grizzlogo} />
-                    </Link>
+                <NavbarBrand href="/" className="navbar-brand-logo">
+                        <img className={"griz-logo" + this.state.grizzlyClass} onClick={this.props.push} src={grizzlogo} />
                 </NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
@@ -151,11 +149,9 @@ class Header extends Component {
                             <NavLink href="#">
                                 {
                                     !isAuthenticated() && (
-                                        <Link to="/login">
-                                            <div className="header-btn-container">
-                                                <Button className="navbar-button-generic">Signup</Button>
-                                            </div>
-                                        </Link>
+                                        <div className="header-btn-container">
+                                            <Button className="navbar-button-generic" onClick={() => this.handleAuthModalToggle(true)}>Sign Up</Button>
+                                        </div>
                                     )
                                 }
                             </NavLink>
