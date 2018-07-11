@@ -35,7 +35,7 @@ export function productsFetchData(search=SEARCH,pageNumber=FIRST_PAGE,size=DEFAU
                     throw Error(response.statusText);
                 }
                 dispatch(loadProductsLoading(false));
-                console.log(response.data);
+                
                 return response.data;
             })
             .then((data)=>dispatch(loadProductsSuccess(data)))

@@ -91,7 +91,7 @@ class PaypalButton extends React.Component {
         }
 
         const onAuthorize = (data, actions) =>{
-            console.log(data);
+           
             var bodyFormData = new FormData();
             bodyFormData.set('paymentID', data.paymentID);
             bodyFormData.set('payerID', data.payerID);

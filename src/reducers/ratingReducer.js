@@ -8,7 +8,7 @@ export function ratings(state = {}, action) {
                 ratings: action.data
             }
         case types.ADD_RATING_SUCCESS:
-        console.log(action.data)
+        
             return {
                 ...state,
                 ratings: [action.data, ...state.ratings]

@@ -31,7 +31,7 @@ class CheckoutSummary extends React.Component {
 
     render() {
         const { cart } = this.props;
-        console.log(cart);
+       
         if (cart && cart.items.length > 0) {
             const qtyChanged = _.debounce((pid,qty) => { this.updateQty(pid,qty) }, 500);
             const products = cart.items.map(product =>
@@ -103,7 +103,7 @@ class CheckoutSummary extends React.Component {
         return (
             <Card style={{padding:"20px",margin: "25px"}}>
                 <CardTitle>
-                    <h1 class="display-4">Your cart is empty</h1>
+                    <h1 className="display-4">Your cart is empty</h1>
                 </CardTitle>
             </Card>
         )

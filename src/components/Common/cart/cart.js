@@ -31,7 +31,7 @@ const CartItem = ({ product, deleteCartItem }) => {
 export default class Cart extends React.PureComponent {
     render() {
         const { cart, deleteCartItem } = this.props;
-        console.log(cart);
+        
         if (cart && cart.items.length > 0) {
             let products = cart.items.map(product =>
                 <CartItem key={product.id} product={product} deleteCartItem={deleteCartItem}/>
@@ -39,7 +39,7 @@ export default class Cart extends React.PureComponent {
 
             return (
                 <div className="mini-cart">
-                    <p class="lead">Items in your cart</p>
+                    <p className="lead">Items in your cart</p>
                     {products}
                     <hr className="separator" />
                     <div className="columns is-mobile is-gapless">
@@ -57,7 +57,7 @@ export default class Cart extends React.PureComponent {
             )
         } else {
             return (
-                <div className="mini-cart"><p class="lead">There are no items in your cart</p></div>
+                <div className="mini-cart"><p className="lead">There are no items in your cart</p></div>
             )
         }
     }

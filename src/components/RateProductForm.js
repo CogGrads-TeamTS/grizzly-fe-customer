@@ -5,13 +5,13 @@ import { Field, reduxForm, Form} from 'redux-form'
 import { Container, Row, Col,Button } from 'reactstrap';
 
 let RateProductForm = (props) => {
-      console.log(props)
+    
     const { handleSubmit, pristine, reset, submitting } = props
 
     return (
         
         <Col style={{maxWidth: "80%"}}>
-            <form initialValues={{ id: "US" }} onSubmit={handleSubmit} autoComplete="off">
+            <form onSubmit={handleSubmit} autoComplete="off">
                 <div>
                     <Field name="ratingDescription" 
                             component="textarea" 

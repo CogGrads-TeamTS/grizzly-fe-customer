@@ -28,7 +28,7 @@ class ProductSingle extends Component {
         this.props.history.push(`/category/${this.props.product.catName}/${this.props.product.catId}`)
     }
     returnToHome = (e) => {
-        console.log(this.props.product.name);
+       
         this.props.history.push("/");
     }
     returnToAllCat = () => {
@@ -77,7 +77,7 @@ class ProductSingle extends Component {
     }
 
     handleSubmit = (payload) => {
-        console.log(this.props.product.id)
+       
         this.props.addRating(payload, this.props.product.id);
     }
 
@@ -114,7 +114,7 @@ class ProductSingle extends Component {
 
                         <Col md="4" sm="6" xs="12">
                             <div className="title">
-                            {console.log(this.props.product)}
+                           
                                 {this.props.product.name}
                                 {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
                             </div>
@@ -147,7 +147,7 @@ class ProductSingle extends Component {
                             
                         </Col>
 
-                        <div class="featured-col offset-md-1 col-md-12" style={{marginTop: "25px"}}><div class="featured-toolbar"><div class="featured-toolbar-title"><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
+                        <div className="featured-col offset-md-1 col-md-12" style={{marginTop: "25px"}}><div className="featured-toolbar"><div className="featured-toolbar-title"><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
                         <Col className="buy-panel" md="12" sm="12" className="offset-md-1" style={{marginBottom: "50px"}}>
                                 <ProductsSearched product={this.props.product} category={this.props.product.category} />
                         </Col>
@@ -166,7 +166,7 @@ class ProductSingle extends Component {
     }
 }
 
-const MapStateToProps = (state) => {console.log(state)
+const MapStateToProps = (state) => {
     return {
         product: state.products.selected,
         images: state.products.images,

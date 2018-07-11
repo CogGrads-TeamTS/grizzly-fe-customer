@@ -6,7 +6,7 @@ import ProductTiles from '../Products/ProductTiles';
 
 class FeaturedProducts extends Component {
     render() {
-        console.log(this.props.products)
+      
         let ratedItems = [];
 
         // Build the rated product list
@@ -15,7 +15,7 @@ class FeaturedProducts extends Component {
                 return ratedItems;
             }
 
-            console.log(this.props.products)
+         
             ratedItems = this.props.products.sort((a, b) => {
                 return b.rating - a.rating;
             }).slice(0,5)

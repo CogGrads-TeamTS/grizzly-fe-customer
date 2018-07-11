@@ -10,7 +10,7 @@ import ProductTile from '../Products/ProductTile';
 class ProductsSearched extends Component {
 
     constructor(props) {
-        console.log(props);
+        
         super(props);
         this.search = "";
         this.page = 0;
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => { //console.log(dispatch);
+const mapDispatchToProps = (dispatch) => { 
     return {
         fetchData: (search, page, size, sort, catId) => dispatch(productsFetchData(search, page, size, sort, catId))
     };

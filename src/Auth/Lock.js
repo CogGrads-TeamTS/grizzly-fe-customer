@@ -66,7 +66,7 @@ class Lock extends Component {
         <div>
           <div id={AUTH_CONFIG.container}></div>
         </div>
-      ) : (<div>{console.log("this is working")}</div>)
+      ) : (<div></div>)
     )
   }
 }
