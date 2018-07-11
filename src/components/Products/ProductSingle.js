@@ -28,11 +28,7 @@ class ProductSingle extends Component {
         this.props.history.push(`/category/${this.props.product.catName}/${this.props.product.catId}`)
     }
     returnToHome = (e) => {
-       
         this.props.history.push("/");
-    }
-    returnToAllCat = () => {
-        this.props.history.push("/categories");
     }
 
     componentDidMount() {
@@ -77,7 +73,7 @@ class ProductSingle extends Component {
     }
 
     handleSubmit = (payload) => {
-       
+        console.log(this.props.product.id)
         this.props.addRating(payload, this.props.product.id);
     }
 
@@ -89,7 +85,7 @@ class ProductSingle extends Component {
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
             ) : (<div>
-                <Breadcrumb returnToHome={this.returnToHome}  returnToAllCat={this.returnToAllCat} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
+                <Breadcrumb returnToHome={this.returnToHome} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
                 <div className="container-fluid product-container">
                     <div className={"loading-container-full loaded" + (this.state && !this.loading ? this.state.loaded : "")}>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -114,7 +110,7 @@ class ProductSingle extends Component {
 
                         <Col md="4" sm="6" xs="12">
                             <div className="title">
-                           
+                            {console.log(this.props.product)}
                                 {this.props.product.name}
                                 {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
                             </div>
@@ -147,7 +143,7 @@ class ProductSingle extends Component {
                             
                         </Col>
 
-                        <div className="featured-col offset-md-1 col-md-12" style={{marginTop: "25px"}}><div className="featured-toolbar"><div className="featured-toolbar-title"><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
+                        <div class="featured-col offset-md-1 col-md-12" style={{marginTop: "15px"}}><div class="featured-toolbar"><div class="featured-toolbar-title" style={{width: "70.5%"}}><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
                         <Col className="buy-panel" md="12" sm="12" className="offset-md-1" style={{marginBottom: "50px"}}>
                                 <ProductsSearched product={this.props.product} category={this.props.product.category} />
                         </Col>
@@ -166,12 +162,12 @@ class ProductSingle extends Component {
     }
 }
 
-const MapStateToProps = (state) => {
+const MapStateToProps = (state) => {console.log(state)
     return {
         product: state.products.selected,
         images: state.products.images,
         ratings: state.ratings.ratings,
-        user: state.user
+        user: state,
     }
 }
 

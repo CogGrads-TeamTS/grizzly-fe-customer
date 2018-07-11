@@ -38,7 +38,7 @@ class ProductsSearched extends Component {
 
                 prod_count++;
                 return (
-                    <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px', borderRight: "1px solid #eee"}} key={prod.id}>
+                    <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px', borderRight: "1px solid #eee", display: "inline-block"}} key={prod.id}>
                     <Link to={{ pathname: `/product/${prod.id}` }} >
                         
                         <ProductTile product={prod} 
