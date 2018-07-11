@@ -28,7 +28,7 @@ class CategoryPanel extends Component{
             <Row className="category-row">
                 <Col md="12" className="category-col offset-md-1" >
                     <div className="cat-toolbar">
-                    <span className="cat-toolbar-subtitle">ALL CATEGORIES</span>
+                    <a href='/categories' className="cat-toolbar-subtitle">ALL CATEGORIES</a>
                         <div className="cat-toolbar-title">
                             <span>POPULAR CATEGORIES</span>
                         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Breadcrumb = (props) => {
-    const {returnToHome, returnToCat, catName, prodName} = props;
+    const {returnToHome, returnToCat,returnToAllCat,catName, prodName} = props;
     return (
         <div className="breadcrumb-nav">
             <div className="breadcrumb-body">
@@ -10,6 +10,9 @@ const Breadcrumb = (props) => {
                         <ul>
                             <li>
                                 <a onClick={returnToHome}>Home</a>
+                            </li>
+                            <li>
+                                <a onClick={returnToAllCat}>Categories</a>
                             </li>
                             <li>
                                 <a onClick={returnToCat}>{catName}</a>
