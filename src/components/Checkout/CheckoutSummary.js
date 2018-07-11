@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import CartItem from '../Common/cart/cart';
 import QtyInput from '../Common/cart/QtyInput'
 
-import { fetchCart, removeCartItem, updateCartItemQty, toggleCart } from '../../actions/cartActions';
+import { fetchCart, removeCartItem, updateCartItemQty, toggleCart, clearCartItems } from '../../actions/cartActions';
 import PaypalButton from '../Products/PaypalButton';
 import config from '../../config';
 
@@ -45,7 +45,8 @@ class CheckoutSummary extends React.Component {
     }
 
     closeCompleted() {
-        this.setState({ showComplete: false })
+        this.props.clearCart();
+        this.setState({ showComplete: false });
         this.props.history.replace("/orders");
     }
 
@@ -163,7 +164,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateCartItemQty: (pid,qty) => dispatch(updateCartItemQty(pid,qty)),
         removeCartItem: (pid) => dispatch(removeCartItem(pid)),
-        toggleCart: (isOpen) => dispatch(toggleCart(isOpen))
+        toggleCart: (isOpen) => dispatch(toggleCart(isOpen)),
+        clearCart: () => dispatch(clearCartItems())
     };
 };
 
