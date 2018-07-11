@@ -88,7 +88,7 @@ class CustomerSortBy extends Component {
                     (_.isEmpty(this.props.ratings) ?
                         (
                             <Col>
-                                There are no ratings to display.
+                                There are no reviews to display.
                             </Col>
                         ) : (
                             _.map(_.take(_.shuffle(this.props.ratings),5), rating => {

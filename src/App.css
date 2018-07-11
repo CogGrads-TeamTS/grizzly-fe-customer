@@ -1426,8 +1426,8 @@ SEARCH BAR TEST END
 
 .view-ratings-panel{
   overflow-y: scroll;
-  max-height: 450px;
-  min-height: 300px;
+  max-height: 270px;
+  /* min-height: 180px; */
   margin-bottom: 30px;
 }
 

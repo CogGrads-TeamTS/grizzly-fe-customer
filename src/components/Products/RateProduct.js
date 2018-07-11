@@ -10,9 +10,10 @@ const RateProduct = (props) => {
             <Row>
                 {
                     !isAuthenticated() && (
-                        <Link to="/login">
-                            <Button>Log in to leave a review</Button>
-                        </Link>
+                        <Col><span>Please login to post a review</span></Col>
+                        // <Link to="/login">
+                        //     <Button>Log in to leave a review</Button>
+                        // </Link>
                     )
                 }
                

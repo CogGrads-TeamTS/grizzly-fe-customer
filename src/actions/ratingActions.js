@@ -1,11 +1,12 @@
 import * as types from './actionTypes';
 import axios from 'axios';
+import {reset} from 'redux-form';
 
 function authHeader() {
     return { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
 }
-// const API_URL = 'http://ts.ausgrads.academy:8765/products/rating';
-const API_URL = 'http://localhost:5555/rating';
+const API_URL = 'http://ts.ausgrads.academy:8765/products/rating';
+// const API_URL = 'http://localhost:5555/rating';
 
 const loadRatingSuccess = (data) => ({ type: types.LOAD_RATING_SUCCESS, data });
 const loadRatingError = (error) => ({ type: types.LOAD_RATING_ERROR, ratingHasErrored: error });
@@ -59,7 +60,8 @@ export function addRating(payload, pid) {
                 return response.data;
             })
             .then((data) => {
-                dispatch(addRatingSuccess(payload))
+                dispatch(addRatingSuccess(data))
+                dispatch(reset('ratingsForm'));
             })
             .catch((error) => {
                 dispatch(addRatingError(error))

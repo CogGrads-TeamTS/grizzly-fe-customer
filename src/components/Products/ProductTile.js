@@ -15,6 +15,9 @@ const ProductTile = (props) => {
     const addToCart = () => {
         props.addToCart(props.product.id);
     }
+    
+    const display = !props.display ? "" : props.display;
+    
     return (
 
         <div>
@@ -34,18 +37,19 @@ const ProductTile = (props) => {
                     <div className="price">${props.product.price}</div>
                     {(props.product.discount > 0 ? <div className="discount">SAVE {props.product.discount}%</div> : null)}
                 </div>
-                <div className="star-cont">
-                <StarRatings 
-                                    rating={props.product.rating}
-                                    numberOfStars={5}
-                                    name='rating'
-                                    starDimension="20px"
-                                    starSpacing="2px"
-                                    starRatedColor='rgb(108, 116, 217)'
-                                    isSelectable={false}
-                                /></div>
-                                </Link>
-                <Button color="primary" className="add-btn btn-primary-griz" onClick={addToCart}>ADD TO CART</Button>
+                <div className="star-cont" style={{display: `${display}`}}>
+                    <StarRatings 
+                        rating={props.product.rating}
+                        numberOfStars={5}
+                        name='rating'
+                        starDimension="20px"
+                        starSpacing="2px"
+                        starRatedColor='rgb(108, 116, 217)'
+                        isSelectable={false}
+                    /></div>
+                </Link>
+                
+                <Button color="primary" className="add-btn btn-primary-griz" style={{display: `${display}`}} onClick={addToCart}>ADD TO CART</Button>
             </div>
   );
 };

@@ -130,17 +130,23 @@ class ProductSingle extends Component {
                             <div className="price">AUD ${this.calculateNewPrice(this.props.product.price, this.props.product.discount)}</div>
                             {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
-                                <Button className="buy-button" id="btn-rounded" onClick={this.buyToClick}>Buy Now</Button>
-                                <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
+                                <Col md="4" style={{display: "inherit"}}>
+                                    <Button className="navbar-button-generic btn btn-secondary"  onClick={this.buyToClick}>Buy Now</Button>
+                                    <Button className="navbar-button-generic btn btn-secondary"  style={{marginLeft: "10px"}} onClick={this.addToCartClick}>Add to Cart</Button>
+                                </Col>
                             </Row>
                         </Col>
 
-                        <div class="featured-col offset-md-1 col-md-12"><div class="featured-toolbar"><div class="featured-toolbar-title"><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
-                        <Col className="buy-panel" md="12" sm="12" className="offset-md-1">
+                        <Col className="ratings-panel" md="4" sm="12">
+                            <span className="review-title">Customer Reviews</span>
+                            <ViewRatings ratings={this.props.ratings} />
+                            <RateProduct onSubmit={this.handleSubmit} productId={this.props.product.id} />
                             
-                            
+                        </Col>
+
+                        <div class="featured-col offset-md-1 col-md-12" style={{marginTop: "25px"}}><div class="featured-toolbar"><div class="featured-toolbar-title"><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
+                        <Col className="buy-panel" md="12" sm="12" className="offset-md-1" style={{marginBottom: "50px"}}>
                                 <ProductsSearched product={this.props.product} category={this.props.product.category} />
-                            
                         </Col>
                     </Row>
 
@@ -161,7 +167,8 @@ const MapStateToProps = (state) => {console.log(state)
     return {
         product: state.products.selected,
         images: state.products.images,
-        ratings: state.ratings.ratings
+        ratings: state.ratings.ratings,
+        user: state.user
     }
 }
 

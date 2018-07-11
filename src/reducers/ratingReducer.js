@@ -1,6 +1,6 @@
 import * as types from '../actions/actionTypes';
 
-export function ratings(state = {}, action) { console.log(action.data)
+export function ratings(state = {}, action) { 
     switch (action.type) {
         case types.LOAD_RATING_SUCCESS:
             return { 
@@ -8,9 +8,10 @@ export function ratings(state = {}, action) { console.log(action.data)
                 ratings: action.data
             }
         case types.ADD_RATING_SUCCESS:
+        console.log(action.data)
             return {
                 ...state,
-                rating: action.data
+                ratings: [action.data, ...state.ratings]
             }
 
         default:

@@ -38,16 +38,17 @@ class ProductsSearched extends Component {
 
                 prod_count++;
                 return (
-                    <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px'}} key={prod.id}>
+                    <Col xs="12" sm="6" md="4" lg="3" xl="2" style={{'padding': '0px', borderRight: "1px solid #eee"}} key={prod.id}>
                     <Link to={{ pathname: `/product/${prod.id}` }} >
                         
                         <ProductTile product={prod} 
-                                                                badge={"Product"} 
-                                                                    cardClass="hover" 
-                                                                        badgeColor={"primary"} 
-                                                                            text={prod.name} 
-                                                                                imageUrl={prod.images[0].url}
-                                                                                    addToCart={this.props.addToCart}/>
+                            badge={"Product"} 
+                                cardClass="hover" 
+                                    badgeColor={"primary"} 
+                                        text={prod.name} 
+                                            imageUrl={prod.images[0].url}
+                                                addToCart={this.props.addToCart}
+                                                display={"none"}/>
                     </Link>
                     </Col>
                 )

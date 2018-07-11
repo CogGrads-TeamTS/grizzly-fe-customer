@@ -10,7 +10,7 @@ let RateProductForm = (props) => {
 
     return (
         
-        <Col>
+        <Col style={{maxWidth: "80%"}}>
             <form initialValues={{ id: "US" }} onSubmit={handleSubmit} autoComplete="off">
                 <div>
                     <Field name="ratingDescription" 
