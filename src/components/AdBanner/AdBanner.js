@@ -21,7 +21,7 @@ class AdBanner extends React.Component {
         <div className="advert watch">
           <h1>All watches 20% off!</h1>
           <p>Including major brands</p>
-          <Link to="/category/Watches/34">
+          <Link to="/category/Watches/46">
             <Button id="btn-rounded" color="warning">Click here for all watches</Button>
           </Link>
         </div>
