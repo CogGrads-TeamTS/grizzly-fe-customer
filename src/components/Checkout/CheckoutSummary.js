@@ -2,14 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card, CardTitle, CardImg, CardFooter, Fade, CardBody, Badge, UncontrolledTooltip, Row, Col  } from 'reactstrap';
 import _ from 'lodash';
+import { withRouter } from 'react-router-dom';
 import CartItem from '../Common/cart/cart';
 import QtyInput from '../Common/cart/QtyInput'
 
-import { fetchCart, removeCartItem, updateCartItemQty, toggleCart } from '../../actions/cartActions';
+import { fetchCart, removeCartItem, updateCartItemQty, toggleCart, clearCartItems } from '../../actions/cartActions';
 import PaypalButton from '../Products/PaypalButton';
 import config from '../../config';
 
 import {getFormValues, getFormSyncErrors} from 'redux-form';
+
+import SweetAlert from 'sweetalert2-react';
 
 const imageUrl = 'http://ts.ausgrads.academy/images/';
 
@@ -19,6 +22,33 @@ const CLIENT = {
 const ENV = 'sandbox';
 
 class CheckoutSummary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { showComplete: false };
+    }
+
+    componentDidMount() {
+        window.addEventListener('popstate', () => {
+            this.setState({ showComplete: false })
+        });
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener('popstate', () => {
+            this.setState({ showComplete: false })
+        });
+    }
+
+    completed(order) {
+        console.log(order);
+        this.setState({ showComplete: true })
+    }
+
+    closeCompleted() {
+        this.props.clearCart();
+        this.setState({ showComplete: false });
+        this.props.history.replace("/orders");
+    }
 
     componentWillMount() {
         // close the cart 
@@ -53,6 +83,16 @@ class CheckoutSummary extends React.Component {
                 </Row>
             );
             return (
+                <div>
+                <SweetAlert
+                    show={this.state.showComplete}
+                    title="Checkout Complete"
+                    text="Payment was processed successfully."
+                    type="success"
+                    onConfirm={() => {
+                        this.closeCompleted();
+                    }}
+                />
                 <Card style={{padding:"20px",margin: "25px"}}>
                     <CardTitle><h1 className="display-4">Order Summary</h1></CardTitle>
                     <CardBody>
@@ -93,11 +133,13 @@ class CheckoutSummary extends React.Component {
                                 commit={true}
                                 currency={'AUD'}
                                 total={this.props.cart.totalPrice}
+                                complete={this.completed.bind(this)}
                                 />
                             }
                         </Row>
                     </CardBody>
                 </Card>
+                </div>
             )
         } 
         return (
@@ -122,10 +164,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateCartItemQty: (pid,qty) => dispatch(updateCartItemQty(pid,qty)),
         removeCartItem: (pid) => dispatch(removeCartItem(pid)),
-        toggleCart: (isOpen) => dispatch(toggleCart(isOpen))
+        toggleCart: (isOpen) => dispatch(toggleCart(isOpen)),
+        clearCart: () => dispatch(clearCartItems())
     };
 };
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutSummary);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CheckoutSummary));

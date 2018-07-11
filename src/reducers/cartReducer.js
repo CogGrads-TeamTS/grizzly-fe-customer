@@ -7,6 +7,12 @@ export function cart(state = {cartIsActive: false}, action) {
                 ...state,
                 cart: action.data
             }
+        case types.CLEAR_CART_SUCCESS:
+            return {
+                ...state,
+                cart: action.data,
+                cartIsActive: false
+            }
         case types.ADD_CART_ITEM_SUCCESS:
             return {
                 ...state,

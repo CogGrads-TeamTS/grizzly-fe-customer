@@ -102,6 +102,24 @@ export function updateCartItemQty(pid, qty) {
     }
 }
 
+const clearCartSuccess = (data) => ({ type: types.CLEAR_CART_SUCCESS, data });
+export function clearCartItems() {
+    const url = `${API_URL}`;
+    return function(dispatch) {
+        const request = axios(url, {
+            method: "delete",
+            withCredentials: true
+        });
+
+        request.then((response) => {
+            if (!response.status === 200) {
+                throw Error(response.statusText);
+            }
+            dispatch(clearCartSuccess(response.data))
+        })
+    }
+}
+
 const removeCartItemSuccess = (data) => ({ type: types.REMOVE_CART_ITEM_SUCCESS, data });
 const removeCartItemError = (error) => ({ type: types.REMOVE_CART_ITEM_ERROR, cartHasErrored: error });
 const removeCartItemLoading = (loading) => ({ type: types.LOAD_CART_LOADING, cartIsLoading: loading });
