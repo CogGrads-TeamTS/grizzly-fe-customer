@@ -39,7 +39,7 @@ class Checkout extends Component {
                 <Row>
                     <Col sm="12" md="6">
                         <Card style={{padding:"20px", margin: "25px"}}>
-                            <h1 class="display-4">Checkout Details</h1>
+                            <h1 className="display-4">Checkout Details</h1>
                             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                                 <FormGroup>
                                     <Field type="email" label="Email" name="email" component={this.renderField} />
