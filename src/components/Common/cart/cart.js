@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../../assets/griz-head.png'
 
+import isAuthenticated from '../../../Auth/isAuthenticated'
+
 
 const CartItem = ({ product, deleteCartItem }) => {
     const urlpath = `/product/${product.id}`;
@@ -48,7 +50,9 @@ export default class Cart extends React.PureComponent {
                         </div>
                     </div>
                     {/* <NavLink className="button is-primary is-fullwidth has-text-centered" style={{ textTransform: 'uppercase' }} to="/checkout" onClick={cartToggle}>{text.proceedToCheckout}</NavLink> */}
+                    
                     <NavLink className="button is-primary is-fullwidth has-text-centered" style={{ textTransform: 'uppercase' }} to="/checkout">GO TO CHECKOUT</NavLink>
+                    
                 </div>
             )
         } else {

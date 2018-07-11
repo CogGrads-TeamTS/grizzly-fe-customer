@@ -25,6 +25,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-select": "^1.2.1",
     "react-slick": "^0.23.1",
     "react-star-ratings": "^2.3.0",
     "react-textfit": "^1.1.0",

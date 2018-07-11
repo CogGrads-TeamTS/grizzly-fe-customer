@@ -31,6 +31,9 @@ class ProductSingle extends Component {
         console.log(this.props.product.name);
         this.props.history.push("/");
     }
+    returnToAllCat = () => {
+        this.props.history.push("/categories");
+    }
 
     componentDidMount() {
         this.props.fetchData(this.props.match.params.id);
@@ -86,7 +89,7 @@ class ProductSingle extends Component {
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
             ) : (<div>
-                <Breadcrumb returnToHome={this.returnToHome} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
+                <Breadcrumb returnToHome={this.returnToHome}  returnToAllCat={this.returnToAllCat} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
                 <div className="container-fluid product-container">
                     <div className={"loading-container-full loaded" + (this.state && !this.loading ? this.state.loaded : "")}>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>

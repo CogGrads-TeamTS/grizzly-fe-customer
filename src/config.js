@@ -12,6 +12,7 @@ const dev = {
         category: 'http://localhost:3333',
         product: 'http://localhost:5555',
         user: 'http://localhost:6666',
+        order: 'http://localhost:5555/orders',
         images: ''
     }
 }
@@ -30,6 +31,7 @@ const devprod = {
         category: 'http://ts.ausgrads.academy:8765/categories',
         product: 'http://ts.ausgrads.academy:8765/products',
         user: 'http://ts.ausgrads.academy:8765/user',
+        order: 'http://ts.ausgrads.academy:8765/products/orders',
         images: ''
     }
 }
@@ -48,6 +50,7 @@ const prod = {
         category: 'http://ts.ausgrads.academy:8765/categories',
         product: 'http://ts.ausgrads.academy:8765/products',
         user: 'http://ts.ausgrads.academy:8765/user',
+        order: 'http://ts.ausgrads.academy:8765/products/orders',
         images: ''
     }
 }

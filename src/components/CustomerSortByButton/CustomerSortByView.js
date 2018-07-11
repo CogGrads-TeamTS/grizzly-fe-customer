@@ -34,7 +34,7 @@ class CustomerSortByView extends Component {
         }
         return (
             <div>
-                <Breadcrumb returnToHome={this.returnToHome} catName={catName}/>
+                <Breadcrumb returnToHome={this.returnToHome} returnToAllCat={this.returnToAllCat} catName={catName}/>
                 {/* // <Container fluid> */}
                 {/* <Row>
                     <Col md="2" sm="4" xs="12">
@@ -52,6 +52,9 @@ class CustomerSortByView extends Component {
     }
     returnToHome = () => {
         this.props.history.push("/");
+    }
+    returnToAllCat = () => {
+        this.props.history.push("/categories");
     }
 
 }
