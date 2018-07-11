@@ -43,6 +43,7 @@ class ProductSingle extends Component {
         if (this.props.match.params.id !== prevProps.match.params.id) {
             this.props.fetchData(this.props.match.params.id);
             this.props.fetchImages(this.props.match.params.id);
+            this.props.fetchRatings(this.props.match.params.id);
         } else this.loading = false;
 
         if (JSON.stringify(this.props.images) !== JSON.stringify(prevProps.images)) {
