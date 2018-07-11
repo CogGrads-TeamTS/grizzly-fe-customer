@@ -126,6 +126,17 @@ class Header extends Component {
                             </div>
                         </NavItem>
                         <NavItem>
+                            <NavLink href="/orders">
+                                {
+                                    isAuthenticated() && (
+                                        <div className="header-btn-container">
+                                            <Button className="navbar-button-generic">Orders</Button>
+                                        </div>
+                                    )
+                                }
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink href="#">
                                 {
                                     !isAuthenticated() && (
