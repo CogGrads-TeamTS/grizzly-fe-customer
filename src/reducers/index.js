@@ -5,6 +5,7 @@ import { products, productsIsLoading } from './productReducer'
 import { user, userHasErrored, userIsLoading } from './userReducer'
 import {cart, cartHasErrored, cartIsLoading} from "./cartReducer"
 import {global, globalHasErrored,globalIsLoading} from "./globalReducer";
+import { orders } from './orderReducer';
 
 const rootReducer = combineReducers({
     form:formReducer, // Used for Redux Form
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     cartIsLoading: cartIsLoading,
     global: global,
     globalHasErrored:globalHasErrored,
-    globalIsLoading:globalIsLoading
+    globalIsLoading:globalIsLoading,
+    orders: orders
 });
 
 export default rootReducer;
