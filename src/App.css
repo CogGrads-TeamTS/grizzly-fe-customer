@@ -1161,6 +1161,57 @@ button {
  * Cart End CSS
 **/
 
+/* Order History START */
+.order-card {
+    margin-bottom: 20px;
+    padding-bottom: 0;
+}
+
+.order-heading {
+    font-size: 0.8em;
+    text-align: center;
+    padding: 1em;
+    margin-top: 1em;
+    background-color: #2d3436;
+    color: white;
+    text-transform: uppercase;
+}
+
+.order-title {
+    background-color: #2d3436;
+    opacity: 0.5;
+    color: white;
+    padding: 1em;
+    padding-bottom: 0;
+}
+
+.order-status {
+    margin-left: 20px;
+}
+
+.order-date {
+    float: right;
+    font-size: 0.8em;
+}
+
+.inline {
+    display:inline-block;
+}
+
+.order-item-tl p {
+    margin: 0;
+}
+
+.total {
+    float: right;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Order History END */
+
+
+
 /*Snowflakes*/
 
 /* .flakes {
