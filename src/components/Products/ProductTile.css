@@ -15,6 +15,7 @@
     text-decoration: none;
     font-weight: 300;
     margin-top: 15px;
+    height: 25px;
 }
 
 .props-text:hover{
