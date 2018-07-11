@@ -61,7 +61,7 @@ class CheckoutSummary extends React.Component {
 
     render() {
         const { cart } = this.props;
-        console.log(cart);
+       
         if (cart && cart.items.length > 0) {
             const qtyChanged = _.debounce((pid,qty) => { this.updateQty(pid,qty) }, 500);
             const products = cart.items.map(product =>

@@ -28,9 +28,6 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-
-        console.log(props.location)
-
         this.state = {
             isOpen: false,
             cartIsActive: false,

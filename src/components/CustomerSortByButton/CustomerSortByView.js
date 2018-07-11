@@ -30,7 +30,7 @@ class CustomerSortByView extends Component {
 
         if(catName.includes("%20")) {
             catName = catName.replace("%20", " ");
-            console.log(catName);
+           
         }
         return (
             <div>
@@ -41,7 +41,7 @@ class CustomerSortByView extends Component {
                         <Button outline id="btn-rounded" onClick={this.returnToHome} className="m-t-10 btn-block" color="info">Back</Button>
                     </Col>
                 </Row> */}
-                {console.log(window.location.pathname)}
+             
                 
                 {this.props.loading ? <p>Loading....</p> : <p></p>}
                 {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} catName={catName} returnToHome={this.returnToHome}/> : <p></p>}

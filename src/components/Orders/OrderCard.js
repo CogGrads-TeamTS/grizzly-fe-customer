@@ -23,7 +23,7 @@ const OrderCard = (props) => {
         <div>
             <Card style={{'padding': '15px'}}>
                 <CardTitle>
-                    <p class="lead">Order #{props.order.id}</p>
+                    <p className="lead">Order #{props.order.id}</p>
                 </CardTitle>
                 <CardBody>
                     {products}

@@ -27,7 +27,7 @@ export function fetchCart(loggedIn) {
         request
             .then((response) => {
                 if (!response.status === 200) {
-                    console.log("Get Request failed")
+                    
                     throw Error(response.statusText);
                 }
                 dispatch(loadCartLoading(false));
@@ -35,7 +35,7 @@ export function fetchCart(loggedIn) {
                 return response.data;
             })
             .then((data) => {
-                console.log(data);
+                
                 dispatch(loadCartSuccess(data))
             })
             .catch((error) => {

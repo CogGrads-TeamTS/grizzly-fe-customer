@@ -45,7 +45,7 @@ export function cart(state = {cartIsActive: false}, action) {
 export function cartIsLoading(state = false, action) {
     switch (action.type) {
         case types.LOAD_CART_LOADING:
-             console.log(action.cartIsLoading);
+           
             return action.cartIsLoading
         default:
             return state

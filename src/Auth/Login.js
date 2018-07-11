@@ -13,7 +13,7 @@ const Login = (props) => (
     }} />
   ) : (
     <div>
-      {console.log(props.location)}
+  
       <Lock location={props.location} />
       <Homepage />
     </div>
