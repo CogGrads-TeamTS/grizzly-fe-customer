@@ -65,7 +65,8 @@ class PaypalButton extends React.Component {
             onError,
             onCancel,
             items,
-            checkout
+            checkout,
+            complete
         } = this.props;
 
         const {
@@ -106,6 +107,7 @@ class PaypalButton extends React.Component {
             .then(function(res) {
                 // order complete
                 // navigate to order history page
+                complete(res.data);
                 return res.data.id;
             });
         }
