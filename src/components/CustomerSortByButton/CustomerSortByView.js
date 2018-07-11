@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container,Row,Col,Button } from 'reactstrap';
 import {productsFetchData} from '../../actions/productActions'
-import ProductTiles from '../Products/ProductTiles';
+import ProductTilesView from '../Products/ProductsTilesView';
 import Breadcrumb from '../Common/breadcrumb';
+import Filter from '../Common/filter';
 
 class CustomerSortByView extends Component {
     constructor(props) {
@@ -35,6 +36,8 @@ class CustomerSortByView extends Component {
         return (
             <div>
                 <Breadcrumb returnToHome={this.returnToHome} returnToAllCat={this.returnToAllCat} catName={catName}/>
+                
+                
                 {/* // <Container fluid> */}
                 {/* <Row>
                     <Col md="2" sm="4" xs="12">
@@ -42,9 +45,8 @@ class CustomerSortByView extends Component {
                     </Col>
                 </Row> */}
              
-                
                 {this.props.loading ? <p>Loading....</p> : <p></p>}
-                {this.props.products && !this.props.loading ? <ProductTiles  products={this.props.products} catName={catName} returnToHome={this.returnToHome}/> : <p></p>}
+                {this.props.products && !this.props.loading ? <ProductTilesView  products={this.props.products} catName={catName} returnToHome={this.returnToHome} colOffset="TEST"/> : <p></p>}
             {/* </Container> */}
             
             </div>
