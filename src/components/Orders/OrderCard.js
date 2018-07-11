@@ -1,33 +1,41 @@
 import React from 'react';
-import { Container, Col, Row, Card, CardTitle, CardBody } from 'reactstrap';
+import { Badge, Container, Col, Row, Card, CardTitle, CardBody } from 'reactstrap';
+import '../../App.css';
+
 const imageUrl = 'http://ts.ausgrads.academy/images/';
+
 
 const OrderCard = (props) => {
     const products = props.order.products.map(product =>
-        <Row>
-            <Col xs="2">
-                <img width="100%" src={product.imageUrl ? `${imageUrl}${product.imageUrl}`: '' }/>
-            </Col>
-            <Col xs="8">
-                <p>{product.name}</p>
-                <p>
-                    Qty: {product.qty}
-                </p>
-            </Col>
-            <Col xs="2">
-                <p className="text-info">${product.totalPrice}</p>
-            </Col>
-        </Row>
+        <div>
+            <Row>
+                <Col xs="2">
+                    <img width="100%" src={product.imageUrl ? `${imageUrl}${product.imageUrl}`: '' }/>
+                </Col>
+                <Col xs="6">
+                    <p>{product.name}</p>
+                    <p>Qty: {product.qty}</p>
+                </Col>
+                <Col xs="2">
+                    <h5><Badge color="light" pill>${product.totalPrice}</Badge></h5>
+                </Col>
+            </Row>
+            <hr />
+        </div>
     );
     return (
         <div>
-            <Card style={{'padding': '15px'}}>
-                <CardTitle>
-                    <p className="lead">Order #{props.order.id}</p>
+            <Card className="order-card" >
+                <CardTitle className="lead order-title">
+                    <p className="inline">Order #{props.order.id}</p>
+                    <Badge className="inline order-status" pill color="primary">{props.order.status}</Badge>
+                    <p className="inline order-date">Order Placed: {props.order.date}</p>
                 </CardTitle>
-                <CardBody>
+                <CardBody className="order-card-body">
                     {products}
-                </CardBody>
+                    <p className="inline">Shipping address: {props.order.shippingAddress}</p>
+                    <p className="total inline">Total Price: ${props.order.totalPrice}</p>
+                </CardBody>      
             </Card>
         </div>
     )
