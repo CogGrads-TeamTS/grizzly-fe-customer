@@ -46,10 +46,8 @@ export function addRating(payload, pid) {
     const loggedIn = false;
 
     return function (dispatch) {
-
-        payload.productId = pid;
         
-        const request = axios.post(`${API_URL}/add`, payload , {headers: authHeader()});
+        const request = axios.post(`${API_URL}/add/${pid}`, payload , {headers: authHeader()});
         request
             .then((response) => {
                 if (!response.status === 200) {
