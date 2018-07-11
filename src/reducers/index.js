@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
     global: global,
     globalHasErrored:globalHasErrored,
     globalIsLoading:globalIsLoading,
-    orders: orders
+    orders: orders,
     ratings: ratings,
     ratingsHasErrored, ratingsHasErrored,
     ratingsIsLoading: ratingsIsLoading
