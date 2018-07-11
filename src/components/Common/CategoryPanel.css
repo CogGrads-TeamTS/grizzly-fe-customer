@@ -69,7 +69,7 @@
 }
 
 .breadcrumb-body {
-    padding: 0.7rem 1.5rem 0 1.5rem;
+    padding: 0.5rem 1.5rem 0 1.5rem;
     flex-grow: 1;
     flex-shrink: 0;
     /* padding: 3rem 1.5rem; */
@@ -85,6 +85,7 @@
     flex-grow: 1;
     flex-shrink: 0;
     justify-content: flex-start;
+    margin-bottom: 0.2rem;
 }
 
 .breadcrumbs li {
@@ -105,7 +106,7 @@
     font-weight: 300;
     line-height: 1.125;
     margin-left: 3rem;
-    margin-bottom: 1.5rem
+    margin-bottom: 1.3rem
 }
 
 .breadcrumbs li + li::before {

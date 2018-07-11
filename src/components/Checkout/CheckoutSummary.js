@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import CartItem from '../Common/cart/cart';
 import QtyInput from '../Common/cart/QtyInput'
 
-import { fetchCart, removeCartItem, updateCartItemQty, toggleCart } from '../../actions/cartActions';
+import { fetchCart, removeCartItem, updateCartItemQty, toggleCart, clearCartItems } from '../../actions/cartActions';
 import PaypalButton from '../Products/PaypalButton';
 import config from '../../config';
 
@@ -27,13 +27,26 @@ class CheckoutSummary extends React.Component {
         this.state = { showComplete: false };
     }
 
+    componentDidMount() {
+        window.addEventListener('popstate', () => {
+            this.setState({ showComplete: false })
+        });
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener('popstate', () => {
+            this.setState({ showComplete: false })
+        });
+    }
+
     completed(order) {
         console.log(order);
         this.setState({ showComplete: true })
     }
 
     closeCompleted() {
-        this.setState({ showComplete: false })
+        this.props.clearCart();
+        this.setState({ showComplete: false });
         this.props.history.replace("/orders");
     }
 
@@ -48,7 +61,7 @@ class CheckoutSummary extends React.Component {
 
     render() {
         const { cart } = this.props;
-        console.log(cart);
+       
         if (cart && cart.items.length > 0) {
             const qtyChanged = _.debounce((pid,qty) => { this.updateQty(pid,qty) }, 500);
             const products = cart.items.map(product =>
@@ -151,7 +164,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateCartItemQty: (pid,qty) => dispatch(updateCartItemQty(pid,qty)),
         removeCartItem: (pid) => dispatch(removeCartItem(pid)),
-        toggleCart: (isOpen) => dispatch(toggleCart(isOpen))
+        toggleCart: (isOpen) => dispatch(toggleCart(isOpen)),
+        clearCart: () => dispatch(clearCartItems())
     };
 };
 

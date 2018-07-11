@@ -31,7 +31,7 @@ const CartItem = ({ product, deleteCartItem }) => {
 export default class Cart extends React.PureComponent {
     render() {
         const { cart, deleteCartItem } = this.props;
-        console.log(cart);
+        
         if (cart && cart.items.length > 0) {
             let products = cart.items.map(product =>
                 <CartItem key={product.id} product={product} deleteCartItem={deleteCartItem}/>

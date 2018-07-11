@@ -4,6 +4,7 @@ import { category, categoryHasErrored, categoryIsLoading } from './categoryReduc
 import { products, productsIsLoading } from './productReducer'
 import { user, userHasErrored, userIsLoading } from './userReducer'
 import {cart, cartHasErrored, cartIsLoading} from "./cartReducer"
+import {ratings, ratingsHasErrored, ratingsIsLoading} from "./ratingReducer";
 import {global, globalHasErrored,globalIsLoading} from "./globalReducer";
 import { orders } from './orderReducer';
 
@@ -23,7 +24,10 @@ const rootReducer = combineReducers({
     global: global,
     globalHasErrored:globalHasErrored,
     globalIsLoading:globalIsLoading,
-    orders: orders
+    orders: orders,
+    ratings: ratings,
+    ratingsHasErrored, ratingsHasErrored,
+    ratingsIsLoading: ratingsIsLoading
 });
 
 export default rootReducer;

@@ -14,7 +14,7 @@ class CategoryPanel extends Component{
         this.page = 0;
         this.size = 20;
         this.sort = "id,desc";
-        //console.log(props.match);
+        
         (props.match.params.id)?this.category=props.match.params.id:this.category="";
 
     }

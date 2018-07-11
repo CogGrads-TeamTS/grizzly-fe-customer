@@ -8,6 +8,10 @@ import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
 import Breadcrumb from '../Common/breadcrumb';
+import RateProduct from './RateProduct';
+import StarRatings from 'react-star-ratings';
+import { fetchRatings, addRating } from '../../actions/ratingActions';
+import ViewRatings from '../../components/ViewRatings';
 
 class ProductSingle extends Component {
     constructor(props) {
@@ -17,22 +21,21 @@ class ProductSingle extends Component {
 
         this.returnToHome = this.returnToHome.bind(this);
         this.returnToCat = this.returnToCat.bind(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     returnToCat = () => {
         this.props.history.push(`/category/${this.props.product.catName}/${this.props.product.catId}`)
     }
     returnToHome = (e) => {
-        console.log(this.props.product.name);
         this.props.history.push("/");
-    }
-    returnToAllCat = () => {
-        this.props.history.push("/categories");
     }
 
     componentDidMount() {
         this.props.fetchData(this.props.match.params.id);
         this.props.fetchImages(this.props.match.params.id);
+        this.props.fetchRatings(this.props.match.params.id);
         this.setState({ loaded: "" });
     }
 
@@ -70,6 +73,11 @@ class ProductSingle extends Component {
         return price - ((discount / 100) * price).toFixed(2);
     }
 
+    handleSubmit = (payload) => {
+        console.log(this.props.product.id)
+        this.props.addRating(payload, this.props.product.id);
+    }
+
     render() {
         console.log(this.loading)
         const isLoading = (this.loading || !this.props.product) ?
@@ -78,7 +86,7 @@ class ProductSingle extends Component {
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
             ) : (<div>
-                <Breadcrumb returnToHome={this.returnToHome}  returnToAllCat={this.returnToAllCat} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
+                <Breadcrumb returnToHome={this.returnToHome} returnToCat={this.returnToCat} catName={this.props.product.catName} prodName={this.props.product.name}/>
                 <div className="container-fluid product-container">
                     <div className={"loading-container-full loaded" + (this.state && !this.loading ? this.state.loaded : "")}>
                         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -101,26 +109,44 @@ class ProductSingle extends Component {
                             </ImagesLoaded>
                         </Col>
 
-                        <Col md="5" sm="6" xs="12">
+                        <Col md="4" sm="6" xs="12">
                             <div className="title">
                             {console.log(this.props.product)}
                                 {this.props.product.name}
                                 {(this.props.product.discount > 0 ? <div className="discount-product-single">{this.props.product.discount}% Off</div> : null)}
                             </div>
+                           
+                            <StarRatings 
+                                    rating={this.props.product.rating}
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension="20px"
+                                    starSpacing="2px"
+                                    starRatedColor='rgb(108, 116, 217)'
+                                    isSelectable={false}
+                                />
+                            
                             <div className="description">{this.props.product.description}</div>
                             <div className="price">AUD ${this.calculateNewPrice(this.props.product.price, this.props.product.discount)}</div>
                             {(this.props.product.discount > 0 ? <div className="old-price">AUD ${this.props.product.price}</div> : null)}
                             <Row style={{ borderTop: "1px solid #eee", marginTop: "5%" }}>
-                                <Button className="buy-button" id="btn-rounded" onClick={this.buyToClick}>Buy Now</Button>
-                                <Button className="add-button" id="btn-rounded" onClick={this.addToCartClick}>Add to Cart</Button>
+                                <Col md="4" style={{display: "inherit"}}>
+                                    <Button className="navbar-button-generic btn btn-secondary"  onClick={this.buyToClick}>Buy Now</Button>
+                                    <Button className="navbar-button-generic btn btn-secondary"  style={{marginLeft: "10px"}} onClick={this.addToCartClick}>Add to Cart</Button>
+                                </Col>
                             </Row>
                         </Col>
 
-                        <Col className="buy-panel" md="3" sm="12">
-                            <div className="searched-title">People also searched for</div>
-                            <CardColumns style={{ columnCount: "2" }}>
+                        <Col className="ratings-panel" md="4" sm="12">
+                            <span className="review-title">Customer Reviews</span>
+                            <ViewRatings ratings={this.props.ratings} />
+                            <RateProduct onSubmit={this.handleSubmit} productId={this.props.product.id} />
+                            
+                        </Col>
+
+                        <div class="featured-col offset-md-1 col-md-12" style={{marginTop: "15px"}}><div class="featured-toolbar"><div class="featured-toolbar-title" style={{width: "70.5%"}}><span>PEOPLE ALSO SEARCHED FOR</span></div></div></div>
+                        <Col className="buy-panel" md="12" sm="12" className="offset-md-1" style={{marginBottom: "50px"}}>
                                 <ProductsSearched product={this.props.product} category={this.props.product.category} />
-                            </CardColumns>
                         </Col>
                     </Row>
 
@@ -137,10 +163,12 @@ class ProductSingle extends Component {
     }
 }
 
-const MapStateToProps = (state) => {
+const MapStateToProps = (state) => {console.log(state)
     return {
         product: state.products.selected,
-        images: state.products.images
+        images: state.products.images,
+        ratings: state.ratings.ratings,
+        user: state,
     }
 }
 
@@ -149,6 +177,8 @@ const MapDispatchToProps = (dispatch) => {
         fetchData: (id) => dispatch(productFetchDataByID(id)),
         fetchImages: (id) => dispatch(productFetchImagesByID(id)),
         addToCart: (pid) => dispatch(addProductToCart(pid)),
+        fetchRatings: (pid) => dispatch(fetchRatings(pid)),
+        addRating: (payload, pid) => dispatch(addRating(payload, pid))
     }
 }
 export default connect(MapStateToProps, MapDispatchToProps)(ProductSingle);

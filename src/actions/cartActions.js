@@ -27,7 +27,7 @@ export function fetchCart(loggedIn) {
         request
             .then((response) => {
                 if (!response.status === 200) {
-                    console.log("Get Request failed")
+                    
                     throw Error(response.statusText);
                 }
                 dispatch(loadCartLoading(false));
@@ -35,7 +35,7 @@ export function fetchCart(loggedIn) {
                 return response.data;
             })
             .then((data) => {
-                console.log(data);
+                
                 dispatch(loadCartSuccess(data))
             })
             .catch((error) => {
@@ -98,6 +98,24 @@ export function updateCartItemQty(pid, qty) {
                 throw Error(response.statusText);
             }
             dispatch(updateCartItemSuccess(response.data))
+        })
+    }
+}
+
+const clearCartSuccess = (data) => ({ type: types.CLEAR_CART_SUCCESS, data });
+export function clearCartItems() {
+    const url = `${API_URL}`;
+    return function(dispatch) {
+        const request = axios(url, {
+            method: "delete",
+            withCredentials: true
+        });
+
+        request.then((response) => {
+            if (!response.status === 200) {
+                throw Error(response.statusText);
+            }
+            dispatch(clearCartSuccess(response.data))
         })
     }
 }

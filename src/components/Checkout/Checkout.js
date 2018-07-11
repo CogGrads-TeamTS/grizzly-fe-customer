@@ -28,7 +28,7 @@ class Checkout extends Component {
     }
 
     onSubmit(values) {
-        console.log(values);
+        
     }
 
     render() {

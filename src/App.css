@@ -1453,6 +1453,39 @@ SEARCH BAR TEST END
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+/*Reviews*/
+.review-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.review-textarea{
+  width: 100%;
+}
+
+.ratings-panel{
+  border-left: 1px solid #2222;
+}
+
+.view-ratings{
+  margin: 20px 0 20px 0;
+}
+.view-ratings .star-ratings{
+  float: right;
+  margin-right: 100px;
+}
+
+.view-ratings-panel{
+  overflow-y: scroll;
+  max-height: 270px;
+  /* min-height: 180px; */
+  margin-bottom: 30px;
+}
+
+.rating-description{
+  padding-top: 5px;
+}
+
 
 /**
 * CAT HEAD

@@ -30,7 +30,7 @@ export function globalFetchData({search}){
 const saveGlobalSuccess = (data) => ({type: types.SAVE_GLOBAL_SELECTED_SUCCESS, data});
 
 export function globalSaveSearch(selected){
-    console.log(selected)
+    
     return function (dispatch) {
         dispatch(saveGlobalSuccess(selected));
     };
