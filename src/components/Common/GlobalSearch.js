@@ -102,7 +102,7 @@ class GlobalSearch extends React.Component {
             //   </FormGroup>
             // </Form>
             <form autoComplete={"off"}>
-            <div class="nav-search-container">
+            <div className="nav-search-container">
                 <Select id="search"
                     name="form-field-name"
                     custom={"hello"}

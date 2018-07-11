@@ -37,7 +37,7 @@ class ProductsSearched extends Component {
 
                 prod_count++;
                 return (
-                    <Link to={{ pathname: `/product/${prod.id}` }} >
+                    <Link key={prod.id} to={{ pathname: `/product/${prod.id}` }} >
                         <Card className="image-thumb">
                             <div className="consistent-image-container">
                                 <img key={prod.id}

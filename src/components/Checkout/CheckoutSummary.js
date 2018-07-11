@@ -103,7 +103,7 @@ class CheckoutSummary extends React.Component {
         return (
             <Card style={{padding:"20px",margin: "25px"}}>
                 <CardTitle>
-                    <h1 class="display-4">Your cart is empty</h1>
+                    <h1 className="display-4">Your cart is empty</h1>
                 </CardTitle>
             </Card>
         )
