@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { productFetchDataByID, productFetchImagesByID } from '../../actions/productActions';
 import { addProductToCart } from '../../actions/cartActions';
 import { CardColumns, Container, Row, Col, Button, FormGroup, Label, Input } from 'reactstrap';
-import ProductViewCarusel from './ProductViewCarousel';
+import ProductViewCarousel from './ProductViewCarousel';
 import ProductsSearched from './ProductsSearched';
 import './ProductSingle.css';
 import ImagesLoaded from 'react-images-loaded';
@@ -12,6 +12,7 @@ import Breadcrumb from '../Common/breadcrumb';
 class ProductSingle extends Component {
     constructor(props) {
         super(props);
+        console.log("Setting loading to true in constructor")
         this.loading = true;
 
         this.returnToHome = this.returnToHome.bind(this);
@@ -45,11 +46,11 @@ class ProductSingle extends Component {
 
     handleOnAlways = instance => { };
 
-    handleOnProgress = (instance, image) => { this.loading = true; };
+    handleOnProgress = (instance, image) => { console.log("Setting loading to true in image load"); this.loading = true; };
 
     handleOnFail = instance => { };
 
-    handleDone = instance => { this.loading = false; this.setState({ loaded: " complete-loaded" }); };
+    handleDone = instance => { console.log("Setting loading to false in image load"); this.loading = false; this.setState({ loaded: " complete-loaded" }); };
 
     addToCartClick = () => {
         this.props.addToCart(this.props.product.id)
@@ -67,9 +68,9 @@ class ProductSingle extends Component {
     }
 
     render() {
+        console.log(this.loading)
         const isLoading = (this.loading || !this.props.product) ?
             (
-               
                 <div className="loading-container-full-pre">
                     <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
@@ -92,7 +93,7 @@ class ProductSingle extends Component {
                                 background=".image" // true or child selector
                             >
                                 <div className="prod-body-images">
-                                    <ProductViewCarusel images={this.props.images} />
+                                    <ProductViewCarousel images={this.props.images} />
                                 </div>
                             </ImagesLoaded>
                         </Col>
