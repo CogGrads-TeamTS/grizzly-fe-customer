@@ -27,6 +27,18 @@ class CheckoutSummary extends React.Component {
         this.state = { showComplete: false };
     }
 
+    componentDidMount() {
+        window.addEventListener('popstate', () => {
+            this.setState({ showComplete: false })
+        });
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener('popstate', () => {
+            this.setState({ showComplete: false })
+        });
+    }
+
     completed(order) {
         console.log(order);
         this.setState({ showComplete: true })
