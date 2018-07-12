@@ -1221,7 +1221,7 @@ button {
 
 /*Snowflakes*/
 
-/* .flakes {
+.flakes {
   position: absolute;
   top: 0;
   left: 0;
@@ -1379,7 +1379,7 @@ button {
       opacity: 0;
       transition: visibility 0s 10s, opacity 10s linear;
   }
-} */
+}
 
 /**
 SESARCH BAR TEST
