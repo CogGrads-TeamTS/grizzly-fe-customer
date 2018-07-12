@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,200');
 html,
 body {
+    font-family: 'Raleway' !important;
     height: 100%;
     overflow-x: hidden;
 }
@@ -1206,6 +1207,12 @@ button {
     float: right;
     margin: 0;
     font-weight: bold;
+}
+
+.no-order {
+    text-align: center;
+    padding: 3em;
+    font-size: 1em;
 }
 
 /* Order History END */

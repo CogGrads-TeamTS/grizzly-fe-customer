@@ -1,16 +1,18 @@
 
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import _ from 'lodash';
+import { Container, Col, Row } from 'reactstrap';
 
 import { fetchOrders } from '../../actions/orderActions';
 import OrderCard from "./OrderCard";
-import { Container, Col, Row } from 'reactstrap';
 import '../../App.css';
 
 class Orders extends Component {
     componentWillMount() {
         this.props.fetchOrders();
     }
+    
     render() {
         return (
             <div>
@@ -18,10 +20,19 @@ class Orders extends Component {
                 <h1 className="lead order-heading">Your Orders</h1>
                 <Row>
                 {
-                    this.props.orders.map(order => 
-                        <Col className="order-card" xs="12" sm="12" md="12" key={order.id}>
-                            <OrderCard order={order} />
+                    (_.isEmpty(this.props.orders) ? (
+                        <Col className="no-order">
+                            You have no orders!
                         </Col>
+                    ) : (
+                        _.map(Object.values(this.props.orders), (order)  => {
+                            return (
+                                <Col className="order-card" xs="12" sm="12" md="12" key={order.id}>
+                                    <OrderCard order={order} />
+                                </Col>
+                            )
+                        })
+                        )
                     )
                 }
                 </Row>
