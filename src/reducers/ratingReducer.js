@@ -11,7 +11,7 @@ export function ratings(state = {}, action) {
         
             return {
                 ...state,
-                ratings: [action.data, ...state.ratings]
+                ratings: [action.data.rating, ...state.ratings]
             }
 
         default:

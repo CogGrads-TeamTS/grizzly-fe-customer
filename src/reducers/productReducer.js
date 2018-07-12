@@ -26,6 +26,15 @@ export function products(state = {}, action) {
                 selected: action.data
             };
 
+            case types.ADD_RATING_SUCCESS:
+            return {
+                ...state,
+                selected: {
+                    ...state.selected,
+                    rating: action.data.average
+                }
+            }
+
             case types.LOAD_SINGLE_PRODUCT_IMAGE_SUCCESS:
             return {
                 ...state,
